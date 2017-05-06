@@ -15,13 +15,13 @@ namespace ComparedQueryable.NativeQueryable
     {
         internal abstract Expression Expression { get; }
         internal abstract IEnumerable Enumerable { get; }
-        internal static IQueryable Create(Type elementType, IEnumerable sequence)
+        internal virtual IQueryable Create(Type elementType, IEnumerable sequence)
         {
             Type seqType = typeof(EnumerableQuery<>).MakeGenericType(elementType);
             return (IQueryable)Activator.CreateInstance(seqType, sequence);
         }
 
-        internal static IQueryable Create(Type elementType, Expression expression)
+        internal virtual IQueryable Create(Type elementType, Expression expression)
         {
             Type seqType = typeof(EnumerableQuery<>).MakeGenericType(elementType);
             return (IQueryable)Activator.CreateInstance(seqType, expression);
@@ -75,6 +75,11 @@ namespace ComparedQueryable.NativeQueryable
             {
                 throw Error.ArgumentNotValid(nameof(expression));
             }
+            return GetEnumerableQuery<TElement>(expression);
+        }
+
+        protected virtual IQueryable<TElement> GetEnumerableQuery<TElement>(Expression expression)
+        {
             return new EnumerableQuery<TElement>(expression);
         }
 
@@ -99,7 +104,12 @@ namespace ComparedQueryable.NativeQueryable
                 throw Error.ArgumentNull(nameof(expression));
             if (!typeof(TElement).IsAssignableFrom(expression.Type))
                 throw Error.ArgumentNotValid(nameof(expression));
-            return new EnumerableExecutor<TElement>(expression).Execute();
+            return GetEnumerableExecutor<TElement>(expression).Execute();
+        }
+
+        protected virtual EnumerableExecutor<TElement> GetEnumerableExecutor<TElement>(Expression expression)
+        {
+            return new EnumerableExecutor<TElement>(expression);
         }
 
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
@@ -110,7 +120,7 @@ namespace ComparedQueryable.NativeQueryable
         {
             if (_enumerable == null)
             {
-                EnumerableRewriter rewriter = new EnumerableRewriter();
+                EnumerableRewriter rewriter = GetEnumerableRewriter();
                 Expression body = rewriter.Visit(_expression);
                 Expression<Func<IEnumerable<T>>> f = Expression.Lambda<Func<IEnumerable<T>>>(body, (IEnumerable<ParameterExpression>)null);
                 IEnumerable<T> enumerable = f.Compile()();
@@ -119,6 +129,11 @@ namespace ComparedQueryable.NativeQueryable
                 _enumerable = enumerable;
             }
             return _enumerable.GetEnumerator();
+        }
+
+        internal virtual EnumerableRewriter GetEnumerableRewriter()
+        {
+            return new EnumerableRewriter();
         }
 
         public override string ToString()

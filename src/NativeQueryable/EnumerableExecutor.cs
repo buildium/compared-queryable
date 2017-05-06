@@ -35,11 +35,17 @@ namespace ComparedQueryable.NativeQueryable
 
         internal T Execute()
         {
-            EnumerableRewriter rewriter = new EnumerableRewriter();
+            EnumerableRewriter rewriter = GetEnumerableRewriter();
             Expression body = rewriter.Visit(_expression);
             Expression<Func<T>> f = Expression.Lambda<Func<T>>(body, (IEnumerable<ParameterExpression>)null);
             Func<T> func = f.Compile();
             return func();
+        }
+
+        internal virtual EnumerableRewriter GetEnumerableRewriter()
+        {
+            var rewriter = new EnumerableRewriter();
+            return rewriter;
         }
     }
 }

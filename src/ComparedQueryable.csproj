@@ -40,10 +40,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EnumerableExecutor[TCollectionElement,TComparison].cs" />
+    <Compile Include="EnumerableQuery[TCollectionElement,TComparison].cs" />
+    <Compile Include="EnumerableRewriter[TComparison].cs" />
     <Compile Include="NativeQueryable\EnumerableExecutor.cs" />
     <Compile Include="NativeQueryable\EnumerableQuery.cs" />
     <Compile Include="NativeQueryable\EnumerableRewriter.cs" />
     <Compile Include="NativeQueryable\Error.cs" />
+    <Compile Include="QueryableExtensions.cs" />
     <Compile Include="NativeQueryable\TypeHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -56,7 +56,7 @@ namespace ComparedQueryable.NativeQueryable
             return m;
         }
 
-        private ReadOnlyCollection<Expression> FixupQuotedArgs(MethodInfo mi, ReadOnlyCollection<Expression> argList)
+        protected virtual ReadOnlyCollection<Expression> FixupQuotedArgs(MethodInfo mi, ReadOnlyCollection<Expression> argList)
         {
             ParameterInfo[] pis = mi.GetParameters();
             if (pis.Length > 0)
@@ -214,7 +214,7 @@ namespace ComparedQueryable.NativeQueryable
 
 
         private static ILookup<string, MethodInfo> s_seqMethods;
-        private static MethodInfo FindEnumerableMethod(string name, ReadOnlyCollection<Expression> args, params Type[] typeArgs)
+        private MethodInfo FindEnumerableMethod(string name, ReadOnlyCollection<Expression> args, params Type[] typeArgs)
         {
             if (s_seqMethods == null)
             {
@@ -223,8 +223,15 @@ namespace ComparedQueryable.NativeQueryable
             MethodInfo mi = s_seqMethods[name].FirstOrDefault(m => ArgsMatch(m, args, typeArgs));
             Debug.Assert(mi != null, "All static methods with arguments on Queryable have equivalents on Enumerable.");
             if (typeArgs != null)
-                return mi.MakeGenericMethod(typeArgs);
+                return GetGenericMethod(typeArgs, mi, s_seqMethods[name]);
             return mi;
+        }
+
+        protected virtual MethodInfo GetGenericMethod(Type[] typeArgs,
+            MethodInfo matchingMethodInfo,
+            IEnumerable<MethodInfo> potentialMethodMatches)
+        {
+            return matchingMethodInfo.MakeGenericMethod(typeArgs);
         }
 
         private static MethodInfo FindMethod(Type type, string name, ReadOnlyCollection<Expression> args, Type[] typeArgs)
