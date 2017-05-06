@@ -62,7 +62,7 @@ namespace ComparedQueryable.NativeQueryable
             if (pis.Length > 0)
             {
                 List<Expression> newArgs = null;
-                for (int i = 0, n = pis.Length; i < n; i++)
+                for (int i = 0, n = argList.Count; i < n; i++)
                 {
                     Expression arg = argList[i];
                     ParameterInfo pi = pis[i];
