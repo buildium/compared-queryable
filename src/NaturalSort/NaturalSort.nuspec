@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>Buildium.NaturalSort</id>
+    <version>1.0.0</version>
+    <title>NaturalSortComparer</title>
+    <authors>Peter A Majeed</authors>
+    <owners>Buildium, LLC</owners>
+    <licenseUrl>https://raw.githubusercontent.com/buildium/compared-queryable/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/buildium/compared-queryable</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>
+        A way to "naturally" sort strings so that ordering the strings "10" and "2" returns "2" followed by 10.
+    </description>
+    <releaseNotes>Initial release of the natural string comparer.</releaseNotes>
+    <copyright>Copyright 2017 Buildium, LLC</copyright>
+    <tags>natural sort comparer icomparer order orderby string</tags>
+  </metadata>
+</package>
