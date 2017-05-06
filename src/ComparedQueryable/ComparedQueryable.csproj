@@ -51,5 +51,11 @@
     <Compile Include="NativeQueryable\TypeHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\NaturalSort\NaturalSort.csproj">
+      <Project>{E5793449-CCFB-4BAB-8CE2-6899DD47C1DF}</Project>
+      <Name>NaturalSort</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
