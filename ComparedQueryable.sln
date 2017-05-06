@@ -9,6 +9,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NaturalSort", "src\NaturalS
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{C84AF587-3DD8-45B3-8426-92949B9BFF97}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{1805A518-B7C4-4AE7-BBE7-A91B70927E16}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NaturalSort.Test", "test\NaturalSort.Test\NaturalSort.Test.csproj", "{C171EF77-7E52-4145-AE03-1491171DF96A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,6 +27,10 @@ Global
 		{E5793449-CCFB-4BAB-8CE2-6899DD47C1DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E5793449-CCFB-4BAB-8CE2-6899DD47C1DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E5793449-CCFB-4BAB-8CE2-6899DD47C1DF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C171EF77-7E52-4145-AE03-1491171DF96A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C171EF77-7E52-4145-AE03-1491171DF96A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C171EF77-7E52-4145-AE03-1491171DF96A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C171EF77-7E52-4145-AE03-1491171DF96A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -30,5 +38,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{C14F6027-67AD-45C3-912B-9909AC2BF8A2} = {C84AF587-3DD8-45B3-8426-92949B9BFF97}
 		{E5793449-CCFB-4BAB-8CE2-6899DD47C1DF} = {C84AF587-3DD8-45B3-8426-92949B9BFF97}
+		{C171EF77-7E52-4145-AE03-1491171DF96A} = {1805A518-B7C4-4AE7-BBE7-A91B70927E16}
 	EndGlobalSection
 EndGlobal
