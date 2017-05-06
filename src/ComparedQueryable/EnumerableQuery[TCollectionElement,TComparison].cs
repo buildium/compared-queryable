@@ -6,16 +6,19 @@ using ComparedQueryable.NativeQueryable;
 
 namespace ComparedQueryable
 {
+    /// <inheritdoc />
     public class EnumerableQuery<TCollectionElement, TComparison> : NativeQueryable.EnumerableQuery<TCollectionElement>
     {
         private readonly IComparer<TComparison> m_comparer;
 
+        /// <inheritdoc />
         public EnumerableQuery(IEnumerable<TCollectionElement> enumerable,
             IComparer<TComparison> comparer) : base(enumerable)
         {
             m_comparer = comparer;
         }
 
+        /// <inheritdoc />
         public EnumerableQuery(Expression expression, IComparer<TComparison> comparer) : base(expression)
         {
             m_comparer = comparer;
