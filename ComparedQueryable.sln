@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ComparedQueryable", "src\Co
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NaturalSort", "src\NaturalSort\NaturalSort.csproj", "{E5793449-CCFB-4BAB-8CE2-6899DD47C1DF}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{C84AF587-3DD8-45B3-8426-92949B9BFF97}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +26,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{C14F6027-67AD-45C3-912B-9909AC2BF8A2} = {C84AF587-3DD8-45B3-8426-92949B9BFF97}
+		{E5793449-CCFB-4BAB-8CE2-6899DD47C1DF} = {C84AF587-3DD8-45B3-8426-92949B9BFF97}
 	EndGlobalSection
 EndGlobal
