@@ -40,12 +40,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="NativeQueryable\CachedReflection.cs" />
     <Compile Include="NativeQueryable\EnumerableExecutor.cs" />
     <Compile Include="NativeQueryable\EnumerableQuery.cs" />
     <Compile Include="NativeQueryable\EnumerableRewriter.cs" />
     <Compile Include="NativeQueryable\Error.cs" />
-    <Compile Include="NativeQueryable\Queryable.cs" />
     <Compile Include="NativeQueryable\TypeHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
