@@ -14,7 +14,7 @@ namespace ComparedQueryable.Test
             // GIVEN I have a collection with a string property
             var twoNorthStreet = new Address("2 N. Street");
             var tenNorthStreet = new Address("10 N. Street");
-            var collection = new[] { twoNorthStreet, tenNorthStreet };
+            var collection = new[] {tenNorthStreet, twoNorthStreet};
 
             // WHEN I order the collection by name
             var orderedCollection = collection
@@ -23,8 +23,8 @@ namespace ComparedQueryable.Test
 
             // THEN it should be ordered in "natural" order
             orderedCollection
-                .ShouldBeEquivalentTo(collection, options => options.WithStrictOrdering(), "our IQueryable provider "
-                    + "should be able to naturally order strings");
+                .ShouldBeEquivalentTo(new[] {twoNorthStreet, tenNorthStreet}, options => options.WithStrictOrdering(),
+                    "our IQueryable provider should be able to naturally order strings");
         }
 
         [Fact]
