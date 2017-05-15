@@ -2,10 +2,11 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
+using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 
-namespace System.Linq
+namespace ComparedQueryable.NativeQueryable
 {
     // Must remain public for Silverlight
     public abstract class EnumerableExecutor
@@ -34,11 +35,17 @@ namespace System.Linq
 
         internal T Execute()
         {
-            EnumerableRewriter rewriter = new EnumerableRewriter();
+            EnumerableRewriter rewriter = GetEnumerableRewriter();
             Expression body = rewriter.Visit(_expression);
             Expression<Func<T>> f = Expression.Lambda<Func<T>>(body, (IEnumerable<ParameterExpression>)null);
             Func<T> func = f.Compile();
             return func();
+        }
+
+        internal virtual EnumerableRewriter GetEnumerableRewriter()
+        {
+            var rewriter = new EnumerableRewriter();
+            return rewriter;
         }
     }
 }

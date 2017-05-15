@@ -2,24 +2,26 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
 
-namespace System.Linq
+namespace ComparedQueryable.NativeQueryable
 {
     // Must remain public for Silverlight
     public abstract class EnumerableQuery
     {
         internal abstract Expression Expression { get; }
         internal abstract IEnumerable Enumerable { get; }
-        internal static IQueryable Create(Type elementType, IEnumerable sequence)
+        internal virtual IQueryable Create(Type elementType, IEnumerable sequence)
         {
             Type seqType = typeof(EnumerableQuery<>).MakeGenericType(elementType);
             return (IQueryable)Activator.CreateInstance(seqType, sequence);
         }
 
-        internal static IQueryable Create(Type elementType, Expression expression)
+        internal virtual IQueryable Create(Type elementType, Expression expression)
         {
             Type seqType = typeof(EnumerableQuery<>).MakeGenericType(elementType);
             return (IQueryable)Activator.CreateInstance(seqType, expression);
@@ -73,6 +75,11 @@ namespace System.Linq
             {
                 throw Error.ArgumentNotValid(nameof(expression));
             }
+            return GetEnumerableQuery<TElement>(expression);
+        }
+
+        protected virtual IQueryable<TElement> GetEnumerableQuery<TElement>(Expression expression)
+        {
             return new EnumerableQuery<TElement>(expression);
         }
 
@@ -97,7 +104,12 @@ namespace System.Linq
                 throw Error.ArgumentNull(nameof(expression));
             if (!typeof(TElement).IsAssignableFrom(expression.Type))
                 throw Error.ArgumentNotValid(nameof(expression));
-            return new EnumerableExecutor<TElement>(expression).Execute();
+            return GetEnumerableExecutor<TElement>(expression).Execute();
+        }
+
+        protected virtual EnumerableExecutor<TElement> GetEnumerableExecutor<TElement>(Expression expression)
+        {
+            return new EnumerableExecutor<TElement>(expression);
         }
 
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
@@ -108,7 +120,7 @@ namespace System.Linq
         {
             if (_enumerable == null)
             {
-                EnumerableRewriter rewriter = new EnumerableRewriter();
+                EnumerableRewriter rewriter = GetEnumerableRewriter();
                 Expression body = rewriter.Visit(_expression);
                 Expression<Func<IEnumerable<T>>> f = Expression.Lambda<Func<IEnumerable<T>>>(body, (IEnumerable<ParameterExpression>)null);
                 IEnumerable<T> enumerable = f.Compile()();
@@ -117,6 +129,11 @@ namespace System.Linq
                 _enumerable = enumerable;
             }
             return _enumerable.GetEnumerator();
+        }
+
+        internal virtual EnumerableRewriter GetEnumerableRewriter()
+        {
+            return new EnumerableRewriter();
         }
 
         public override string ToString()
