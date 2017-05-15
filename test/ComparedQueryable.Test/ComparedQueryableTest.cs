@@ -33,17 +33,17 @@ namespace ComparedQueryable.Test
             // GIVEN I have a collection with a string property
             var twoNorthStreet = new Address(2);
             var tenNorthStreet = new Address(10);
-            var collection = new[] { twoNorthStreet, tenNorthStreet };
+            var collection = new[] { tenNorthStreet, twoNorthStreet };
 
-            // WHEN I order the collection by name
+            // WHEN I order the collection by its numeric Id property
             var orderedCollection = collection
                 .AsNaturalQueryable()
                 .OrderBy(address => address.Id);
 
-            // THEN it should be ordered in "natural" order
+            // THEN it should be able to handle the ordering
             orderedCollection
-                .ShouldBeEquivalentTo(collection, options => options.WithStrictOrdering(), "our IQueryable provider "
-                    + "should be able to normally order ints");
+                .ShouldBeEquivalentTo(new[] { twoNorthStreet, tenNorthStreet }, options => options.WithStrictOrdering(),
+                    "our IQueryable provider should be able to normally order ints");
         }
 
         [Fact]

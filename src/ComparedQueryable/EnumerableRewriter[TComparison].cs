@@ -33,23 +33,30 @@ namespace ComparedQueryable
             ReadOnlyCollection<Expression> argList)
         {
             var queryableArgs = base.FixupQuotedArgs(mi, argList);
+            // If we're dealing with any other functions besides the ordering functions, let's do what we normally do
+            // with IQueryables.
             if (!ComparerFunctions.Contains(mi.Name))
             {
                 return queryableArgs;
             }
+
             var operandExpression = argList
                 .Where(expression => expression is UnaryExpression)
                 .Cast<UnaryExpression>()
                 .FirstOrDefault();
-
+            // If the ordering expression isn't a simple ordering expression (i.e. x => x.PropertyName), let's do what
+            // we normally do.
             if (operandExpression == null)
             {
                 return queryableArgs;
             }
+            // If the ordering expression is ordering by a different type than the type found in the comparing function,
+            // let's order as we normally do.
             if (operandExpression.Operand.Type.GetGenericArguments().All(type => type != typeof(TComparison)))
             {
                 return queryableArgs;
             }
+            // Since we've gotten this far, let's pass in the custom comparer to the ordering function.
             return queryableArgs.Concat(new[] { Expression.Constant(m_comparer) }).ToList().AsReadOnly();
         }
 

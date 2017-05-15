@@ -62,7 +62,10 @@ namespace ComparedQueryable.NativeQueryable
             if (pis.Length > 0)
             {
                 List<Expression> newArgs = null;
-                for (int i = 0, n = pis.Length; i < n; i++)
+                // Since mi may have more parameters than are passed into the set of args (such as in the case of a
+                // custom comparer passed to the OrderBy method), we should iterate the values found in the arglist
+                // rather than in the method info parameters to avoid index out of range exceptions.
+                for (int i = 0, n = argList.Count; i < n; i++)
                 {
                     Expression arg = argList[i];
                     ParameterInfo pi = pis[i];
