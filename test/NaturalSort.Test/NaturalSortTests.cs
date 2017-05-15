@@ -60,6 +60,11 @@ namespace NaturalSort.Test
             {
                 new[] { "foo 10 bar 10 x", "foo 10 bar 2 x" },
                 new[] { "foo 10 bar 2 x", "foo 10 bar 10 x" }
+            },
+            new object[]
+            {
+                new[] {"\"1\"", "\"JC\"", "1", "2", "21", "3"},
+                new[] {"\"1\"", "\"JC\"", "1", "2", "3", "21"}
             }
         };
     }
