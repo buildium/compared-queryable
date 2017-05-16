@@ -108,7 +108,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
                 typeof(Queryable),
                 typeof(Enumerable),
                  new [] {
-                     "AsNaturalQueryable"
+                     "AsQueryable"
                  }
                 );
 
