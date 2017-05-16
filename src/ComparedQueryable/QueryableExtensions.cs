@@ -34,7 +34,8 @@ namespace ComparedQueryable
             {
                 throw new ArgumentNullException(nameof(source));
             }
-            return new EnumerableQuery<T, TComparison>(source, comparer);
+            var query = source as EnumerableQuery<T, TComparison>;
+            return query ?? new EnumerableQuery<T, TComparison>(source, comparer);
         }
     }
 }
