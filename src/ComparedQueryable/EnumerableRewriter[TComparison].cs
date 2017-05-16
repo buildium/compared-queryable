@@ -78,6 +78,7 @@ namespace ComparedQueryable
         {
             return methodInfo
                 .GetParameters()
+                .Where(parameterInfo => parameterInfo.ParameterType.IsGenericType)
                 .Any(parameterInfo => parameterInfo.ParameterType.GetGenericTypeDefinition() == typeof(IComparer<>));
         }
     }
