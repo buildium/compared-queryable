@@ -17,7 +17,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
             int[] source = { 8, 3, 12, 4, 6, 10 };
             int[] expected = { 8 };
 
-            Assert.Equal(expected, source.AsQueryable().TakeWhile(x => x % 2 == 0));
+            Assert.Equal(expected, source.AsNaturalQueryable().TakeWhile(x => x % 2 == 0));
         }
 
         [Fact]
@@ -26,7 +26,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
             int[] source = { 8, 3, 12, 4, 6, 10 };
             int[] expected = { 8 };
 
-            Assert.Equal(expected, source.AsQueryable().TakeWhile((x, i) => x % 2 == 0));
+            Assert.Equal(expected, source.AsNaturalQueryable().TakeWhile((x, i) => x % 2 == 0));
         }
 
         [Fact]
@@ -39,7 +39,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
         [Fact]
         public void ThrowsOnNullPredicate()
         {
-            IQueryable<int> source = new[] { 1, 2, 3 }.AsQueryable();
+            IQueryable<int> source = new[] { 1, 2, 3 }.AsNaturalQueryable();
             Expression<Func<int, bool>> nullPredicate = null;
             AssertExtensions.Throws<ArgumentNullException>("predicate", () => source.TakeWhile(nullPredicate));
         }
@@ -54,7 +54,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
         [Fact]
         public void ThrowsOnNullPredicateIndexed()
         {
-            IQueryable<int> source = new[] { 1, 2, 3 }.AsQueryable();
+            IQueryable<int> source = new[] { 1, 2, 3 }.AsNaturalQueryable();
             Expression<Func<int, int, bool>> nullPredicate = null;
             AssertExtensions.Throws<ArgumentNullException>("predicate", () => source.TakeWhile(nullPredicate));
         }
@@ -62,14 +62,14 @@ namespace ComparedQueryable.Test.NativeQueryableTests
         [Fact]
         public void TakeWhile1()
         {
-            var count = (new int[] { 0, 1, 2 }).AsQueryable().TakeWhile(n => n < 2).Count();
+            var count = (new int[] { 0, 1, 2 }).AsNaturalQueryable().TakeWhile(n => n < 2).Count();
             Assert.Equal(2, count);
         }
 
         [Fact]
         public void TakeWhile2()
         {
-            var count = (new int[] { 0, 1, 2 }).AsQueryable().TakeWhile((n, i) => n + i < 4).Count();
+            var count = (new int[] { 0, 1, 2 }).AsNaturalQueryable().TakeWhile((n, i) => n + i < 4).Count();
             Assert.Equal(2, count);
         }
     }

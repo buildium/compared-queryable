@@ -15,42 +15,42 @@ namespace ComparedQueryable.Test.NativeQueryableTests
         public void Empty()
         {
             int[] source = { };            
-            Assert.Throws<InvalidOperationException>(() => source.AsQueryable().Single());
+            Assert.Throws<InvalidOperationException>(() => source.AsNaturalQueryable().Single());
         }
 
         [Fact]
         public void SingleElement()
         {
             int[] source = { 4 };
-            Assert.Equal(4, source.AsQueryable().Single());
+            Assert.Equal(4, source.AsNaturalQueryable().Single());
         }
 
         [Fact]
         public void ManyElement()
         {
             int[] source = { 4, 4, 4, 4, 4 };
-            Assert.Throws<InvalidOperationException>(() => source.AsQueryable().Single());
+            Assert.Throws<InvalidOperationException>(() => source.AsNaturalQueryable().Single());
         }
 
         [Fact]
         public void EmptySourceWithPredicate()
         {
             int[] source = { };
-            Assert.Throws<InvalidOperationException>(() => source.AsQueryable().Single(i => i % 2 == 0));
+            Assert.Throws<InvalidOperationException>(() => source.AsNaturalQueryable().Single(i => i % 2 == 0));
         }
 
         [Fact]
         public void ManyElementsPredicateFalseForAll()
         {
             int[] source = { 3, 1, 7, 9, 13, 19 };
-            Assert.Throws<InvalidOperationException>(() => source.AsQueryable().Single(i => i % 2 == 0));
+            Assert.Throws<InvalidOperationException>(() => source.AsNaturalQueryable().Single(i => i % 2 == 0));
         }
 
         [Fact]
         public void ManyElementsPredicateTrueForLast()
         {
             int[] source = { 3, 1, 7, 9, 13, 19, 20 };
-            Assert.Equal(20, source.AsQueryable().Single(i => i % 2 == 0));
+            Assert.Equal(20, source.AsNaturalQueryable().Single(i => i % 2 == 0));
         }
 
         [Theory]
@@ -58,7 +58,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
         [InlineData(42, 100)]
         public void FindSingleMatch(int target, int range)
         {
-            Assert.Equal(target, Enumerable.Range(0, range).AsQueryable().Single(i => i == target));
+            Assert.Equal(target, Enumerable.Range(0, range).AsNaturalQueryable().Single(i => i == target));
         }
         
         [Fact]
@@ -74,20 +74,20 @@ namespace ComparedQueryable.Test.NativeQueryableTests
         {
             int[] source = { };
             Expression<Func<int, bool>> nullPredicate = null;
-            AssertExtensions.Throws<ArgumentNullException>("predicate", () => source.AsQueryable().Single(nullPredicate));
+            AssertExtensions.Throws<ArgumentNullException>("predicate", () => source.AsNaturalQueryable().Single(nullPredicate));
         }
 
         [Fact]
         public void Single1()
         {
-            var val = (new int[] { 2 }).AsQueryable().Single();
+            var val = (new int[] { 2 }).AsNaturalQueryable().Single();
             Assert.Equal(2, val);
         }
 
         [Fact]
         public void Single2()
         {
-            var val = (new int[] { 2 }).AsQueryable().Single(n => n > 1);
+            var val = (new int[] { 2 }).AsNaturalQueryable().Single(n => n > 1);
             Assert.Equal(2, val);
         }
     }

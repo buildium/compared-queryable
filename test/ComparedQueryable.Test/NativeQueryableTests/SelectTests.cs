@@ -22,7 +22,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
                 new { name="Prakash", custID=39030 }
             };
             string[] expected = { "Prakash", "Bob", "Chris", null, "Prakash" };
-            Assert.Equal(expected, source.AsQueryable().Select(e => e.name));
+            Assert.Equal(expected, source.AsNaturalQueryable().Select(e => e.name));
         }
 
         [Fact]
@@ -34,7 +34,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
                 new { name="Chris", custID=39033 }
             };
             string[] expected = { "Prakash", null, null };
-            Assert.Equal(expected, source.AsQueryable().Select((e, i) => i == 0 ? e.name : null));
+            Assert.Equal(expected, source.AsNaturalQueryable().Select((e, i) => i == 0 ? e.name : null));
         }
 
         [Fact]
@@ -47,7 +47,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
         [Fact]
         public void Select_SelectorIsNull_ArgumentNullExceptionThrown_Indexed()
         {
-            IQueryable<int> source = Enumerable.Range(1, 10).AsQueryable();
+            IQueryable<int> source = Enumerable.Range(1, 10).AsNaturalQueryable();
             Expression<Func<int, int, int>> selector = null;
 
             AssertExtensions.Throws<ArgumentNullException>("selector", () => source.Select(selector));
@@ -63,7 +63,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
         [Fact]
         public void Select_SelectorIsNull_ArgumentNullExceptionThrown()
         {
-            IQueryable<int> source = Enumerable.Range(1, 10).AsQueryable();
+            IQueryable<int> source = Enumerable.Range(1, 10).AsNaturalQueryable();
             Expression<Func<int, int>> selector = null;
 
             AssertExtensions.Throws<ArgumentNullException>("selector", () => source.Select(selector));
@@ -72,14 +72,14 @@ namespace ComparedQueryable.Test.NativeQueryableTests
         [Fact]
         public void Select1()
         {
-            var count = (new object[] { 0, 1, 2 }).AsQueryable().Select(o => (int)o).Count();
+            var count = (new object[] { 0, 1, 2 }).AsNaturalQueryable().Select(o => (int)o).Count();
             Assert.Equal(3, count);
         }
 
         [Fact]
         public void Select2()
         {
-            var count = (new object[] { 0, 1, 2 }).AsQueryable().Select((o, i) => (int)o + i).Count();
+            var count = (new object[] { 0, 1, 2 }).AsNaturalQueryable().Select((o, i) => (int)o + i).Count();
             Assert.Equal(3, count);
         }
     }

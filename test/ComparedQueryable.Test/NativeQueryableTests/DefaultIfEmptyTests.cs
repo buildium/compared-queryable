@@ -16,7 +16,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
             int?[] source = { };
             int?[] expected = { default(int?) };
 
-            Assert.Equal(expected, source.AsQueryable().DefaultIfEmpty());
+            Assert.Equal(expected, source.AsNaturalQueryable().DefaultIfEmpty());
         }
 
         [Fact]
@@ -25,7 +25,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
             int[] source = { };
             int[] expected = { default(int) };
 
-            Assert.Equal(expected, source.AsQueryable().DefaultIfEmpty());
+            Assert.Equal(expected, source.AsNaturalQueryable().DefaultIfEmpty());
         }
 
         [Fact]
@@ -33,7 +33,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
         {
             int[] source = { 3, -1, 0, 10, 15 };
 
-            Assert.Equal(source, source.AsQueryable().DefaultIfEmpty());
+            Assert.Equal(source, source.AsNaturalQueryable().DefaultIfEmpty());
         }
 
         [Fact]
@@ -43,7 +43,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
             int? defaultValue = 9;
             int?[] expected = { defaultValue };
 
-            Assert.Equal(expected, source.AsQueryable().DefaultIfEmpty(defaultValue));
+            Assert.Equal(expected, source.AsNaturalQueryable().DefaultIfEmpty(defaultValue));
         }
 
         [Fact]
@@ -53,7 +53,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
             int defaultValue = -10;
             int[] expected = { defaultValue };
 
-            Assert.Equal(expected, source.AsQueryable().DefaultIfEmpty(defaultValue));
+            Assert.Equal(expected, source.AsNaturalQueryable().DefaultIfEmpty(defaultValue));
         }
 
         [Fact]
@@ -68,14 +68,14 @@ namespace ComparedQueryable.Test.NativeQueryableTests
         [Fact]
         public void DefaultIfEmpty1()
         {
-            var count = (new int[] { }).AsQueryable().DefaultIfEmpty().Count();
+            var count = (new int[] { }).AsNaturalQueryable().DefaultIfEmpty().Count();
             Assert.Equal(1, count);
         }
 
         [Fact]
         public void DefaultIfEmpty2()
         {
-            var count = (new int[] { }).AsQueryable().DefaultIfEmpty(3).Count();
+            var count = (new int[] { }).AsNaturalQueryable().DefaultIfEmpty(3).Count();
             Assert.Equal(1, count);
         }
 

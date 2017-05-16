@@ -16,19 +16,19 @@ namespace ComparedQueryable.Test.NativeQueryableTests
         {
             int[] source = { 4, 4, 4, 4, 4 };
 
-            Assert.Throws<InvalidOperationException>(() => source.AsQueryable().SingleOrDefault());
+            Assert.Throws<InvalidOperationException>(() => source.AsNaturalQueryable().SingleOrDefault());
         }
 
         [Fact]
         public void Empty()
         {
-            Assert.Null(Enumerable.Empty<int?>().AsQueryable().SingleOrDefault());
+            Assert.Null(Enumerable.Empty<int?>().AsNaturalQueryable().SingleOrDefault());
         }
 
         [Fact]
         public void EmptySourceWithPredicate()
         {
-            Assert.Null(Enumerable.Empty<int?>().AsQueryable().SingleOrDefault(i => i % 2 == 0));
+            Assert.Null(Enumerable.Empty<int?>().AsNaturalQueryable().SingleOrDefault(i => i % 2 == 0));
         }
 
         [Theory]
@@ -36,7 +36,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
         [InlineData(42, 100)]
         public void FindSingleMatch(int target, int range)
         {
-            Assert.Equal(target, Enumerable.Range(0, range).AsQueryable().SingleOrDefault(i => i == target));
+            Assert.Equal(target, Enumerable.Range(0, range).AsNaturalQueryable().SingleOrDefault(i => i == target));
         }
         
         [Fact]
@@ -52,20 +52,20 @@ namespace ComparedQueryable.Test.NativeQueryableTests
         {
             int[] source = { };
             Expression<Func<int, bool>> nullPredicate = null;
-            AssertExtensions.Throws<ArgumentNullException>("predicate", () => source.AsQueryable().SingleOrDefault(nullPredicate));
+            AssertExtensions.Throws<ArgumentNullException>("predicate", () => source.AsNaturalQueryable().SingleOrDefault(nullPredicate));
         }
 
         [Fact]
         public void SingleOrDefault1()
         {
-            var val = (new int[] { 2 }).AsQueryable().SingleOrDefault();
+            var val = (new int[] { 2 }).AsNaturalQueryable().SingleOrDefault();
             Assert.Equal(2, val);
         }
 
         [Fact]
         public void SingleOrDefault2()
         {
-            var val = (new int[] { 2 }).AsQueryable().SingleOrDefault(n => n > 1);
+            var val = (new int[] { 2 }).AsNaturalQueryable().SingleOrDefault(n => n > 1);
             Assert.Equal(2, val);
         }
     }

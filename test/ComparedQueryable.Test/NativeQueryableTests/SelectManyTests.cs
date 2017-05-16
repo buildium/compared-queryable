@@ -24,7 +24,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
                 new StringWithIntArray { name="Prakash", total=new int?[]{-10, 100} }
             };
             int?[] expected = { 1, 2, 3, 4, 5, 6, 8, 9, -10, 100 };
-            Assert.Equal(expected, source.AsQueryable().SelectMany(e => e.total));
+            Assert.Equal(expected, source.AsNaturalQueryable().SelectMany(e => e.total));
         }
 
         [Fact]
@@ -39,7 +39,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
                 new StringWithIntArray { name="Prakash", total=new int?[]{-10, 100} }
             };
             int?[] expected = { 1, 2, 3, 4, 5, 6, 8, 9, -10, 100 };
-            Assert.Equal(expected, source.AsQueryable().SelectMany((e, index) => e.total));
+            Assert.Equal(expected, source.AsNaturalQueryable().SelectMany((e, index) => e.total));
         }
 
         [Fact]
@@ -55,21 +55,21 @@ namespace ComparedQueryable.Test.NativeQueryableTests
             };
             string[] expected = { "1", "2", "3", "4", "5", "6", "8", "9", "-10", "100" };
 
-            Assert.Equal(expected, source.AsQueryable().SelectMany(e => e.total, (e, f) => f.ToString()));
+            Assert.Equal(expected, source.AsNaturalQueryable().SelectMany(e => e.total, (e, f) => f.ToString()));
         }
 
         [Fact]
         public void NullResultSelector()
         {
             Expression<Func<StringWithIntArray, int?, string>> resultSelector = null;
-            AssertExtensions.Throws<ArgumentNullException>("resultSelector", () => Enumerable.Empty<StringWithIntArray>().AsQueryable().SelectMany(e => e.total, resultSelector));
+            AssertExtensions.Throws<ArgumentNullException>("resultSelector", () => Enumerable.Empty<StringWithIntArray>().AsNaturalQueryable().SelectMany(e => e.total, resultSelector));
         }
 
         [Fact]
         public void NullResultSelectorIndexedSelector()
         {
             Expression<Func<StringWithIntArray, int?, string>> resultSelector = null;
-            AssertExtensions.Throws<ArgumentNullException>("resultSelector", () => Enumerable.Empty<StringWithIntArray>().AsQueryable().SelectMany((e, i) => e.total, resultSelector));
+            AssertExtensions.Throws<ArgumentNullException>("resultSelector", () => Enumerable.Empty<StringWithIntArray>().AsNaturalQueryable().SelectMany((e, i) => e.total, resultSelector));
         }
 
         [Fact]
@@ -83,14 +83,14 @@ namespace ComparedQueryable.Test.NativeQueryableTests
         public void NullCollectionSelector()
         {
             Expression<Func<StringWithIntArray, IEnumerable<int?>>> collectionSelector = null;
-            AssertExtensions.Throws<ArgumentNullException>("collectionSelector", () => Enumerable.Empty<StringWithIntArray>().AsQueryable().SelectMany(collectionSelector, (e, f) => f.ToString()));
+            AssertExtensions.Throws<ArgumentNullException>("collectionSelector", () => Enumerable.Empty<StringWithIntArray>().AsNaturalQueryable().SelectMany(collectionSelector, (e, f) => f.ToString()));
         }
 
         [Fact]
         public void NullIndexedCollectionSelector()
         {
             Expression<Func<StringWithIntArray, int, IEnumerable<int?>>> collectionSelector = null;
-            AssertExtensions.Throws<ArgumentNullException>("collectionSelector", () => Enumerable.Empty<StringWithIntArray>().AsQueryable().SelectMany(collectionSelector, (e, f) => f.ToString()));
+            AssertExtensions.Throws<ArgumentNullException>("collectionSelector", () => Enumerable.Empty<StringWithIntArray>().AsNaturalQueryable().SelectMany(collectionSelector, (e, f) => f.ToString()));
         }
 
         [Fact]
@@ -118,14 +118,14 @@ namespace ComparedQueryable.Test.NativeQueryableTests
         public void NullSelector()
         {
             Expression<Func<StringWithIntArray, IEnumerable<int>>> selector = null;
-            AssertExtensions.Throws<ArgumentNullException>("selector", () => new StringWithIntArray[0].AsQueryable().SelectMany(selector));
+            AssertExtensions.Throws<ArgumentNullException>("selector", () => new StringWithIntArray[0].AsNaturalQueryable().SelectMany(selector));
         }
 
         [Fact]
         public void NullIndexedSelector()
         {
             Expression<Func<StringWithIntArray, int, IEnumerable<int>>> selector = null;
-            AssertExtensions.Throws<ArgumentNullException>("selector", () => new StringWithIntArray[0].AsQueryable().SelectMany(selector));
+            AssertExtensions.Throws<ArgumentNullException>("selector", () => new StringWithIntArray[0].AsNaturalQueryable().SelectMany(selector));
         }
 
         [Fact]
@@ -141,34 +141,34 @@ namespace ComparedQueryable.Test.NativeQueryableTests
             };
 
             string[] expected = { "-10", "100" };
-            Assert.Equal(expected, source.AsQueryable().SelectMany((e, i) => i == 4 ? e.total : Enumerable.Empty<int?>(), (e, f) => f.ToString()));
+            Assert.Equal(expected, source.AsNaturalQueryable().SelectMany((e, i) => i == 4 ? e.total : Enumerable.Empty<int?>(), (e, f) => f.ToString()));
         }
 
         [Fact]
         public void SelectMany1()
         {
-            var count = (new int[] { 0, 1, 2 }).AsQueryable().SelectMany(n => new int[] { n + 4, 5 }).Count();
+            var count = (new int[] { 0, 1, 2 }).AsNaturalQueryable().SelectMany(n => new int[] { n + 4, 5 }).Count();
             Assert.Equal(6, count);
         }
 
         [Fact]
         public void SelectMany2()
         {
-            var count = (new int[] { 0, 1, 2 }).AsQueryable().SelectMany((n, i) => new int[] { 4 + i, 5 + n }).Count();
+            var count = (new int[] { 0, 1, 2 }).AsNaturalQueryable().SelectMany((n, i) => new int[] { 4 + i, 5 + n }).Count();
             Assert.Equal(6, count);
         }
 
         [Fact]
         public void SelectMany3()
         {
-            var count = (new int[] { 0, 1, 2 }).AsQueryable().SelectMany(n => new long[] { n + 4, 5 }, (n1, n2) => (n1 + n2).ToString()).Count();
+            var count = (new int[] { 0, 1, 2 }).AsNaturalQueryable().SelectMany(n => new long[] { n + 4, 5 }, (n1, n2) => (n1 + n2).ToString()).Count();
             Assert.Equal(6, count);
         }
 
         [Fact]
         public void SelectMany4()
         {
-            var count = (new int[] { 0, 1, 2 }).AsQueryable().SelectMany((n, i) => new long[] { 4 + i, 5 + n }, (n1, n2) => (n1 + n2).ToString()).Count();
+            var count = (new int[] { 0, 1, 2 }).AsNaturalQueryable().SelectMany((n, i) => new long[] { 4 + i, 5 + n }, (n1, n2) => (n1 + n2).ToString()).Count();
             Assert.Equal(6, count);
         }
     }

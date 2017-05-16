@@ -32,7 +32,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
                 new { Name = "Tim", City = "Seattle", Country = "USA" }
             };
 
-            Assert.Equal(expected, source.AsQueryable().OrderBy(e => e.Country).ThenBy(e => e.City));
+            Assert.Equal(expected, source.AsNaturalQueryable().OrderBy(e => e.Country).ThenBy(e => e.City));
         }
 
         [Fact]
@@ -46,7 +46,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
         public void NullKeySelector()
         {
             Expression<Func<DateTime, int>> keySelector = null;
-            AssertExtensions.Throws<ArgumentNullException>("keySelector", () => Enumerable.Empty<DateTime>().AsQueryable().OrderBy(e => e).ThenBy(keySelector));
+            AssertExtensions.Throws<ArgumentNullException>("keySelector", () => Enumerable.Empty<DateTime>().AsNaturalQueryable().OrderBy(e => e).ThenBy(keySelector));
         }
 
         [Fact]
@@ -60,20 +60,20 @@ namespace ComparedQueryable.Test.NativeQueryableTests
         public void NullKeySelectorComparer()
         {
             Expression<Func<DateTime, int>> keySelector = null;
-            AssertExtensions.Throws<ArgumentNullException>("keySelector", () => Enumerable.Empty<DateTime>().AsQueryable().OrderBy(e => e).ThenBy(keySelector, null));
+            AssertExtensions.Throws<ArgumentNullException>("keySelector", () => Enumerable.Empty<DateTime>().AsNaturalQueryable().OrderBy(e => e).ThenBy(keySelector, null));
         }
 
         [Fact]
         public void ThenBy1()
         {
-            var count = (new int[] { 0, 1, 2 }).AsQueryable().OrderBy(n => n).ThenBy(n => n).Count();
+            var count = (new int[] { 0, 1, 2 }).AsNaturalQueryable().OrderBy(n => n).ThenBy(n => n).Count();
             Assert.Equal(3, count);
         }
 
         [Fact]
         public void ThenBy2()
         {
-            var count = (new int[] { 0, 1, 2 }).AsQueryable().OrderBy(n => n).ThenBy(n => n, Comparer<int>.Default).Count();
+            var count = (new int[] { 0, 1, 2 }).AsNaturalQueryable().OrderBy(n => n).ThenBy(n => n, Comparer<int>.Default).Count();
             Assert.Equal(3, count);
         }
     }

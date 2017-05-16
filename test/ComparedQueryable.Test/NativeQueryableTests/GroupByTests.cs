@@ -87,13 +87,13 @@ namespace ComparedQueryable.Test.NativeQueryableTests
             string[] key = { null };
             string[] element = { null };
 
-            AssertGroupingCorrect(key.AsQueryable(), element.AsQueryable(), new string[] { null }.AsQueryable().GroupBy(e => e, e => e, EqualityComparer<string>.Default), EqualityComparer<string>.Default);
+            AssertGroupingCorrect(key.AsNaturalQueryable(), element.AsNaturalQueryable(), new string[] { null }.AsNaturalQueryable().GroupBy(e => e, e => e, EqualityComparer<string>.Default), EqualityComparer<string>.Default);
         }
 
         [Fact]
         public void EmptySource()
         {
-            Assert.Empty(new Record[] { }.AsQueryable().GroupBy(e => e.Name, e => e.Score, new AnagramEqualityComparer()));
+            Assert.Empty(new Record[] { }.AsNaturalQueryable().GroupBy(e => e.Name, e => e.Score, new AnagramEqualityComparer()));
         }
 
         [Fact]
@@ -124,15 +124,15 @@ namespace ComparedQueryable.Test.NativeQueryableTests
             };
             Expression<Func<Record, string>> keySelector = null;
 
-            AssertExtensions.Throws<ArgumentNullException>("keySelector", () => source.AsQueryable().GroupBy(null, e => e.Score, new AnagramEqualityComparer()));
-            AssertExtensions.Throws<ArgumentNullException>("keySelector", () => source.AsQueryable().GroupBy(null, e => e.Score, (k, es) => es.Sum(), new AnagramEqualityComparer()));
-            AssertExtensions.Throws<ArgumentNullException>("keySelector", () => source.AsQueryable().GroupBy(keySelector, e => e.Score, (k, es) => es.Sum()));
-            AssertExtensions.Throws<ArgumentNullException>("keySelector", () => source.AsQueryable().GroupBy(keySelector, e => e.Score));
-            AssertExtensions.Throws<ArgumentNullException>("keySelector", () => source.AsQueryable().GroupBy(keySelector, e => e.Score, (k, es) => es.Sum()));
-            AssertExtensions.Throws<ArgumentNullException>("keySelector", () => source.AsQueryable().GroupBy(null, (k, es) => es.Sum(e => e.Score), new AnagramEqualityComparer()));
-            AssertExtensions.Throws<ArgumentNullException>("keySelector", () => source.AsQueryable().GroupBy(keySelector, (k, es) => es.Sum(e => e.Score)));
-            AssertExtensions.Throws<ArgumentNullException>("keySelector", () => source.AsQueryable().GroupBy(null, new AnagramEqualityComparer()));
-            AssertExtensions.Throws<ArgumentNullException>("keySelector", () => source.AsQueryable().GroupBy(keySelector));
+            AssertExtensions.Throws<ArgumentNullException>("keySelector", () => source.AsNaturalQueryable().GroupBy(null, e => e.Score, new AnagramEqualityComparer()));
+            AssertExtensions.Throws<ArgumentNullException>("keySelector", () => source.AsNaturalQueryable().GroupBy(null, e => e.Score, (k, es) => es.Sum(), new AnagramEqualityComparer()));
+            AssertExtensions.Throws<ArgumentNullException>("keySelector", () => source.AsNaturalQueryable().GroupBy(keySelector, e => e.Score, (k, es) => es.Sum()));
+            AssertExtensions.Throws<ArgumentNullException>("keySelector", () => source.AsNaturalQueryable().GroupBy(keySelector, e => e.Score));
+            AssertExtensions.Throws<ArgumentNullException>("keySelector", () => source.AsNaturalQueryable().GroupBy(keySelector, e => e.Score, (k, es) => es.Sum()));
+            AssertExtensions.Throws<ArgumentNullException>("keySelector", () => source.AsNaturalQueryable().GroupBy(null, (k, es) => es.Sum(e => e.Score), new AnagramEqualityComparer()));
+            AssertExtensions.Throws<ArgumentNullException>("keySelector", () => source.AsNaturalQueryable().GroupBy(keySelector, (k, es) => es.Sum(e => e.Score)));
+            AssertExtensions.Throws<ArgumentNullException>("keySelector", () => source.AsNaturalQueryable().GroupBy(null, new AnagramEqualityComparer()));
+            AssertExtensions.Throws<ArgumentNullException>("keySelector", () => source.AsNaturalQueryable().GroupBy(keySelector));
         }
 
         [Fact]
@@ -150,10 +150,10 @@ namespace ComparedQueryable.Test.NativeQueryableTests
 
             Expression<Func<Record, int>> elementSelector = null;
 
-            AssertExtensions.Throws<ArgumentNullException>("elementSelector", () => source.AsQueryable().GroupBy(e => e.Name, elementSelector));
-            AssertExtensions.Throws<ArgumentNullException>("elementSelector", () => source.AsQueryable().GroupBy(e => e.Name, elementSelector, new AnagramEqualityComparer()));
-            AssertExtensions.Throws<ArgumentNullException>("elementSelector", () => source.AsQueryable().GroupBy(e => e.Name, elementSelector, (k, es) => es.Sum()));
-            AssertExtensions.Throws<ArgumentNullException>("elementSelector", () => source.AsQueryable().GroupBy(e => e.Name, elementSelector, (k, es) => es.Sum(), new AnagramEqualityComparer()));
+            AssertExtensions.Throws<ArgumentNullException>("elementSelector", () => source.AsNaturalQueryable().GroupBy(e => e.Name, elementSelector));
+            AssertExtensions.Throws<ArgumentNullException>("elementSelector", () => source.AsNaturalQueryable().GroupBy(e => e.Name, elementSelector, new AnagramEqualityComparer()));
+            AssertExtensions.Throws<ArgumentNullException>("elementSelector", () => source.AsNaturalQueryable().GroupBy(e => e.Name, elementSelector, (k, es) => es.Sum()));
+            AssertExtensions.Throws<ArgumentNullException>("elementSelector", () => source.AsNaturalQueryable().GroupBy(e => e.Name, elementSelector, (k, es) => es.Sum(), new AnagramEqualityComparer()));
         }
 
         [Fact]
@@ -170,7 +170,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
 
             Expression<Func<string, IEnumerable<int>, long>> resultSelector = null;
 
-            AssertExtensions.Throws<ArgumentNullException>("resultSelector", () => source.AsQueryable().GroupBy(e => e.Name, e => e.Score, resultSelector, new AnagramEqualityComparer()));
+            AssertExtensions.Throws<ArgumentNullException>("resultSelector", () => source.AsNaturalQueryable().GroupBy(e => e.Name, e => e.Score, resultSelector, new AnagramEqualityComparer()));
         }
 
         [Fact]
@@ -187,7 +187,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
 
             Expression<Func<string, IEnumerable<int>, long>> resultSelector = null;
 
-            AssertExtensions.Throws<ArgumentNullException>("resultSelector", () => source.AsQueryable().GroupBy(e => e.Name, e => e.Score, resultSelector));
+            AssertExtensions.Throws<ArgumentNullException>("resultSelector", () => source.AsNaturalQueryable().GroupBy(e => e.Name, e => e.Score, resultSelector));
         }
 
         [Fact]
@@ -204,7 +204,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
 
             Expression<Func<string, IEnumerable<Record>, long>> resultSelector = null;
 
-            AssertExtensions.Throws<ArgumentNullException>("resultSelector", () => source.AsQueryable().GroupBy(e => e.Name, resultSelector));
+            AssertExtensions.Throws<ArgumentNullException>("resultSelector", () => source.AsNaturalQueryable().GroupBy(e => e.Name, resultSelector));
         }
 
         [Fact]
@@ -216,13 +216,13 @@ namespace ComparedQueryable.Test.NativeQueryableTests
 
             Expression<Func<string, IEnumerable<Record>, long>> resultSelector = null;
 
-            AssertExtensions.Throws<ArgumentNullException>("resultSelector", () => source.AsQueryable().GroupBy(e => e.Name, resultSelector, new AnagramEqualityComparer()));
+            AssertExtensions.Throws<ArgumentNullException>("resultSelector", () => source.AsNaturalQueryable().GroupBy(e => e.Name, resultSelector, new AnagramEqualityComparer()));
         }
 
         [Fact]
         public void EmptySourceWithResultSelector()
         {
-            Assert.Empty(new Record[] { }.AsQueryable().GroupBy(e => e.Name, e => e.Score, (k, es) => (long)(k ?? " ").Length * es.Sum(), new AnagramEqualityComparer()));
+            Assert.Empty(new Record[] { }.AsNaturalQueryable().GroupBy(e => e.Name, e => e.Score, (k, es) => (long)(k ?? " ").Length * es.Sum(), new AnagramEqualityComparer()));
         }
 
         [Fact]
@@ -240,7 +240,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
             };
             long[] expected = { 240, 365, -600, 63 };
 
-            Assert.Equal(expected, source.AsQueryable().GroupBy(e => e.Name, e => e.Score, (k, es) => (long)(k ?? " ").Length * es.Sum(), new AnagramEqualityComparer()));
+            Assert.Equal(expected, source.AsNaturalQueryable().GroupBy(e => e.Name, e => e.Score, (k, es) => (long)(k ?? " ").Length * es.Sum(), new AnagramEqualityComparer()));
         }
 
         [Fact]
@@ -258,7 +258,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
             };
             long[] expected = { 165, 58, -600, 120, 75 };
 
-            Assert.Equal(expected, source.AsQueryable().GroupBy(e => e.Name, e => e.Score, (k, es) => (long)(k ?? " ").Length * es.Sum(), null));
+            Assert.Equal(expected, source.AsNaturalQueryable().GroupBy(e => e.Name, e => e.Score, (k, es) => (long)(k ?? " ").Length * es.Sum(), null));
         }
 
         [Fact]
@@ -267,7 +267,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
             string[] key = { "Tim" };
             Record[] source = { new Record { Name = key[0], Score = 60 } };
 
-            AssertGroupingCorrect(key.AsQueryable(), source.AsQueryable(), source.AsQueryable().GroupBy(e => e.Name));
+            AssertGroupingCorrect(key.AsNaturalQueryable(), source.AsNaturalQueryable(), source.AsNaturalQueryable().GroupBy(e => e.Name));
         }
 
         [Fact]
@@ -277,7 +277,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
             int[] scores = { 60, -10, 40, 100 };
             var source = key.Zip(scores, (k, e) => new Record { Name = k, Score = e });
 
-            AssertGroupingCorrect(key.AsQueryable(), source.AsQueryable(), source.AsQueryable().GroupBy(e => e.Name, new AnagramEqualityComparer()), new AnagramEqualityComparer());
+            AssertGroupingCorrect(key.AsNaturalQueryable(), source.AsNaturalQueryable(), source.AsNaturalQueryable().GroupBy(e => e.Name, new AnagramEqualityComparer()), new AnagramEqualityComparer());
         }
 
 
@@ -293,7 +293,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
                 new Record { Name = "miT", Score = element[3] }
             };
 
-            Assert.Equal(expected, source.AsQueryable().GroupBy(e => e.Name, (k, es) => k.Length * es.Sum(e => (long)e.Score), new AnagramEqualityComparer()));
+            Assert.Equal(expected, source.AsNaturalQueryable().GroupBy(e => e.Name, (k, es) => k.Length * es.Sum(e => (long)e.Score), new AnagramEqualityComparer()));
         }
 
         [Fact]
@@ -309,62 +309,62 @@ namespace ComparedQueryable.Test.NativeQueryableTests
 
             long[] expected = { 150, 420 };
 
-            Assert.Equal(expected, source.AsQueryable().GroupBy(e => e.Name, (k, es) => k.Length * es.Sum(e => (long)e.Score), null));
+            Assert.Equal(expected, source.AsNaturalQueryable().GroupBy(e => e.Name, (k, es) => k.Length * es.Sum(e => (long)e.Score), null));
         }
 
         [Fact]
         public void GroupBy1()
         {
-            var count = (new int[] { 0, 1, 2, 2, 0 }).AsQueryable().GroupBy(n => n).Count();
+            var count = (new int[] { 0, 1, 2, 2, 0 }).AsNaturalQueryable().GroupBy(n => n).Count();
             Assert.Equal(3, count);
         }
 
         [Fact]
         public void GroupBy2()
         {
-            var count = (new int[] { 0, 1, 2, 2, 0 }).AsQueryable().GroupBy(n => n, EqualityComparer<int>.Default).Count();
+            var count = (new int[] { 0, 1, 2, 2, 0 }).AsNaturalQueryable().GroupBy(n => n, EqualityComparer<int>.Default).Count();
             Assert.Equal(3, count);
         }
 
         [Fact]
         public void GroupBy3()
         {
-            var count = (new int[] { 0, 1, 2, 2, 0 }).AsQueryable().GroupBy(n => n, n => n).Count();
+            var count = (new int[] { 0, 1, 2, 2, 0 }).AsNaturalQueryable().GroupBy(n => n, n => n).Count();
             Assert.Equal(3, count);
         }
 
         [Fact]
         public void GroupBy4()
         {
-            var count = (new int[] { 0, 1, 2, 2, 0 }).AsQueryable().GroupBy(n => n, n => n, EqualityComparer<int>.Default).Count();
+            var count = (new int[] { 0, 1, 2, 2, 0 }).AsNaturalQueryable().GroupBy(n => n, n => n, EqualityComparer<int>.Default).Count();
             Assert.Equal(3, count);
         }
 
         [Fact]
         public void GroupBy5()
         {
-            var count = (new int[] { 0, 1, 2, 2, 0 }).AsQueryable().GroupBy(n => n, n => n, (k, g) => k).Count();
+            var count = (new int[] { 0, 1, 2, 2, 0 }).AsNaturalQueryable().GroupBy(n => n, n => n, (k, g) => k).Count();
             Assert.Equal(3, count);
         }
 
         [Fact]
         public void GroupBy6()
         {
-            var count = (new int[] { 0, 1, 2, 2, 0 }).AsQueryable().GroupBy(n => n, (k, g) => k).Count();
+            var count = (new int[] { 0, 1, 2, 2, 0 }).AsNaturalQueryable().GroupBy(n => n, (k, g) => k).Count();
             Assert.Equal(3, count);
         }
 
         [Fact]
         public void GroupBy7()
         {
-            var count = (new int[] { 0, 1, 2, 2, 0 }).AsQueryable().GroupBy(n => n, n => n, (k, g) => k, EqualityComparer<int>.Default).Count();
+            var count = (new int[] { 0, 1, 2, 2, 0 }).AsNaturalQueryable().GroupBy(n => n, n => n, (k, g) => k, EqualityComparer<int>.Default).Count();
             Assert.Equal(3, count);
         }
 
         [Fact]
         public void GroupBy8()
         {
-            var count = (new int[] { 0, 1, 2, 2, 0 }).AsQueryable().GroupBy(n => n, (k, g) => k, EqualityComparer<int>.Default).Count();
+            var count = (new int[] { 0, 1, 2, 2, 0 }).AsNaturalQueryable().GroupBy(n => n, (k, g) => k, EqualityComparer<int>.Default).Count();
             Assert.Equal(3, count);
         }
     }

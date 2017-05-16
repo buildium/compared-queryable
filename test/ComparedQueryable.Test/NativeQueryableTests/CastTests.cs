@@ -17,7 +17,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
                     where x > Int32.MinValue
                     select x;
 
-            var rst = q.AsQueryable().Cast<long>();
+            var rst = q.AsNaturalQueryable().Cast<long>();
 
             Assert.Throws<InvalidCastException>(() => { foreach (var t in rst) ; });
         }
@@ -28,7 +28,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
             var q = from x in new byte[] { 0, 255, 127, 128, 1, 33, 99 }
                     select x;
 
-            var rst = q.AsQueryable().Cast<ushort>();
+            var rst = q.AsNaturalQueryable().Cast<ushort>();
             Assert.Throws<InvalidCastException>(() => { foreach (var t in rst) ; });
         }
 
@@ -36,7 +36,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
         public void EmptySource()
         {
             object[] source = { };
-            Assert.Empty(source.AsQueryable().Cast<int>());
+            Assert.Empty(source.AsNaturalQueryable().Cast<int>());
 
         }
 
@@ -47,7 +47,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
             object[] source = { -4, 1, 2, 3, 9, i };
             int?[] expected = { -4, 1, 2, 3, 9, i };
 
-            Assert.Equal(expected, source.AsQueryable().Cast<int?>());
+            Assert.Equal(expected, source.AsNaturalQueryable().Cast<int?>());
         }
         
         [Fact]
@@ -56,7 +56,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
             int? i = 10;
             object[] source = { -4, 1, 2, 3, 9, i };
 
-            IQueryable<long> cast = source.AsQueryable().Cast<long>();
+            IQueryable<long> cast = source.AsNaturalQueryable().Cast<long>();
             Assert.Throws<InvalidCastException>(() => cast.ToList());
         }
 
@@ -66,7 +66,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
             int? i = 10;
             object[] source = { -4, 1, 2, 3, 9, null, i };
 
-            IQueryable<long?> cast = source.AsQueryable().Cast<long?>();
+            IQueryable<long?> cast = source.AsNaturalQueryable().Cast<long?>();
             Assert.Throws<InvalidCastException>(() => cast.ToList());
         }
 
@@ -77,7 +77,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
             object[] source = { -4, 1, 2, 3, 9, null, i };
             int?[] expected = { -4, 1, 2, 3, 9, null, i };
 
-            Assert.Equal(expected, source.AsQueryable().Cast<int?>());
+            Assert.Equal(expected, source.AsNaturalQueryable().Cast<int?>());
         }
 
         [Fact]
@@ -86,7 +86,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
             object[] source = { -4, 1, 2, 3, 9, "45" };
             int[] expectedBeginning = { -4, 1, 2, 3, 9 };
 
-            IQueryable<int> cast = source.AsQueryable().Cast<int>();
+            IQueryable<int> cast = source.AsNaturalQueryable().Cast<int>();
             Assert.Throws<InvalidCastException>(() => cast.ToList());
             Assert.Equal(expectedBeginning, cast.Take(5));
             Assert.Throws<InvalidCastException>(() => cast.ElementAt(5));
@@ -97,7 +97,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
         {
             int[] source = new int[] { -4, 1, 2, 9 };
 
-            IQueryable<double> cast = source.AsQueryable().Cast<double>();
+            IQueryable<double> cast = source.AsNaturalQueryable().Cast<double>();
             Assert.Throws<InvalidCastException>(() => cast.ToList());
         }
         
@@ -106,7 +106,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
             byte? i = 10;
             object[] source = { -1, 0, o, i };
 
-            IQueryable<T> cast = source.AsQueryable().Cast<T>();
+            IQueryable<T> cast = source.AsNaturalQueryable().Cast<T>();
             Assert.Throws<InvalidCastException>(() => cast.ToList());
         }
 
@@ -123,13 +123,13 @@ namespace ComparedQueryable.Test.NativeQueryableTests
             object[] source = { "Test1", "4.5", null, "Test2" };
             string[] expected = { "Test1", "4.5", null, "Test2" };
 
-            Assert.Equal(expected, source.AsQueryable().Cast<string>());
+            Assert.Equal(expected, source.AsNaturalQueryable().Cast<string>());
         }
 
         [Fact]
         public void ArrayConversionThrows()
         {
-            Assert.Throws<InvalidCastException>(() => new[] { -4 }.AsQueryable().Cast<long>().ToList());
+            Assert.Throws<InvalidCastException>(() => new[] { -4 }.AsNaturalQueryable().Cast<long>().ToList());
         }
 
         [Fact]
@@ -137,7 +137,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
         {
             object[] source = { "Test", 3, 5, 10 };
 
-            IQueryable<int> cast = source.AsQueryable().Cast<int>();
+            IQueryable<int> cast = source.AsNaturalQueryable().Cast<int>();
             Assert.Throws<InvalidCastException>(() => cast.ToList());
         }
 
@@ -146,7 +146,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
         {
             object[] source = { -5, 9, 0, 5, 9, "Test" };
 
-            IQueryable<int> cast = source.AsQueryable().Cast<int>();
+            IQueryable<int> cast = source.AsNaturalQueryable().Cast<int>();
             Assert.Throws<InvalidCastException>(() => cast.ToList());
         }
 
@@ -164,7 +164,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
         {
             int[] source = new int[] { -4, 1, 2, 3, 9 };
 
-            IQueryable<long> cast = source.AsQueryable().Cast<long>();
+            IQueryable<long> cast = source.AsNaturalQueryable().Cast<long>();
             Assert.Throws<InvalidCastException>(() => cast.ToList());
         }
 
@@ -173,7 +173,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
         {
             int[] source = new int[] { -4, 1, 2, 3, 9 };
 
-            IQueryable<long?> cast = source.AsQueryable().Cast<long?>();
+            IQueryable<long?> cast = source.AsNaturalQueryable().Cast<long?>();
             Assert.Throws<InvalidCastException>(() => cast.ToList());
         }
 
@@ -182,7 +182,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
         {
             int?[] source = new int?[] { -4, 1, 2, 3, 9 };
 
-            IQueryable<long> cast = source.AsQueryable().Cast<long>();
+            IQueryable<long> cast = source.AsNaturalQueryable().Cast<long>();
             Assert.Throws<InvalidCastException>(() => cast.ToList());
         }
 
@@ -191,7 +191,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
         {
             int?[] source = new int?[] { -4, 1, 2, 3, 9, null };
 
-            IQueryable<long?> cast = source.AsQueryable().Cast<long?>();
+            IQueryable<long?> cast = source.AsNaturalQueryable().Cast<long?>();
             Assert.Throws<InvalidCastException>(() => cast.ToList());
         }
 
@@ -199,7 +199,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
         public void CastingNullToNonnullableIsNullReferenceException()
         {
             int?[] source = new int?[] { -4, 1, null, 3 };
-            IQueryable<int> cast = source.AsQueryable().Cast<int>();
+            IQueryable<int> cast = source.AsNaturalQueryable().Cast<int>();
             Assert.Throws<NullReferenceException>(() => cast.ToList());
         }
 
@@ -212,7 +212,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
         [Fact]
         public void Cast()
         {
-            var count = (new object[] { 0, 1, 2 }).AsQueryable().Cast<int>().Count();
+            var count = (new object[] { 0, 1, 2 }).AsNaturalQueryable().Cast<int>().Count();
             Assert.Equal(3, count);
         }
     }

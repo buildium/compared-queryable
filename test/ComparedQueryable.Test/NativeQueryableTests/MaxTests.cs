@@ -20,14 +20,14 @@ namespace ComparedQueryable.Test.NativeQueryableTests
         [Fact]
         public void EmptyInt32()
         {
-            Assert.Throws<InvalidOperationException>(() => Enumerable.Empty<int>().AsQueryable().Max());
+            Assert.Throws<InvalidOperationException>(() => Enumerable.Empty<int>().AsNaturalQueryable().Max());
         }
 
         [Fact]
         public void Int32MaxRepeated()
         {
             int[] source = { -6, 0, -9, 0, -10, 0 };
-            Assert.Equal(0, source.AsQueryable().Max());
+            Assert.Equal(0, source.AsNaturalQueryable().Max());
         }
 
         [Fact]
@@ -39,27 +39,27 @@ namespace ComparedQueryable.Test.NativeQueryableTests
         [Fact]
         public void EmptyInt64()
         {
-            Assert.Throws<InvalidOperationException>(() => Enumerable.Empty<long>().AsQueryable().Max());
+            Assert.Throws<InvalidOperationException>(() => Enumerable.Empty<long>().AsNaturalQueryable().Max());
         }
 
         [Fact]
         public void Int64MaxRepeated()
         {
             long[] source = { 6, 50, 9, 50, 10, 50 };
-            Assert.Equal(50, source.AsQueryable().Max());
+            Assert.Equal(50, source.AsNaturalQueryable().Max());
         }
 
         [Fact]
         public void EmptySingle()
         {
-            Assert.Throws<InvalidOperationException>(() => Enumerable.Empty<float>().AsQueryable().Max());
+            Assert.Throws<InvalidOperationException>(() => Enumerable.Empty<float>().AsNaturalQueryable().Max());
         }
 
         [Fact]
         public void Single_MaxRepeated()
         {
             float[] source = { -5.5f, float.PositiveInfinity, 9.9f, float.PositiveInfinity };
-            Assert.True(float.IsPositiveInfinity(source.AsQueryable().Max()));
+            Assert.True(float.IsPositiveInfinity(source.AsNaturalQueryable().Max()));
         }
 
         [Fact]
@@ -77,14 +77,14 @@ namespace ComparedQueryable.Test.NativeQueryableTests
         [Fact]
         public void EmptyDouble()
         {
-            Assert.Throws<InvalidOperationException>(() => Enumerable.Empty<double>().AsQueryable().Max());
+            Assert.Throws<InvalidOperationException>(() => Enumerable.Empty<double>().AsNaturalQueryable().Max());
         }
 
         [Fact]
         public void DoubleMaximumRepeated()
         {
             double[] source = { -5.5, double.PositiveInfinity, 9.9, double.PositiveInfinity };
-            Assert.True(double.IsPositiveInfinity(source.AsQueryable().Max()));
+            Assert.True(double.IsPositiveInfinity(source.AsNaturalQueryable().Max()));
         }
 
         [Fact]
@@ -96,14 +96,14 @@ namespace ComparedQueryable.Test.NativeQueryableTests
         [Fact]
         public void EmptyDecimal()
         {
-            Assert.Throws<InvalidOperationException>(() => Enumerable.Empty<decimal>().AsQueryable().Max());
+            Assert.Throws<InvalidOperationException>(() => Enumerable.Empty<decimal>().AsNaturalQueryable().Max());
         }
 
         [Fact]
         public void DecimalMaximumRepeated()
         {
             decimal[] source = { -5.5m, 0m, 9.9m, -5.5m, 9.9m };
-            Assert.Equal(9.9m, source.AsQueryable().Max());
+            Assert.Equal(9.9m, source.AsNaturalQueryable().Max());
         }
 
         [Fact]
@@ -115,14 +115,14 @@ namespace ComparedQueryable.Test.NativeQueryableTests
         [Fact]
         public void EmptyNullableInt32()
         {
-            Assert.Null(Enumerable.Empty<int?>().AsQueryable().Max());
+            Assert.Null(Enumerable.Empty<int?>().AsNaturalQueryable().Max());
         }
 
         [Fact]
         public void NullableInt32MaxRepeated()
         {
             int?[] source = { 6, null, null, 100, 9, 100, 10, 100 };
-            Assert.Equal(100, source.AsQueryable().Max());
+            Assert.Equal(100, source.AsNaturalQueryable().Max());
         }
 
         [Fact]
@@ -134,27 +134,27 @@ namespace ComparedQueryable.Test.NativeQueryableTests
         [Fact]
         public void EmptyNullableInt64()
         {
-            Assert.Null(Enumerable.Empty<long?>().AsQueryable().Max(x => x));
+            Assert.Null(Enumerable.Empty<long?>().AsNaturalQueryable().Max(x => x));
         }
 
         [Fact]
         public void NullableInt64MaximumRepeated()
         {
             long?[] source = { -6, null, null, 0, -9, 0, -10, -30 };
-            Assert.Equal(0, source.AsQueryable().Max());
+            Assert.Equal(0, source.AsNaturalQueryable().Max());
         }
 
         [Fact]
         public void EmptyNullableSingle()
         {
-            Assert.Null(Enumerable.Empty<float?>().AsQueryable().Max());
+            Assert.Null(Enumerable.Empty<float?>().AsNaturalQueryable().Max());
         }
 
         [Fact]
         public void NullableSingleMaxRepeated()
         {
             float?[] source = { -6.4f, null, null, -0.5f, -9.4f, -0.5f, -10.9f, -0.5f };
-            Assert.Equal(-0.5f, source.AsQueryable().Max());
+            Assert.Equal(-0.5f, source.AsNaturalQueryable().Max());
         }
 
         [Fact]
@@ -166,7 +166,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
         [Fact]
         public void EmptyNullableDouble()
         {
-            Assert.Null(Enumerable.Empty<double?>().AsQueryable().Max());
+            Assert.Null(Enumerable.Empty<double?>().AsNaturalQueryable().Max());
         }
 
         [Fact]
@@ -178,20 +178,20 @@ namespace ComparedQueryable.Test.NativeQueryableTests
         [Fact]
         public void EmptyNullableDecimal()
         {
-            Assert.Null(Enumerable.Empty<decimal?>().AsQueryable().Max());
+            Assert.Null(Enumerable.Empty<decimal?>().AsNaturalQueryable().Max());
         }
 
         [Fact]
         public void NullableDecimalMaximumRepeated()
         {
             decimal?[] source = { 6.4m, null, null, decimal.MaxValue, 9.4m, decimal.MaxValue, 10.9m, decimal.MaxValue };
-            Assert.Equal(decimal.MaxValue, source.AsQueryable().Max());
+            Assert.Equal(decimal.MaxValue, source.AsNaturalQueryable().Max());
         }
 
         [Fact]
         public void EmptyDateTime()
         {
-            Assert.Throws<InvalidOperationException>(() => Enumerable.Empty<DateTime>().AsQueryable().Max());
+            Assert.Throws<InvalidOperationException>(() => Enumerable.Empty<DateTime>().AsNaturalQueryable().Max());
         }
 
         [Fact]
@@ -209,14 +209,14 @@ namespace ComparedQueryable.Test.NativeQueryableTests
         [Fact]
         public void EmptyString()
         {
-            Assert.Null(Enumerable.Empty<string>().AsQueryable().Max());
+            Assert.Null(Enumerable.Empty<string>().AsNaturalQueryable().Max());
         }
 
         [Fact]
         public void StringMaximumRepeated()
         {
             string[] source = { "ooo", "ccc", "ccc", "ooo", "ooo", "nnn" };
-            Assert.Equal("ooo", source.AsQueryable().Max());
+            Assert.Equal("ooo", source.AsNaturalQueryable().Max());
         }
 
         [Fact]
@@ -235,7 +235,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
         public void Int32SourceWithNullSelector()
         {
             Expression<Func<int, int>> selector = null;
-            AssertExtensions.Throws<ArgumentNullException>("selector", () => Enumerable.Empty<int>().AsQueryable().Max(selector));
+            AssertExtensions.Throws<ArgumentNullException>("selector", () => Enumerable.Empty<int>().AsNaturalQueryable().Max(selector));
         }
 
         [Fact]
@@ -247,13 +247,13 @@ namespace ComparedQueryable.Test.NativeQueryableTests
                 new { name="Bob", num=30 }
             };
 
-            Assert.Equal(30, source.AsQueryable().Max(e => e.num));
+            Assert.Equal(30, source.AsNaturalQueryable().Max(e => e.num));
         }
 
         [Fact]
         public void EmptyInt64WithSelector()
         {
-            Assert.Throws<InvalidOperationException>(() => Enumerable.Empty<long>().AsQueryable().Max(x => x));
+            Assert.Throws<InvalidOperationException>(() => Enumerable.Empty<long>().AsNaturalQueryable().Max(x => x));
         }
 
         [Fact]
@@ -266,7 +266,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
         public void Int64SourceWithNullSelector()
         {
             Expression<Func<long, long>> selector = null;
-            AssertExtensions.Throws<ArgumentNullException>("selector", () => Enumerable.Empty<long>().AsQueryable().Max(selector));
+            AssertExtensions.Throws<ArgumentNullException>("selector", () => Enumerable.Empty<long>().AsNaturalQueryable().Max(selector));
         }
 
         [Fact]
@@ -277,7 +277,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
                 new { name="John", num=-105L },
                 new { name="Bob", num=long.MaxValue }
             };
-            Assert.Equal(long.MaxValue, source.AsQueryable().Max(e => e.num));
+            Assert.Equal(long.MaxValue, source.AsNaturalQueryable().Max(e => e.num));
         }
 
         [Fact]
@@ -290,7 +290,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
                 new { name = "Bob", num = 100.45f }
             };
 
-            Assert.Equal(100.45f, source.AsQueryable().Max(e => e.num));
+            Assert.Equal(100.45f, source.AsNaturalQueryable().Max(e => e.num));
         }
 
         [Fact]
@@ -303,19 +303,19 @@ namespace ComparedQueryable.Test.NativeQueryableTests
         public void SingleSourceWithNullSelector()
         {
             Expression<Func<float, float>> selector = null;
-            AssertExtensions.Throws<ArgumentNullException>("selector", () => Enumerable.Empty<float>().AsQueryable().Max(selector));
+            AssertExtensions.Throws<ArgumentNullException>("selector", () => Enumerable.Empty<float>().AsNaturalQueryable().Max(selector));
         }
 
         [Fact]
         public void EmptySingleWithSelector()
         {
-            Assert.Throws<InvalidOperationException>(() => Enumerable.Empty<float>().AsQueryable().Max(x => x));
+            Assert.Throws<InvalidOperationException>(() => Enumerable.Empty<float>().AsNaturalQueryable().Max(x => x));
         }
 
         [Fact]
         public void EmptyDoubleWithSelector()
         {
-            Assert.Throws<InvalidOperationException>(() => Enumerable.Empty<double>().AsQueryable().Max(x => x));
+            Assert.Throws<InvalidOperationException>(() => Enumerable.Empty<double>().AsNaturalQueryable().Max(x => x));
         }
 
         [Fact]
@@ -328,7 +328,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
         public void DoubleSourceWithNullSelector()
         {
             Expression<Func<double, double>> selector = null;
-            AssertExtensions.Throws<ArgumentNullException>("selector", () => Enumerable.Empty<double>().AsQueryable().Max(selector));
+            AssertExtensions.Throws<ArgumentNullException>("selector", () => Enumerable.Empty<double>().AsNaturalQueryable().Max(selector));
         }
 
         [Fact]
@@ -339,13 +339,13 @@ namespace ComparedQueryable.Test.NativeQueryableTests
                 new { name="John", num=-10.25 },
                 new { name="Bob", num=100.45 }
             };
-            Assert.Equal(100.45, source.AsQueryable().Max(e => e.num));
+            Assert.Equal(100.45, source.AsNaturalQueryable().Max(e => e.num));
         }
 
         [Fact]
         public void EmptyDecimalWithSelector()
         {
-            Assert.Throws<InvalidOperationException>(() => Enumerable.Empty<decimal>().AsQueryable().Max(x => x));
+            Assert.Throws<InvalidOperationException>(() => Enumerable.Empty<decimal>().AsNaturalQueryable().Max(x => x));
         }
 
         [Fact]
@@ -358,7 +358,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
         public void DecimalSourceWithNullSelector()
         {
             Expression<Func<decimal, decimal>> selector = null;
-            AssertExtensions.Throws<ArgumentNullException>("selector", () => Enumerable.Empty<decimal>().AsQueryable().Max(selector));
+            AssertExtensions.Throws<ArgumentNullException>("selector", () => Enumerable.Empty<decimal>().AsNaturalQueryable().Max(selector));
         }
 
         [Fact]
@@ -369,7 +369,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
                 new { name="John", num=900.25m },
                 new { name="Bob", num=10.45m }
             };
-            Assert.Equal(900.25m, source.AsQueryable().Max(e => e.num));
+            Assert.Equal(900.25m, source.AsNaturalQueryable().Max(e => e.num));
         }
 
         [Fact]
@@ -388,7 +388,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
         public void NullableInt32SourceWithNullSelector()
         {
             Expression<Func<int?, int?>> selector = null;
-            AssertExtensions.Throws<ArgumentNullException>("selector", () => Enumerable.Empty<int?>().AsQueryable().Max(selector));
+            AssertExtensions.Throws<ArgumentNullException>("selector", () => Enumerable.Empty<int?>().AsNaturalQueryable().Max(selector));
         }
 
         [Fact]
@@ -400,13 +400,13 @@ namespace ComparedQueryable.Test.NativeQueryableTests
                 new { name="Bob", num=(int?)null }
             };
 
-            Assert.Equal(10, source.AsQueryable().Max(e => e.num));
+            Assert.Equal(10, source.AsNaturalQueryable().Max(e => e.num));
         }
 
         [Fact]
         public void EmptyNullableInt64WithSelector()
         {
-            Assert.Null(Enumerable.Empty<long?>().AsQueryable().Max(x => x));
+            Assert.Null(Enumerable.Empty<long?>().AsNaturalQueryable().Max(x => x));
         }
 
         [Fact]
@@ -419,7 +419,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
         public void NullableInt64SourceWithNullSelector()
         {
             Expression<Func<long?, long?>> selector = null;
-            AssertExtensions.Throws<ArgumentNullException>("selector", () => Enumerable.Empty<long?>().AsQueryable().Max(selector));
+            AssertExtensions.Throws<ArgumentNullException>("selector", () => Enumerable.Empty<long?>().AsNaturalQueryable().Max(selector));
         }
 
         [Fact]
@@ -430,13 +430,13 @@ namespace ComparedQueryable.Test.NativeQueryableTests
                 new {name="John", num=(long?)-105L },
                 new {name="Bob", num=(long?)long.MaxValue }
             };
-            Assert.Equal(long.MaxValue, source.AsQueryable().Max(e => e.num));
+            Assert.Equal(long.MaxValue, source.AsNaturalQueryable().Max(e => e.num));
         }
 
         [Fact]
         public void EmptyNullableSingleWithSelector()
         {
-            Assert.Null(Enumerable.Empty<float?>().AsQueryable().Max(x => x));
+            Assert.Null(Enumerable.Empty<float?>().AsNaturalQueryable().Max(x => x));
         }
 
         [Fact]
@@ -449,7 +449,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
         public void NullableSingleSourceWithNullSelector()
         {
             Expression<Func<float?, float?>> selector = null;
-            AssertExtensions.Throws<ArgumentNullException>("selector", () => Enumerable.Empty<float?>().AsQueryable().Max(selector));
+            AssertExtensions.Throws<ArgumentNullException>("selector", () => Enumerable.Empty<float?>().AsNaturalQueryable().Max(selector));
         }
 
         [Fact]
@@ -461,13 +461,13 @@ namespace ComparedQueryable.Test.NativeQueryableTests
                 new { name="John", num=(float?)null },
                 new { name="Bob", num=(float?)100.45f }
             };
-            Assert.Equal(100.45f, source.AsQueryable().Max(e => e.num));
+            Assert.Equal(100.45f, source.AsNaturalQueryable().Max(e => e.num));
         }
 
         [Fact]
         public void EmptyNullableDoubleWithSelector()
         {
-            Assert.Null(Enumerable.Empty<double?>().AsQueryable().Max(x => x));
+            Assert.Null(Enumerable.Empty<double?>().AsNaturalQueryable().Max(x => x));
         }
 
         [Fact]
@@ -480,7 +480,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
         public void NullableDoubleSourceWithNullSelector()
         {
             Expression<Func<double?, double?>> selector = null;
-            AssertExtensions.Throws<ArgumentNullException>("selector", () => Enumerable.Empty<double?>().AsQueryable().Max(selector));
+            AssertExtensions.Throws<ArgumentNullException>("selector", () => Enumerable.Empty<double?>().AsNaturalQueryable().Max(selector));
         }
 
         [Fact]
@@ -491,13 +491,13 @@ namespace ComparedQueryable.Test.NativeQueryableTests
                 new { name = "John", num = default(double?)},
                 new { name = "Bob", num = (double?)100.45}
             };
-            Assert.Equal(100.45, source.AsQueryable().Max(e => e.num));
+            Assert.Equal(100.45, source.AsNaturalQueryable().Max(e => e.num));
         }
 
         [Fact]
         public void EmptyNullableDecimalWithSelector()
         {
-            Assert.Null(Enumerable.Empty<decimal?>().AsQueryable().Max(x => x));
+            Assert.Null(Enumerable.Empty<decimal?>().AsNaturalQueryable().Max(x => x));
         }
 
         [Fact]
@@ -510,7 +510,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
         public void NullableDecimalSourceWithNullSelector()
         {
             Expression<Func<decimal?, decimal?>> selector = null;
-            AssertExtensions.Throws<ArgumentNullException>("selector", () => Enumerable.Empty<decimal?>().AsQueryable().Max(selector));
+            AssertExtensions.Throws<ArgumentNullException>("selector", () => Enumerable.Empty<decimal?>().AsNaturalQueryable().Max(selector));
         }
 
         [Fact]
@@ -521,13 +521,13 @@ namespace ComparedQueryable.Test.NativeQueryableTests
                 new { name="John", num=default(decimal?) },
                 new { name="Bob", num=(decimal?)10.45m }
             };
-            Assert.Equal(420.5m, source.AsQueryable().Max(e => e.num));
+            Assert.Equal(420.5m, source.AsNaturalQueryable().Max(e => e.num));
         }
 
         [Fact]
         public void EmptyNullableDateTimeWithSelector()
         {
-            Assert.Null(Enumerable.Empty<DateTime?>().AsQueryable().Max(x => x));
+            Assert.Null(Enumerable.Empty<DateTime?>().AsNaturalQueryable().Max(x => x));
         }
 
         [Fact]
@@ -540,12 +540,12 @@ namespace ComparedQueryable.Test.NativeQueryableTests
         public void NullableDateTimeSourceWithNullSelector()
         {
             Expression<Func<DateTime?, DateTime?>> selector = null;
-            AssertExtensions.Throws<ArgumentNullException>("selector", () => Enumerable.Empty<DateTime?>().AsQueryable().Max(selector));
+            AssertExtensions.Throws<ArgumentNullException>("selector", () => Enumerable.Empty<DateTime?>().AsNaturalQueryable().Max(selector));
         }
 
         public void EmptyStringSourceWithSelector()
         {
-            Assert.Null(Enumerable.Empty<string>().AsQueryable().Max(x => x));
+            Assert.Null(Enumerable.Empty<string>().AsNaturalQueryable().Max(x => x));
         }
 
         [Fact]
@@ -558,7 +558,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
         public void StringSourceWithNullSelector()
         {
             Expression<Func<string, string>> selector = null;
-            AssertExtensions.Throws<ArgumentNullException>("selector", () => Enumerable.Empty<string>().AsQueryable().Max(selector));
+            AssertExtensions.Throws<ArgumentNullException>("selector", () => Enumerable.Empty<string>().AsNaturalQueryable().Max(selector));
         }
 
         [Fact]
@@ -569,26 +569,26 @@ namespace ComparedQueryable.Test.NativeQueryableTests
                 new { name="John", num=900.25m },
                 new { name="Bob", num=10.45m }
             };
-            Assert.Equal("Tim", source.AsQueryable().Max(e => e.name));
+            Assert.Equal("Tim", source.AsNaturalQueryable().Max(e => e.name));
         }
 
         [Fact]
         public void EmptyBoolean()
         {
-            Assert.Throws<InvalidOperationException>(() => Enumerable.Empty<bool>().AsQueryable().Max());
+            Assert.Throws<InvalidOperationException>(() => Enumerable.Empty<bool>().AsNaturalQueryable().Max());
         }
 
         [Fact]
         public void Max1()
         {
-            var val = (new int[] { 0, 2, 1 }).AsQueryable().Max();
+            var val = (new int[] { 0, 2, 1 }).AsNaturalQueryable().Max();
             Assert.Equal(2, val);
         }
 
         [Fact]
         public void Max2()
         {
-            var val = (new int[] { 0, 2, 1 }).AsQueryable().Max(n => n);
+            var val = (new int[] { 0, 2, 1 }).AsNaturalQueryable().Max(n => n);
             Assert.Equal(2, val);
         }
     }

@@ -13,13 +13,13 @@ namespace ComparedQueryable.Test.NativeQueryableTests
         [Fact]
         public void SkipSome()
         {
-            Assert.Equal(Enumerable.Range(10, 10).AsQueryable(), Enumerable.Range(0, 20).AsQueryable().Skip(10));
+            Assert.Equal(Enumerable.Range(10, 10).AsNaturalQueryable(), Enumerable.Range(0, 20).AsNaturalQueryable().Skip(10));
         }
 
         [Fact]
         public void SkipExcessive()
         {
-            Assert.Empty(Enumerable.Range(0, 20).AsQueryable().Skip(42));
+            Assert.Empty(Enumerable.Range(0, 20).AsNaturalQueryable().Skip(42));
         }
 
         [Fact]
@@ -31,7 +31,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
         [Fact]
         public void Skip()
         {
-            var count = (new int[] { 0, 1, 2 }).AsQueryable().Skip(1).Count();
+            var count = (new int[] { 0, 1, 2 }).AsNaturalQueryable().Skip(1).Count();
             Assert.Equal(2, count);
         }
     }

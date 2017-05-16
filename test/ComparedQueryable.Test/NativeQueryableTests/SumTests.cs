@@ -94,7 +94,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
         [Fact]
         public void SumOfInt_SelectorIsNull_ArgumentNullExceptionThrown()
         {
-            IQueryable<int> sourceInt = Enumerable.Empty<int>().AsQueryable();
+            IQueryable<int> sourceInt = Enumerable.Empty<int>().AsNaturalQueryable();
             Expression<Func<int, int>> selector = null;
             AssertExtensions.Throws<ArgumentNullException>("selector", () => sourceInt.Sum(selector));
         }
@@ -102,7 +102,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
         [Fact]
         public void SumOfNullableOfInt_SelectorIsNull_ArgumentNullExceptionThrown()
         {
-            IQueryable<int?> sourceNullableInt = Enumerable.Empty<int?>().AsQueryable();
+            IQueryable<int?> sourceNullableInt = Enumerable.Empty<int?>().AsNaturalQueryable();
             Expression<Func<int?, int?>> selector = null;
             AssertExtensions.Throws<ArgumentNullException>("selector", () => sourceNullableInt.Sum(selector));
         }
@@ -110,7 +110,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
         [Fact]
         public void SumOfLong_SelectorIsNull_ArgumentNullExceptionThrown()
         {
-            IQueryable<long> sourceLong = Enumerable.Empty<long>().AsQueryable();
+            IQueryable<long> sourceLong = Enumerable.Empty<long>().AsNaturalQueryable();
             Expression<Func<long, long>> selector = null;
             AssertExtensions.Throws<ArgumentNullException>("selector", () => sourceLong.Sum(selector));
         }
@@ -118,7 +118,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
         [Fact]
         public void SumOfNullableOfLong_SelectorIsNull_ArgumentNullExceptionThrown()
         {
-            IQueryable<long?> sourceNullableLong = Enumerable.Empty<long?>().AsQueryable();
+            IQueryable<long?> sourceNullableLong = Enumerable.Empty<long?>().AsNaturalQueryable();
             Expression<Func<long?, long?>> selector = null;
             AssertExtensions.Throws<ArgumentNullException>("selector", () => sourceNullableLong.Sum(selector));
         }
@@ -126,7 +126,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
         [Fact]
         public void SumOfFloat_SelectorIsNull_ArgumentNullExceptionThrown()
         {
-            IQueryable<float> sourceFloat = Enumerable.Empty<float>().AsQueryable();
+            IQueryable<float> sourceFloat = Enumerable.Empty<float>().AsNaturalQueryable();
             Expression<Func<float, float>> selector = null;
             AssertExtensions.Throws<ArgumentNullException>("selector", () => sourceFloat.Sum(selector));
         }
@@ -134,7 +134,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
         [Fact]
         public void SumOfNullableOfFloat_SelectorIsNull_ArgumentNullExceptionThrown()
         {
-            IQueryable<float?> sourceNullableFloat = Enumerable.Empty<float?>().AsQueryable();
+            IQueryable<float?> sourceNullableFloat = Enumerable.Empty<float?>().AsNaturalQueryable();
             Expression<Func<float?, float?>> selector = null;
             AssertExtensions.Throws<ArgumentNullException>("selector", () => sourceNullableFloat.Sum(selector));
         }
@@ -142,7 +142,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
         [Fact]
         public void SumOfDouble_SelectorIsNull_ArgumentNullExceptionThrown()
         {
-            IQueryable<double> sourceDouble = Enumerable.Empty<double>().AsQueryable();
+            IQueryable<double> sourceDouble = Enumerable.Empty<double>().AsNaturalQueryable();
             Expression<Func<double, double>> selector = null;
             AssertExtensions.Throws<ArgumentNullException>("selector", () => sourceDouble.Sum(selector));
         }
@@ -150,7 +150,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
         [Fact]
         public void SumOfNullableOfDouble_SelectorIsNull_ArgumentNullExceptionThrown()
         {
-            IQueryable<double?> sourceNullableDouble = Enumerable.Empty<double?>().AsQueryable();
+            IQueryable<double?> sourceNullableDouble = Enumerable.Empty<double?>().AsNaturalQueryable();
             Expression<Func<double?, double?>> selector = null;
             AssertExtensions.Throws<ArgumentNullException>("selector", () => sourceNullableDouble.Sum(selector));
         }
@@ -158,7 +158,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
         [Fact]
         public void SumOfDecimal_SelectorIsNull_ArgumentNullExceptionThrown()
         {
-            IQueryable<decimal> sourceDecimal = Enumerable.Empty<decimal>().AsQueryable();
+            IQueryable<decimal> sourceDecimal = Enumerable.Empty<decimal>().AsNaturalQueryable();
             Expression<Func<decimal, decimal>> selector = null;
             AssertExtensions.Throws<ArgumentNullException>("selector", () => sourceDecimal.Sum(selector));
         }
@@ -166,7 +166,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
         [Fact]
         public void SumOfNullableOfDecimal_SelectorIsNull_ArgumentNullExceptionThrown()
         {
-            IQueryable<decimal?> sourceNullableDecimal = Enumerable.Empty<decimal?>().AsQueryable();
+            IQueryable<decimal?> sourceNullableDecimal = Enumerable.Empty<decimal?>().AsNaturalQueryable();
             Expression<Func<decimal?, decimal?>> selector = null;
             AssertExtensions.Throws<ArgumentNullException>("selector", () => sourceNullableDecimal.Sum(selector));
         }
@@ -174,7 +174,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
         [Fact]
         public void SumOfInt_SourceIsEmptyCollection_ZeroReturned()
         {
-            IQueryable<int> sourceInt = Enumerable.Empty<int>().AsQueryable();
+            IQueryable<int> sourceInt = Enumerable.Empty<int>().AsNaturalQueryable();
             Assert.Equal(0, sourceInt.Sum());
             Assert.Equal(0, sourceInt.Sum(x => x));
         }
@@ -182,7 +182,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
         [Fact]
         public void SumOfNullableOfInt_SourceIsEmptyCollection_ZeroReturned()
         {
-            IQueryable<int?> sourceNullableInt = Enumerable.Empty<int?>().AsQueryable();
+            IQueryable<int?> sourceNullableInt = Enumerable.Empty<int?>().AsNaturalQueryable();
             Assert.Equal(0, sourceNullableInt.Sum());
             Assert.Equal(0, sourceNullableInt.Sum(x => x));
         }
@@ -190,7 +190,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
         [Fact]
         public void SumOfLong_SourceIsEmptyCollection_ZeroReturned()
         {
-            IQueryable<long> sourceLong = Enumerable.Empty<long>().AsQueryable();
+            IQueryable<long> sourceLong = Enumerable.Empty<long>().AsNaturalQueryable();
             Assert.Equal(0L, sourceLong.Sum());
             Assert.Equal(0L, sourceLong.Sum(x => x));
         }
@@ -198,7 +198,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
         [Fact]
         public void SumOfNullableOfLong_SourceIsEmptyCollection_ZeroReturned()
         {
-            IQueryable<long?> sourceNullableLong = Enumerable.Empty<long?>().AsQueryable();
+            IQueryable<long?> sourceNullableLong = Enumerable.Empty<long?>().AsNaturalQueryable();
             Assert.Equal(0L, sourceNullableLong.Sum());
             Assert.Equal(0L, sourceNullableLong.Sum(x => x));
         }
@@ -206,7 +206,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
         [Fact]
         public void SumOfFloat_SourceIsEmptyCollection_ZeroReturned()
         {
-            IQueryable<float> sourceFloat = Enumerable.Empty<float>().AsQueryable();
+            IQueryable<float> sourceFloat = Enumerable.Empty<float>().AsNaturalQueryable();
             Assert.Equal(0f, sourceFloat.Sum());
             Assert.Equal(0f, sourceFloat.Sum(x => x));
         }
@@ -214,7 +214,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
         [Fact]
         public void SumOfNullableOfFloat_SourceIsEmptyCollection_ZeroReturned()
         {
-            IQueryable<float?> sourceNullableFloat = Enumerable.Empty<float?>().AsQueryable();
+            IQueryable<float?> sourceNullableFloat = Enumerable.Empty<float?>().AsNaturalQueryable();
             Assert.Equal(0f, sourceNullableFloat.Sum());
             Assert.Equal(0f, sourceNullableFloat.Sum(x => x));
         }
@@ -222,7 +222,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
         [Fact]
         public void SumOfDouble_SourceIsEmptyCollection_ZeroReturned()
         {
-            IQueryable<double> sourceDouble = Enumerable.Empty<double>().AsQueryable();
+            IQueryable<double> sourceDouble = Enumerable.Empty<double>().AsNaturalQueryable();
             Assert.Equal(0d, sourceDouble.Sum());
             Assert.Equal(0d, sourceDouble.Sum(x => x));
         }
@@ -230,7 +230,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
         [Fact]
         public void SumOfNullableOfDouble_SourceIsEmptyCollection_ZeroReturned()
         {
-            IQueryable<double?> sourceNullableDouble = Enumerable.Empty<double?>().AsQueryable();
+            IQueryable<double?> sourceNullableDouble = Enumerable.Empty<double?>().AsNaturalQueryable();
             Assert.Equal(0d, sourceNullableDouble.Sum());
             Assert.Equal(0d, sourceNullableDouble.Sum(x => x));
         }
@@ -238,7 +238,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
         [Fact]
         public void SumOfDecimal_SourceIsEmptyCollection_ZeroReturned()
         {
-            IQueryable<decimal> sourceDecimal = Enumerable.Empty<decimal>().AsQueryable();
+            IQueryable<decimal> sourceDecimal = Enumerable.Empty<decimal>().AsNaturalQueryable();
             Assert.Equal(0m, sourceDecimal.Sum());
             Assert.Equal(0m, sourceDecimal.Sum(x => x));
         }
@@ -246,7 +246,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
         [Fact]
         public void SumOfNullableOfDecimal_SourceIsEmptyCollection_ZeroReturned()
         {
-            IQueryable<decimal?> sourceNullableDecimal = Enumerable.Empty<decimal?>().AsQueryable();
+            IQueryable<decimal?> sourceNullableDecimal = Enumerable.Empty<decimal?>().AsNaturalQueryable();
             Assert.Equal(0m, sourceNullableDecimal.Sum());
             Assert.Equal(0m, sourceNullableDecimal.Sum(x => x));
         }
@@ -254,140 +254,140 @@ namespace ComparedQueryable.Test.NativeQueryableTests
         [Fact]
         public void Sum1()
         {
-            var val = (new int[] { 0, 2, 1 }).AsQueryable().Sum();
+            var val = (new int[] { 0, 2, 1 }).AsNaturalQueryable().Sum();
             Assert.Equal((int)3, val);
         }
 
         [Fact]
         public void Sum2()
         {
-            var val = (new int?[] { 0, 2, 1 }).AsQueryable().Sum();
+            var val = (new int?[] { 0, 2, 1 }).AsNaturalQueryable().Sum();
             Assert.Equal((int)3, val);
         }
 
         [Fact]
         public void Sum3()
         {
-            var val = (new long[] { 0, 2, 1 }).AsQueryable().Sum();
+            var val = (new long[] { 0, 2, 1 }).AsNaturalQueryable().Sum();
             Assert.Equal((long)3, val);
         }
 
         [Fact]
         public void Sum4()
         {
-            var val = (new long?[] { 0, 2, 1 }).AsQueryable().Sum();
+            var val = (new long?[] { 0, 2, 1 }).AsNaturalQueryable().Sum();
             Assert.Equal((long)3, val);
         }
 
         [Fact]
         public void Sum5()
         {
-            var val = (new float[] { 0, 2, 1 }).AsQueryable().Sum();
+            var val = (new float[] { 0, 2, 1 }).AsNaturalQueryable().Sum();
             Assert.Equal((float)3, val);
         }
 
         [Fact]
         public void Sum6()
         {
-            var val = (new float?[] { 0, 2, 1 }).AsQueryable().Sum();
+            var val = (new float?[] { 0, 2, 1 }).AsNaturalQueryable().Sum();
             Assert.Equal((float)3, val);
         }
 
         [Fact]
         public void Sum7()
         {
-            var val = (new double[] { 0, 2, 1 }).AsQueryable().Sum();
+            var val = (new double[] { 0, 2, 1 }).AsNaturalQueryable().Sum();
             Assert.Equal((double)3, val);
         }
 
         [Fact]
         public void Sum8()
         {
-            var val = (new double?[] { 0, 2, 1 }).AsQueryable().Sum();
+            var val = (new double?[] { 0, 2, 1 }).AsNaturalQueryable().Sum();
             Assert.Equal((double)3, val);
         }
 
         [Fact]
         public void Sum9()
         {
-            var val = (new decimal[] { 0, 2, 1 }).AsQueryable().Sum();
+            var val = (new decimal[] { 0, 2, 1 }).AsNaturalQueryable().Sum();
             Assert.Equal((decimal)3, val);
         }
 
         [Fact]
         public void Sum10()
         {
-            var val = (new decimal?[] { 0, 2, 1 }).AsQueryable().Sum();
+            var val = (new decimal?[] { 0, 2, 1 }).AsNaturalQueryable().Sum();
             Assert.Equal((decimal)3, val);
         }
 
         [Fact]
         public void Sum11()
         {
-            var val = (new int[] { 0, 2, 1 }).AsQueryable().Sum(n => n);
+            var val = (new int[] { 0, 2, 1 }).AsNaturalQueryable().Sum(n => n);
             Assert.Equal((int)3, val);
         }
 
         [Fact]
         public void Sum12()
         {
-            var val = (new int?[] { 0, 2, 1 }).AsQueryable().Sum(n => n);
+            var val = (new int?[] { 0, 2, 1 }).AsNaturalQueryable().Sum(n => n);
             Assert.Equal((int)3, val);
         }
 
         [Fact]
         public void Sum13()
         {
-            var val = (new long[] { 0, 2, 1 }).AsQueryable().Sum(n => n);
+            var val = (new long[] { 0, 2, 1 }).AsNaturalQueryable().Sum(n => n);
             Assert.Equal((long)3, val);
         }
 
         [Fact]
         public void Sum14()
         {
-            var val = (new long?[] { 0, 2, 1 }).AsQueryable().Sum(n => n);
+            var val = (new long?[] { 0, 2, 1 }).AsNaturalQueryable().Sum(n => n);
             Assert.Equal((long)3, val);
         }
 
         [Fact]
         public void Sum15()
         {
-            var val = (new float[] { 0, 2, 1 }).AsQueryable().Sum(n => n);
+            var val = (new float[] { 0, 2, 1 }).AsNaturalQueryable().Sum(n => n);
             Assert.Equal((float)3, val);
         }
 
         [Fact]
         public void Sum16()
         {
-            var val = (new float?[] { 0, 2, 1 }).AsQueryable().Sum(n => n);
+            var val = (new float?[] { 0, 2, 1 }).AsNaturalQueryable().Sum(n => n);
             Assert.Equal((float)3, val);
         }
 
         [Fact]
         public void Sum17()
         {
-            var val = (new double[] { 0, 2, 1 }).AsQueryable().Sum(n => n);
+            var val = (new double[] { 0, 2, 1 }).AsNaturalQueryable().Sum(n => n);
             Assert.Equal((double)3, val);
         }
 
         [Fact]
         public void Sum18()
         {
-            var val = (new double?[] { 0, 2, 1 }).AsQueryable().Sum(n => n);
+            var val = (new double?[] { 0, 2, 1 }).AsNaturalQueryable().Sum(n => n);
             Assert.Equal((double)3, val);
         }
 
         [Fact]
         public void Sum19()
         {
-            var val = (new decimal[] { 0, 2, 1 }).AsQueryable().Sum(n => n);
+            var val = (new decimal[] { 0, 2, 1 }).AsNaturalQueryable().Sum(n => n);
             Assert.Equal((decimal)3, val);
         }
 
         [Fact]
         public void Sum20()
         {
-            var val = (new decimal?[] { 0, 2, 1 }).AsQueryable().Sum(n => n);
+            var val = (new decimal?[] { 0, 2, 1 }).AsNaturalQueryable().Sum(n => n);
             Assert.Equal((decimal)3, val);
         }
     }

@@ -15,7 +15,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
         {
             int?[] source = { 9, 8 };
             
-            AssertExtensions.Throws<ArgumentOutOfRangeException>("index", () => source.AsQueryable().ElementAt(-1));
+            AssertExtensions.Throws<ArgumentOutOfRangeException>("index", () => source.AsNaturalQueryable().ElementAt(-1));
         }
 
         [Fact]
@@ -23,7 +23,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
         {
             int[] source = { 1, 2, 3, 4 };
             
-            AssertExtensions.Throws<ArgumentOutOfRangeException>("index", () => source.AsQueryable().ElementAt(source.Length));
+            AssertExtensions.Throws<ArgumentOutOfRangeException>("index", () => source.AsNaturalQueryable().ElementAt(source.Length));
         }
 
         [Fact]
@@ -31,7 +31,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
         {
             int[] source = { };
             
-            AssertExtensions.Throws<ArgumentOutOfRangeException>("index", () => source.AsQueryable().ElementAt(0));
+            AssertExtensions.Throws<ArgumentOutOfRangeException>("index", () => source.AsNaturalQueryable().ElementAt(0));
         }
 
         [Fact]
@@ -39,7 +39,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
         {
             int[] source = { -4 };
             
-            Assert.Equal(-4, source.AsQueryable().ElementAt(0));
+            Assert.Equal(-4, source.AsNaturalQueryable().ElementAt(0));
         }
 
         [Fact]
@@ -47,7 +47,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
         {
             int[] source = { 9, 8, 0, -5, 10 };
             
-            Assert.Equal(10, source.AsQueryable().ElementAt(source.Length - 1));
+            Assert.Equal(10, source.AsNaturalQueryable().ElementAt(source.Length - 1));
         }
 
         [Fact]
@@ -59,7 +59,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
         [Fact]
         public void ElementAt()
         {
-            var val = (new int[] { 0, 2, 1 }).AsQueryable().ElementAt(1);
+            var val = (new int[] { 0, 2, 1 }).AsNaturalQueryable().ElementAt(1);
             Assert.Equal(2, val);
         }
     }

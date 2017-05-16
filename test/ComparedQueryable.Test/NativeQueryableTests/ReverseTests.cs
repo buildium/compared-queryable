@@ -30,7 +30,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
                 expectedResults[i] = input[input.Length - 1 - i];
             }
 
-            Assert.Equal(expectedResults, input.AsQueryable().Reverse());
+            Assert.Equal(expectedResults, input.AsNaturalQueryable().Reverse());
         }
 
         [Fact]
@@ -39,13 +39,13 @@ namespace ComparedQueryable.Test.NativeQueryableTests
             int?[] source = new int?[] { -10, 0, 5, null, 0, 9, 100, null, 9 };
             int?[] expected = new int?[] { 9, null, 100, 9, 0, null, 5, 0, -10 };
             
-            Assert.Equal(expected, source.AsQueryable().Reverse());
+            Assert.Equal(expected, source.AsNaturalQueryable().Reverse());
         }
 
         [Fact]
         public void Reverse()
         {
-            var count = (new int[] { 0, 2, 1 }).AsQueryable().Reverse().Count();
+            var count = (new int[] { 0, 2, 1 }).AsNaturalQueryable().Reverse().Count();
             Assert.Equal(3, count);
         }
     }

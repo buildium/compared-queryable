@@ -31,7 +31,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
                 new { Name = "Alpha", Score = 90 }
             };
 
-            Assert.Equal(expected, source.AsQueryable().OrderByDescending(e => e.Name, null));
+            Assert.Equal(expected, source.AsNaturalQueryable().OrderByDescending(e => e.Name, null));
         }
 
         [Fact]
@@ -40,7 +40,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
             string[] source = { "Prakash", "Alpha", "DAN", "dan", "Prakash" };
             string[] expected = { "Prakash", "Prakash", "DAN", "dan", "Alpha" };
 
-            Assert.Equal(expected, source.AsQueryable().OrderByDescending(e => e, StringComparer.OrdinalIgnoreCase));
+            Assert.Equal(expected, source.AsNaturalQueryable().OrderByDescending(e => e, StringComparer.OrdinalIgnoreCase));
         }
 
         [Fact]
@@ -49,7 +49,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
             int[] source = { 5, 1, 3, 2, 5 };
             int[] expected = { 5, 5, 3, 2, 1 };
 
-            Assert.Equal(expected, source.AsQueryable().OrderByDescending(e => e, null));
+            Assert.Equal(expected, source.AsNaturalQueryable().OrderByDescending(e => e, null));
         }
 
         [Fact]
@@ -63,7 +63,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
         public void NullKeySelector()
         {
             Expression<Func<DateTime, int>> keySelector = null;
-            AssertExtensions.Throws<ArgumentNullException>("keySelector", () => Enumerable.Empty<DateTime>().AsQueryable().OrderByDescending(keySelector));
+            AssertExtensions.Throws<ArgumentNullException>("keySelector", () => Enumerable.Empty<DateTime>().AsNaturalQueryable().OrderByDescending(keySelector));
         }
 
         [Fact]
@@ -77,20 +77,20 @@ namespace ComparedQueryable.Test.NativeQueryableTests
         public void NullKeySelectorComparer()
         {
             Expression<Func<DateTime, int>> keySelector = null;
-            AssertExtensions.Throws<ArgumentNullException>("keySelector", () => Enumerable.Empty<DateTime>().AsQueryable().OrderByDescending(keySelector, Comparer<int>.Default));
+            AssertExtensions.Throws<ArgumentNullException>("keySelector", () => Enumerable.Empty<DateTime>().AsNaturalQueryable().OrderByDescending(keySelector, Comparer<int>.Default));
         }
 
         [Fact]
         public void OrderByDescending1()
         {
-            var count = (new int[] { 0, 1, 2 }).AsQueryable().OrderByDescending(n => n).Count();
+            var count = (new int[] { 0, 1, 2 }).AsNaturalQueryable().OrderByDescending(n => n).Count();
             Assert.Equal(3, count);
         }
 
         [Fact]
         public void OrderByDescending2()
         {
-            var count = (new int[] { 0, 1, 2 }).AsQueryable().OrderByDescending(n => n, Comparer<int>.Default).Count();
+            var count = (new int[] { 0, 1, 2 }).AsNaturalQueryable().OrderByDescending(n => n, Comparer<int>.Default).Count();
             Assert.Equal(3, count);
         }
     }

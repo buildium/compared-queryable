@@ -60,7 +60,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
                 new JoinRec{ name = "Robert", orderID = 45321, total = 50 }
             };
 
-            Assert.Equal(expected, outer.AsQueryable().Join(inner.AsQueryable(), e => e.custID, e => e.custID, (cr, or) => new JoinRec { name = cr.name, orderID = or.orderID, total = or.total }));
+            Assert.Equal(expected, outer.AsNaturalQueryable().Join(inner.AsNaturalQueryable(), e => e.custID, e => e.custID, (cr, or) => new JoinRec { name = cr.name, orderID = or.orderID, total = or.total }));
         }
 
         [Fact]
@@ -79,7 +79,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
             };
             JoinRec[] expected = new [] { new JoinRec{ name = "Prakash", orderID = 323232, total = 9 } };
 
-            Assert.Equal(expected, outer.AsQueryable().Join(inner.AsQueryable(), e => e.name, e => e.name, (cr, or) => new JoinRec { name = cr.name, orderID = or.orderID, total = or.total }, null));
+            Assert.Equal(expected, outer.AsNaturalQueryable().Join(inner.AsNaturalQueryable(), e => e.name, e => e.name, (cr, or) => new JoinRec { name = cr.name, orderID = or.orderID, total = or.total }, null));
         }
 
         [Fact]
@@ -102,7 +102,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
                 new JoinRec{ name = "Tim", orderID = 43455, total = 10 }
             };
 
-            Assert.Equal(expected, outer.AsQueryable().Join(inner.AsQueryable(), e => e.name, e => e.name, (cr, or) => new JoinRec { name = cr.name, orderID = or.orderID, total = or.total }, new AnagramEqualityComparer()));
+            Assert.Equal(expected, outer.AsNaturalQueryable().Join(inner.AsNaturalQueryable(), e => e.name, e => e.name, (cr, or) => new JoinRec { name = cr.name, orderID = or.orderID, total = or.total }, new AnagramEqualityComparer()));
         }
 
         [Fact]
@@ -115,7 +115,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
                 new AnagramRec{ name = "Prakash", orderID = 323232, total = 9 }
             };
 
-            AssertExtensions.Throws<ArgumentNullException>("outer", () => outer.Join(inner.AsQueryable(), e => e.name, e => e.name, (cr, or) => new JoinRec { name = cr.name, orderID = or.orderID, total = or.total }, new AnagramEqualityComparer()));
+            AssertExtensions.Throws<ArgumentNullException>("outer", () => outer.Join(inner.AsNaturalQueryable(), e => e.name, e => e.name, (cr, or) => new JoinRec { name = cr.name, orderID = or.orderID, total = or.total }, new AnagramEqualityComparer()));
         }
 
         [Fact]
@@ -129,7 +129,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
             };
             IQueryable<AnagramRec> inner = null;
 
-            AssertExtensions.Throws<ArgumentNullException>("inner", () => outer.AsQueryable().Join(inner, e => e.name, e => e.name, (cr, or) => new JoinRec { name = cr.name, orderID = or.orderID, total = or.total }, new AnagramEqualityComparer()));
+            AssertExtensions.Throws<ArgumentNullException>("inner", () => outer.AsNaturalQueryable().Join(inner, e => e.name, e => e.name, (cr, or) => new JoinRec { name = cr.name, orderID = or.orderID, total = or.total }, new AnagramEqualityComparer()));
         }
 
         [Fact]
@@ -147,7 +147,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
                 new AnagramRec{ name = "Prakash", orderID = 323232, total = 9 }
             };
 
-            AssertExtensions.Throws<ArgumentNullException>("outerKeySelector", () => outer.AsQueryable().Join(inner.AsQueryable(), null, e => e.name, (cr, or) => new JoinRec { name = cr.name, orderID = or.orderID, total = or.total }, new AnagramEqualityComparer()));
+            AssertExtensions.Throws<ArgumentNullException>("outerKeySelector", () => outer.AsNaturalQueryable().Join(inner.AsNaturalQueryable(), null, e => e.name, (cr, or) => new JoinRec { name = cr.name, orderID = or.orderID, total = or.total }, new AnagramEqualityComparer()));
         }
 
         [Fact]
@@ -165,7 +165,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
                 new AnagramRec{ name = "Prakash", orderID = 323232, total = 9 }
             };
 
-            AssertExtensions.Throws<ArgumentNullException>("innerKeySelector", () => outer.AsQueryable().Join(inner.AsQueryable(), e => e.name, null, (cr, or) => new JoinRec { name = cr.name, orderID = or.orderID, total = or.total }, new AnagramEqualityComparer()));
+            AssertExtensions.Throws<ArgumentNullException>("innerKeySelector", () => outer.AsNaturalQueryable().Join(inner.AsNaturalQueryable(), e => e.name, null, (cr, or) => new JoinRec { name = cr.name, orderID = or.orderID, total = or.total }, new AnagramEqualityComparer()));
         }
 
         [Fact]
@@ -183,7 +183,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
                 new AnagramRec{ name = "Prakash", orderID = 323232, total = 9 }
             };
 
-            AssertExtensions.Throws<ArgumentNullException>("resultSelector", () => outer.AsQueryable().Join(inner.AsQueryable(), e => e.name, e => e.name, (Expression<Func<CustomerRec, AnagramRec, JoinRec>>)null, new AnagramEqualityComparer()));
+            AssertExtensions.Throws<ArgumentNullException>("resultSelector", () => outer.AsNaturalQueryable().Join(inner.AsNaturalQueryable(), e => e.name, e => e.name, (Expression<Func<CustomerRec, AnagramRec, JoinRec>>)null, new AnagramEqualityComparer()));
         }
 
         [Fact]
@@ -196,7 +196,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
                 new AnagramRec{ name = "Prakash", orderID = 323232, total = 9 }
             };
 
-            AssertExtensions.Throws<ArgumentNullException>("outer", () => outer.Join(inner.AsQueryable(), e => e.name, e => e.name, (cr, or) => new JoinRec { name = cr.name, orderID = or.orderID, total = or.total }));
+            AssertExtensions.Throws<ArgumentNullException>("outer", () => outer.Join(inner.AsNaturalQueryable(), e => e.name, e => e.name, (cr, or) => new JoinRec { name = cr.name, orderID = or.orderID, total = or.total }));
         }
 
         [Fact]
@@ -210,7 +210,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
             };
             IQueryable<AnagramRec> inner = null;
 
-            AssertExtensions.Throws<ArgumentNullException>("inner", () => outer.AsQueryable().Join(inner, e => e.name, e => e.name, (cr, or) => new JoinRec { name = cr.name, orderID = or.orderID, total = or.total }));
+            AssertExtensions.Throws<ArgumentNullException>("inner", () => outer.AsNaturalQueryable().Join(inner, e => e.name, e => e.name, (cr, or) => new JoinRec { name = cr.name, orderID = or.orderID, total = or.total }));
         }
 
         [Fact]
@@ -228,7 +228,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
                 new AnagramRec{ name = "Prakash", orderID = 323232, total = 9 }
             };
 
-            AssertExtensions.Throws<ArgumentNullException>("outerKeySelector", () => outer.AsQueryable().Join(inner.AsQueryable(), null, e => e.name, (cr, or) => new JoinRec { name = cr.name, orderID = or.orderID, total = or.total }));
+            AssertExtensions.Throws<ArgumentNullException>("outerKeySelector", () => outer.AsNaturalQueryable().Join(inner.AsNaturalQueryable(), null, e => e.name, (cr, or) => new JoinRec { name = cr.name, orderID = or.orderID, total = or.total }));
         }
 
         [Fact]
@@ -246,7 +246,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
                 new AnagramRec{ name = "Prakash", orderID = 323232, total = 9 }
             };
 
-            AssertExtensions.Throws<ArgumentNullException>("innerKeySelector", () => outer.AsQueryable().Join(inner.AsQueryable(), e => e.name, null, (cr, or) => new JoinRec { name = cr.name, orderID = or.orderID, total = or.total }));
+            AssertExtensions.Throws<ArgumentNullException>("innerKeySelector", () => outer.AsNaturalQueryable().Join(inner.AsNaturalQueryable(), e => e.name, null, (cr, or) => new JoinRec { name = cr.name, orderID = or.orderID, total = or.total }));
         }
 
         [Fact]
@@ -264,7 +264,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
                 new AnagramRec{ name = "Prakash", orderID = 323232, total = 9 }
             };
 
-            AssertExtensions.Throws<ArgumentNullException>("resultSelector", () => outer.AsQueryable().Join(inner.AsQueryable(), e => e.name, e => e.name, (Expression<Func<CustomerRec, AnagramRec, JoinRec>>)null));
+            AssertExtensions.Throws<ArgumentNullException>("resultSelector", () => outer.AsNaturalQueryable().Join(inner.AsNaturalQueryable(), e => e.name, e => e.name, (Expression<Func<CustomerRec, AnagramRec, JoinRec>>)null));
         }
 
         [Fact]
@@ -272,20 +272,20 @@ namespace ComparedQueryable.Test.NativeQueryableTests
         {
             int?[] inner = { null, null, null };
             int?[] outer = { null, null };
-            Assert.Empty(outer.AsQueryable().Join(inner.AsQueryable(), e => e, e => e, (x, y) => x));
+            Assert.Empty(outer.AsNaturalQueryable().Join(inner.AsNaturalQueryable(), e => e, e => e, (x, y) => x));
         }
 
         [Fact]
         public void Join1()
         {
-            var count = (new int[] { 0, 1, 2 }).AsQueryable().Join(new int[] { 1, 2, 3 }, n1 => n1, n2 => n2, (n1, n2) => n1 + n2).Count();
+            var count = (new int[] { 0, 1, 2 }).AsNaturalQueryable().Join(new int[] { 1, 2, 3 }, n1 => n1, n2 => n2, (n1, n2) => n1 + n2).Count();
             Assert.Equal(2, count);
         }
 
         [Fact]
         public void Join2()
         {
-            var count = (new int[] { 0, 1, 2 }).AsQueryable().Join(new int[] { 1, 2, 3 }, n1 => n1, n2 => n2, (n1, n2) => n1 + n2, EqualityComparer<int>.Default).Count();
+            var count = (new int[] { 0, 1, 2 }).AsNaturalQueryable().Join(new int[] { 1, 2, 3 }, n1 => n1, n2 => n2, (n1, n2) => n1 + n2, EqualityComparer<int>.Default).Count();
             Assert.Equal(2, count);
         }
     }

@@ -17,7 +17,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
             int[] source = { 5, 6, 0, -4 };
             int expected = 7;
 
-            Assert.Equal(expected, source.AsQueryable().Aggregate((x, y) => x + y));
+            Assert.Equal(expected, source.AsNaturalQueryable().Aggregate((x, y) => x + y));
         }
 
         [Fact]
@@ -27,7 +27,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
             long seed = 2;
             long expected = -480;
 
-            Assert.Equal(expected, source.AsQueryable().Aggregate(seed, (x, y) => x * y));
+            Assert.Equal(expected, source.AsNaturalQueryable().Aggregate(seed, (x, y) => x * y));
         }
 
         [Fact]
@@ -37,7 +37,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
             long seed = 2;
             long expected = -475;
 
-            Assert.Equal(expected, source.AsQueryable().Aggregate(seed, (x, y) => x * y, x => x + 5.0));
+            Assert.Equal(expected, source.AsNaturalQueryable().Aggregate(seed, (x, y) => x * y, x => x + 5.0));
         }
 
         [Fact]
@@ -52,36 +52,36 @@ namespace ComparedQueryable.Test.NativeQueryableTests
         public void NullFunc()
         {
             Expression<Func<int, int, int>> func = null;
-            AssertExtensions.Throws<ArgumentNullException>("func", () => Enumerable.Range(0, 3).AsQueryable().Aggregate(func));
-            AssertExtensions.Throws<ArgumentNullException>("func", () => Enumerable.Range(0, 3).AsQueryable().Aggregate(0, func));
-            AssertExtensions.Throws<ArgumentNullException>("func", () => Enumerable.Range(0, 3).AsQueryable().Aggregate(0, func, i => i));
+            AssertExtensions.Throws<ArgumentNullException>("func", () => Enumerable.Range(0, 3).AsNaturalQueryable().Aggregate(func));
+            AssertExtensions.Throws<ArgumentNullException>("func", () => Enumerable.Range(0, 3).AsNaturalQueryable().Aggregate(0, func));
+            AssertExtensions.Throws<ArgumentNullException>("func", () => Enumerable.Range(0, 3).AsNaturalQueryable().Aggregate(0, func, i => i));
         }
 
         [Fact]
         public void NullResultSelector()
         {
             Expression<Func<int, int>> resultSelector = null;
-            AssertExtensions.Throws<ArgumentNullException>("selector", () => Enumerable.Range(0, 3).AsQueryable().Aggregate(0, (x, y) => x + y, resultSelector));
+            AssertExtensions.Throws<ArgumentNullException>("selector", () => Enumerable.Range(0, 3).AsNaturalQueryable().Aggregate(0, (x, y) => x + y, resultSelector));
         }
 
         [Fact]
         public void Aggregate1()
         {
-            var val = (new int[] { 0, 2, 1 }).AsQueryable().Aggregate((n1, n2) => n1 + n2);
+            var val = (new int[] { 0, 2, 1 }).AsNaturalQueryable().Aggregate((n1, n2) => n1 + n2);
             Assert.Equal((int)3, val);
         }
 
         [Fact]
         public void Aggregate2()
         {
-            var val = (new int[] { 0, 2, 1 }).AsQueryable().Aggregate("", (n1, n2) => n1 + n2.ToString());
+            var val = (new int[] { 0, 2, 1 }).AsNaturalQueryable().Aggregate("", (n1, n2) => n1 + n2.ToString());
             Assert.Equal("021", val);
         }
 
         [Fact]
         public void Aggregate3()
         {
-            var val = (new int[] { 0, 2, 1 }).AsQueryable().Aggregate(0L, (n1, n2) => n1 + n2, n => n.ToString());
+            var val = (new int[] { 0, 2, 1 }).AsNaturalQueryable().Aggregate(0L, (n1, n2) => n1 + n2, n => n.ToString());
             Assert.Equal("3", val);
         }
     }

@@ -16,7 +16,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
         {
             int[] source = { };
 
-            Assert.False(source.AsQueryable().Contains(6));
+            Assert.False(source.AsNaturalQueryable().Contains(6));
         }
 
         [Fact]
@@ -24,7 +24,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
         {
             int[] source = { 8, 10, 3, 0, -8 };
             
-            Assert.False(source.AsQueryable().Contains(6));
+            Assert.False(source.AsNaturalQueryable().Contains(6));
         }
 
         [Fact]
@@ -32,7 +32,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
         {
             int[] source = { 8, 0, 10, 3, 0, -8, 0 };
             
-            Assert.True(source.AsQueryable().Contains(0));
+            Assert.True(source.AsNaturalQueryable().Contains(0));
         }
 
         [Fact]
@@ -40,8 +40,8 @@ namespace ComparedQueryable.Test.NativeQueryableTests
         {
             string[] source = { "Bob", "Robert", "Tim" };
 
-            Assert.False(source.AsQueryable().Contains("trboeR", null));
-            Assert.True(source.AsQueryable().Contains("Tim", null));
+            Assert.False(source.AsNaturalQueryable().Contains("trboeR", null));
+            Assert.True(source.AsNaturalQueryable().Contains("Tim", null));
         }
 
         [Fact]
@@ -49,8 +49,8 @@ namespace ComparedQueryable.Test.NativeQueryableTests
         {
             string[] source = { "Bob", "Robert", "Tim" };
             
-            Assert.True(source.AsQueryable().Contains("trboeR", new AnagramEqualityComparer()));
-            Assert.False(source.AsQueryable().Contains("nevar", new AnagramEqualityComparer()));
+            Assert.True(source.AsNaturalQueryable().Contains("trboeR", new AnagramEqualityComparer()));
+            Assert.False(source.AsNaturalQueryable().Contains("nevar", new AnagramEqualityComparer()));
         }
         
         [Fact]
@@ -65,14 +65,14 @@ namespace ComparedQueryable.Test.NativeQueryableTests
         [Fact]
         public void Contains1()
         {
-            var val = (new int[] { 0, 2, 1 }).AsQueryable().Contains(1);
+            var val = (new int[] { 0, 2, 1 }).AsNaturalQueryable().Contains(1);
             Assert.True(val);
         }
 
         [Fact]
         public void Contains2()
         {
-            var val = (new int[] { 0, 2, 1 }).AsQueryable().Contains(1, EqualityComparer<int>.Default);
+            var val = (new int[] { 0, 2, 1 }).AsNaturalQueryable().Contains(1, EqualityComparer<int>.Default);
             Assert.True(val);
         }
     }

@@ -31,12 +31,12 @@ namespace ComparedQueryable.Test.NativeQueryableTests
             }
         }
 
-        private static IQueryProvider _prov = Enumerable.Empty<int>().AsQueryable().Provider;
+        private static IQueryProvider _prov = Enumerable.Empty<int>().AsNaturalQueryable().Provider;
 
         [Fact]
         public void ExpressionToQueryFromProvider()
         {
-            Expression exp = Expression.Constant(Enumerable.Range(0, 2).AsQueryable());
+            Expression exp = Expression.Constant(Enumerable.Range(0, 2).AsNaturalQueryable());
             IQueryable<int> q = _prov.CreateQuery<int>(exp);
             Assert.Equal(Enumerable.Range(0, 2), q);
         }
@@ -44,7 +44,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
         [Fact]
         public void ExpressionToQueryByConstructor()
         {
-            Expression exp = Expression.Constant(Enumerable.Range(0, 2).AsQueryable());
+            Expression exp = Expression.Constant(Enumerable.Range(0, 2).AsNaturalQueryable());
             IQueryable<int> q = new EnumerableQuery<int>(exp);
             Assert.Equal(Enumerable.Range(0, 2), q);
         }
@@ -57,8 +57,8 @@ namespace ComparedQueryable.Test.NativeQueryableTests
                     Expression.Modulo(Expression.Constant(1), Expression.Constant(2)),
                     Expression.Constant(0)
                    ),
-                Expression.Constant(Enumerable.Range(0, 2).AsQueryable()),
-                Expression.Constant(Enumerable.Range(3, 2).AsQueryable())
+                Expression.Constant(Enumerable.Range(0, 2).AsNaturalQueryable()),
+                Expression.Constant(Enumerable.Range(3, 2).AsNaturalQueryable())
             );
             IQueryable<int> q = _prov.CreateQuery<int>(cond);
             Assert.Equal(Enumerable.Range(3, 2), q);
@@ -68,7 +68,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
         {
             get
             {
-                return Enumerable.Range(0, 128).AsQueryable()
+                return Enumerable.Range(0, 128).AsNaturalQueryable()
                     .Select(i => (char)i)
                     .Where(c => char.IsControl(c));
             }
@@ -88,7 +88,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
             Expression array = Expression.Constant("abcd".ToArray());
             Expression call = Expression.Call(
                 typeof(Queryable),
-                "AsQueryable",
+                "AsNaturalQueryable",
                 new[] { typeof(char) },
                 Expression.NewArrayInit(
                     typeof(char),
@@ -108,8 +108,8 @@ namespace ComparedQueryable.Test.NativeQueryableTests
                         Expression.Constant(-1)
                         )
                         ),
-                Expression.Constant(Enumerable.Range(0, 2).AsQueryable()),
-                Expression.Constant(Enumerable.Range(3, 2).AsQueryable())
+                Expression.Constant(Enumerable.Range(0, 2).AsNaturalQueryable()),
+                Expression.Constant(Enumerable.Range(3, 2).AsNaturalQueryable())
             );
             IQueryable<int> q = _prov.CreateQuery<int>(cond);
             Assert.Equal(Enumerable.Range(0, 2), q);
@@ -125,8 +125,8 @@ namespace ComparedQueryable.Test.NativeQueryableTests
                         Expression.Constant(-1)
                         )
                         ),
-                Expression.Constant(Enumerable.Range(0, 2).AsQueryable()),
-                Expression.Constant(Enumerable.Range(3, 2).AsQueryable())
+                Expression.Constant(Enumerable.Range(0, 2).AsNaturalQueryable()),
+                Expression.Constant(Enumerable.Range(3, 2).AsNaturalQueryable())
             );
             IQueryable<int> q = _prov.CreateQuery<int>(cond);
             Assert.Equal(Enumerable.Range(0, 2), q);
@@ -152,8 +152,8 @@ namespace ComparedQueryable.Test.NativeQueryableTests
             );
             Expression cond = Expression.Condition(
                 logic,
-                Expression.Constant(Enumerable.Range(0, 2).AsQueryable()),
-                Expression.Constant(Enumerable.Range(3, 2).AsQueryable())
+                Expression.Constant(Enumerable.Range(0, 2).AsNaturalQueryable()),
+                Expression.Constant(Enumerable.Range(3, 2).AsNaturalQueryable())
             );
             IQueryable<int> q = _prov.CreateQuery<int>(cond);
             Assert.Equal(Enumerable.Range(0, 2), q);
@@ -171,7 +171,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
                 );
             Expression call = Expression.Call(
                 typeof(Queryable),
-                "AsQueryable",
+                "AsNaturalQueryable",
                 new[] { typeof(int) },
                 rangeCall
                 );
@@ -191,7 +191,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
                 );
             Expression call = Expression.Call(
                 typeof(Queryable),
-                "AsQueryable",
+                "AsNaturalQueryable",
                 new[] { typeof(int) },
                 rangeCall
                 );
@@ -211,7 +211,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
                 );
             Expression call = Expression.Call(
                 typeof(Queryable),
-                "AsQueryable",
+                "AsNaturalQueryable",
                 new[] { typeof(int) },
                 rangeCall
                 );
@@ -235,8 +235,8 @@ namespace ComparedQueryable.Test.NativeQueryableTests
                             ),
                     Expression.Constant(5L)
                     ),
-                Expression.Constant(Enumerable.Range(0, 2).AsQueryable()),
-                Expression.Constant(Enumerable.Range(3, 2).AsQueryable())
+                Expression.Constant(Enumerable.Range(0, 2).AsNaturalQueryable()),
+                Expression.Constant(Enumerable.Range(3, 2).AsNaturalQueryable())
             );
             IQueryable<int> q = _prov.CreateQuery<int>(cond);
             Assert.Equal(Enumerable.Range(0, 2), q);
@@ -252,7 +252,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
                 );
             Expression call = Expression.Call(
                 typeof(Queryable),
-                "AsQueryable",
+                "AsNaturalQueryable",
                 new[] { typeof(int) },
                 list
                 );
@@ -269,8 +269,8 @@ namespace ComparedQueryable.Test.NativeQueryableTests
                     Expression.Constant(null),
                     Expression.TypeAs(Expression.Constant("", typeof(object)), typeof(string))
                     ),
-                Expression.Constant(Enumerable.Range(0, 2).AsQueryable()),
-                Expression.Constant(Enumerable.Range(3, 2).AsQueryable())
+                Expression.Constant(Enumerable.Range(0, 2).AsNaturalQueryable()),
+                Expression.Constant(Enumerable.Range(3, 2).AsNaturalQueryable())
             );
             IQueryable<int> q = _prov.CreateQuery<int>(cond);
             Assert.Equal(Enumerable.Range(3, 2), q);
@@ -279,8 +279,8 @@ namespace ComparedQueryable.Test.NativeQueryableTests
                     Expression.Constant(null),
                     Expression.TypeAs(Expression.Constant("", typeof(object)), typeof(Uri))
                     ),
-                Expression.Constant(Enumerable.Range(0, 2).AsQueryable()),
-                Expression.Constant(Enumerable.Range(3, 2).AsQueryable())
+                Expression.Constant(Enumerable.Range(0, 2).AsNaturalQueryable()),
+                Expression.Constant(Enumerable.Range(3, 2).AsNaturalQueryable())
             );
             q = _prov.CreateQuery<int>(cond);
             Assert.Equal(Enumerable.Range(0, 2), q);
@@ -291,15 +291,15 @@ namespace ComparedQueryable.Test.NativeQueryableTests
         {
             Expression cond = Expression.Condition(
                 Expression.TypeIs(Expression.Constant("", typeof(object)), typeof(string)),
-                Expression.Constant(Enumerable.Range(0, 2).AsQueryable()),
-                Expression.Constant(Enumerable.Range(3, 2).AsQueryable())
+                Expression.Constant(Enumerable.Range(0, 2).AsNaturalQueryable()),
+                Expression.Constant(Enumerable.Range(3, 2).AsNaturalQueryable())
             );
             IQueryable<int> q = _prov.CreateQuery<int>(cond);
             Assert.Equal(Enumerable.Range(0, 2), q);
             cond = Expression.Condition(
                 Expression.TypeIs(Expression.New(typeof(object)), typeof(string)),
-                Expression.Constant(Enumerable.Range(0, 2).AsQueryable()),
-                Expression.Constant(Enumerable.Range(3, 2).AsQueryable())
+                Expression.Constant(Enumerable.Range(0, 2).AsNaturalQueryable()),
+                Expression.Constant(Enumerable.Range(3, 2).AsNaturalQueryable())
             );
             q = _prov.CreateQuery<int>(cond);
             Assert.Equal(Enumerable.Range(3, 2), q);
@@ -315,7 +315,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
                 );
             Expression call = Expression.Call(
                 typeof(Queryable),
-                "AsQueryable",
+                "AsNaturalQueryable",
                 new[] { typeof(int) },
                 init
                 );
@@ -326,7 +326,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
         [Fact]
         public void InvokeAndMemberAccess()
         {
-            Expression<Func<int, IQueryable<char>>> lambda = start => "acbdefghijklmnop".AsQueryable().Skip(start);
+            Expression<Func<int, IQueryable<char>>> lambda = start => "acbdefghijklmnop".AsNaturalQueryable().Skip(start);
             Expression invoke = Expression.Invoke(lambda, Expression.Constant(2));
             IQueryable<char> q = _prov.CreateQuery<char>(invoke);
             Assert.Equal("bdefghijklmnop".ToCharArray(), q.ToArray());
@@ -340,8 +340,8 @@ namespace ComparedQueryable.Test.NativeQueryableTests
                     Expression.Modulo(Expression.Constant(1), Expression.Constant(2)),
                     Expression.Constant(0)
                    ),
-                Expression.Constant(Enumerable.Range(0, 2).AsQueryable()),
-                Expression.Constant(Enumerable.Range(3, 2).AsQueryable())
+                Expression.Constant(Enumerable.Range(0, 2).AsNaturalQueryable()),
+                Expression.Constant(Enumerable.Range(3, 2).AsNaturalQueryable())
             );
             IQueryable<int> q = _prov.CreateQuery<int>(Expression.Constant(_prov.CreateQuery<int>(cond)));
             Assert.Equal(Enumerable.Range(3, 2), q);
@@ -369,7 +369,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
 
         private IQueryable<string> SimpleMethod()
         {
-            return new[] { "a", "b", "c" }.AsQueryable();
+            return new[] { "a", "b", "c" }.AsNaturalQueryable();
         }
 
         [Fact]
@@ -390,7 +390,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
 
         private IQueryable<char> ParameterMethod(char start, char end)
         {
-            return IncrementCharacters(start, end).AsQueryable();
+            return IncrementCharacters(start, end).AsNaturalQueryable();
         }
 
         [Fact]
@@ -431,7 +431,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
             {
                 // A real class would only overload for IQueryable separately if there
                 // was a reason for doing so, but this suffices to test.
-                return RunningTotals(source.AsEnumerable()).AsQueryable();
+                return RunningTotals(source.AsEnumerable()).AsNaturalQueryable();
             }
 
             public static IQueryable<int> RunningTotalsNoMatch(IQueryable<int> source)
@@ -441,7 +441,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
 
             public static IQueryable<int> RunningTotals(IQueryable<int> source, int initialTally)
             {
-                return RunningTotals(Enumerable.Repeat(initialTally, 1).AsQueryable().Concat(source));
+                return RunningTotals(Enumerable.Repeat(initialTally, 1).AsNaturalQueryable().Concat(source));
             }
         }
 
@@ -460,7 +460,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
                 typeof(TestLinqExtensions)
                     .GetMethods()
                     .First(mi => mi.Name == "RunningTotals" && mi.GetParameters().Length == 1 && mi.GetParameters()[0].ParameterType == typeof(IQueryable<int>)),
-                Expression.Constant(Enumerable.Range(1, 3).AsQueryable())
+                Expression.Constant(Enumerable.Range(1, 3).AsNaturalQueryable())
                 );
             IQueryable<int> q = _prov.CreateQuery<int>(call);
             Assert.Equal(new[] { 1, 3, 6 }, q);
@@ -473,7 +473,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
                 typeof(TestLinqExtensions)
                     .GetMethods()
                     .First(mi => mi.Name == "RunningTotalsNoMatch" && mi.GetParameters()[0].ParameterType == typeof(IQueryable<int>)),
-                Expression.Constant(Enumerable.Range(1, 3).AsQueryable())
+                Expression.Constant(Enumerable.Range(1, 3).AsNaturalQueryable())
                 );
             IQueryable<int> q = _prov.CreateQuery<int>(call);
             Assert.Throws<InvalidOperationException>(() => q.GetEnumerator());
@@ -486,7 +486,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
                 typeof(TestLinqExtensions)
                     .GetMethods()
                     .First(mi => mi.Name == "RunningTotals" && mi.GetParameters().Length == 2),
-                Expression.Constant(Enumerable.Range(1, 3).AsQueryable()),
+                Expression.Constant(Enumerable.Range(1, 3).AsNaturalQueryable()),
                 Expression.Constant(3)
                 );
             IQueryable<int> q = _prov.CreateQuery<int>(call);
@@ -501,7 +501,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
                 typeof(TestLinqInstanceNoMatch)
                     .GetMethods()
                     .First(mi => mi.Name == "RunningTotals"),
-                Expression.Constant(Enumerable.Range(1, 3).AsQueryable())
+                Expression.Constant(Enumerable.Range(1, 3).AsNaturalQueryable())
                 );
             IQueryable<int> q = _prov.CreateQuery<int>(call);
             Assert.Throws<InvalidOperationException>(() => q.GetEnumerator());
@@ -510,7 +510,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
         [Fact]
         public void EnumerableQueryAsInternalArgumentToQueryableMethod()
         {
-            Expression call = Expression.Call(typeof(Queryable), "AsQueryable", new[] { typeof(int) }, Expression.Constant(Enumerable.Range(1, 3).AsQueryable(), typeof(IQueryable<int>)));
+            Expression call = Expression.Call(typeof(Queryable), "AsNaturalQueryable", new[] { typeof(int) }, Expression.Constant(Enumerable.Range(1, 3).AsNaturalQueryable(), typeof(IQueryable<int>)));
             IQueryable<int> q = _prov.CreateQuery<int>(call);
             Assert.Equal(new[] { 1, 2, 3 }, q);
         }
@@ -518,7 +518,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
         [Fact]
         public void NonGeneric()
         {
-            Expression call = Expression.Call(typeof(Queryable), "AsQueryable", new[] { typeof(int) }, Expression.Constant(Enumerable.Range(1, 3).AsQueryable(), typeof(IQueryable<int>)));
+            Expression call = Expression.Call(typeof(Queryable), "AsNaturalQueryable", new[] { typeof(int) }, Expression.Constant(Enumerable.Range(1, 3).AsNaturalQueryable(), typeof(IQueryable<int>)));
             IQueryable q = _prov.CreateQuery(call);
             Assert.Equal(new[] { 1, 2, 3 }, q.Cast<int>());
         }

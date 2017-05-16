@@ -15,7 +15,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
         public void EmptySource()
         {
             int[] source = { };
-            Assert.Empty(source.AsQueryable().Distinct());
+            Assert.Empty(source.AsNaturalQueryable().Distinct());
         }
 
         [Fact]
@@ -24,7 +24,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
             string[] source = { null };
             string[] expected = { null };
 
-            Assert.Equal(expected, source.AsQueryable().Distinct(EqualityComparer<string>.Default));
+            Assert.Equal(expected, source.AsNaturalQueryable().Distinct(EqualityComparer<string>.Default));
         }
 
         [Fact]
@@ -33,7 +33,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
             string[] source = { null, null, string.Empty };
             string[] expected = { null, string.Empty };
 
-            Assert.Equal(expected, source.AsQueryable().Distinct(EqualityComparer<string>.Default));
+            Assert.Equal(expected, source.AsNaturalQueryable().Distinct(EqualityComparer<string>.Default));
         }
 
         [Fact]
@@ -42,7 +42,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
             int[] source = { 5, 5, 5, 5, 5, 5 };
             int[] expected = { 5 };
 
-            Assert.Equal(expected, source.AsQueryable().Distinct());
+            Assert.Equal(expected, source.AsNaturalQueryable().Distinct());
         }
 
         [Fact]
@@ -50,7 +50,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
         {
             int[] source = { 2, -5, 0, 6, 10, 9 };
 
-            Assert.Equal(source, source.AsQueryable().Distinct());
+            Assert.Equal(source, source.AsNaturalQueryable().Distinct());
         }
 
         [Fact]
@@ -70,14 +70,14 @@ namespace ComparedQueryable.Test.NativeQueryableTests
         [Fact]
         public void Distinct1()
         {
-            var count = (new int[] { 0, 1, 2, 2, 0 }).AsQueryable().Distinct().Count();
+            var count = (new int[] { 0, 1, 2, 2, 0 }).AsNaturalQueryable().Distinct().Count();
             Assert.Equal(3, count);
         }
 
         [Fact]
         public void Distinct2()
         {
-            var count = (new int[] { 0, 1, 2, 2, 0 }).AsQueryable().Distinct(EqualityComparer<int>.Default).Count();
+            var count = (new int[] { 0, 1, 2, 2, 0 }).AsNaturalQueryable().Distinct(EqualityComparer<int>.Default).Count();
             Assert.Equal(3, count);
         }
     }

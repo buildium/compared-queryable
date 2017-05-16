@@ -16,7 +16,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
             int[] source = { 2, 5, 9, 1 };
             int[] expected = { 2, 5, 9 };
             
-            Assert.Equal(expected, source.AsQueryable().Take(3));
+            Assert.Equal(expected, source.AsNaturalQueryable().Take(3));
         }
 
         [Fact]
@@ -29,7 +29,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
         [Fact]
         public void Take()
         {
-            var count = (new int[] { 0, 1, 2 }).AsQueryable().Take(2).Count();
+            var count = (new int[] { 0, 1, 2 }).AsNaturalQueryable().Take(2).Count();
             Assert.Equal(2, count);
         }
     }

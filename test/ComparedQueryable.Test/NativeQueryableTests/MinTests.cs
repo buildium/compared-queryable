@@ -14,7 +14,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
         [Fact]
         public void EmptyInt32Source()
         {
-            Assert.Throws<InvalidOperationException>(() => Enumerable.Empty<int>().AsQueryable().Min());
+            Assert.Throws<InvalidOperationException>(() => Enumerable.Empty<int>().AsNaturalQueryable().Min());
         }
 
         [Fact]
@@ -27,13 +27,13 @@ namespace ComparedQueryable.Test.NativeQueryableTests
         public void Int32MinimumRepeated()
         {
             int[] source = { 6, 0, 9, 0, 10, 0 };
-            Assert.Equal(0, source.AsQueryable().Min());
+            Assert.Equal(0, source.AsNaturalQueryable().Min());
         }
 
         [Fact]
         public void EmptyInt64Source()
         {
-            Assert.Throws<InvalidOperationException>(() => Enumerable.Empty<long>().AsQueryable().Min());
+            Assert.Throws<InvalidOperationException>(() => Enumerable.Empty<long>().AsNaturalQueryable().Min());
         }
 
         [Fact]
@@ -46,7 +46,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
         public void Int64MinimumRepeated()
         {
             long[] source = { 6, -5, 9, -5, 10, -5 };
-            Assert.Equal(-5, source.AsQueryable().Min());
+            Assert.Equal(-5, source.AsNaturalQueryable().Min());
         }
 
         [Fact]
@@ -58,20 +58,20 @@ namespace ComparedQueryable.Test.NativeQueryableTests
         [Fact]
         public void EmptySingle()
         {
-            Assert.Throws<InvalidOperationException>(() => Enumerable.Empty<float>().AsQueryable().Min());
+            Assert.Throws<InvalidOperationException>(() => Enumerable.Empty<float>().AsNaturalQueryable().Min());
         }
 
         [Fact]
         public void SingleMinimumRepeated()
         {
             float[] source = { -5.5f, float.NegativeInfinity, 9.9f, float.NegativeInfinity };
-            Assert.True(float.IsNegativeInfinity(source.AsQueryable().Min()));
+            Assert.True(float.IsNegativeInfinity(source.AsNaturalQueryable().Min()));
         }
 
         [Fact]
         public void EmptyDoubleSource()
         {
-            Assert.Throws<InvalidOperationException>(() => Enumerable.Empty<double>().AsQueryable().Min());
+            Assert.Throws<InvalidOperationException>(() => Enumerable.Empty<double>().AsNaturalQueryable().Min());
         }
 
         [Fact]
@@ -84,13 +84,13 @@ namespace ComparedQueryable.Test.NativeQueryableTests
         public void DoubleMinimumRepeated()
         {
             double[] source = { -5.5, Double.NegativeInfinity, 9.9, Double.NegativeInfinity };
-            Assert.True(double.IsNegativeInfinity(source.AsQueryable().Min()));
+            Assert.True(double.IsNegativeInfinity(source.AsNaturalQueryable().Min()));
         }
 
         [Fact]
         public void EmptyDecimalSource()
         {
-            Assert.Throws<InvalidOperationException>(() => Enumerable.Empty<decimal>().AsQueryable().Min());
+            Assert.Throws<InvalidOperationException>(() => Enumerable.Empty<decimal>().AsNaturalQueryable().Min());
         }
 
         [Fact]
@@ -103,26 +103,26 @@ namespace ComparedQueryable.Test.NativeQueryableTests
         public void DecimalMinimumRepeated()
         {
             decimal[] source = { -5.5m, 0m, 9.9m, -5.5m, 5m };
-            Assert.Equal(-5.5m, source.AsQueryable().Min());
+            Assert.Equal(-5.5m, source.AsNaturalQueryable().Min());
         }
 
         [Fact]
         public void EmptyNullableInt32Source()
         {
-            Assert.Null(Enumerable.Empty<int?>().AsQueryable().Min());
+            Assert.Null(Enumerable.Empty<int?>().AsNaturalQueryable().Min());
         }
 
         [Fact]
         public void NullableInt32MinimumRepeated()
         {
             int?[] source = { 6, null, null, 0, 9, 0, 10, 0 };
-            Assert.Equal(0, source.AsQueryable().Min());
+            Assert.Equal(0, source.AsNaturalQueryable().Min());
         }
 
         [Fact]
         public void EmptyNullableInt64Source()
         {
-            Assert.Null(Enumerable.Empty<long?>().AsQueryable().Min());
+            Assert.Null(Enumerable.Empty<long?>().AsNaturalQueryable().Min());
         }
 
         [Fact]
@@ -135,26 +135,26 @@ namespace ComparedQueryable.Test.NativeQueryableTests
         public void NullableInt64MinimumRepeated()
         {
             long?[] source = { 6, null, null, 0, 9, 0, 10, 0 };
-            Assert.Equal(0, source.AsQueryable().Min());
+            Assert.Equal(0, source.AsNaturalQueryable().Min());
         }
 
         [Fact]
         public void EmptyNullableSingleSource()
         {
-            Assert.Null(Enumerable.Empty<float?>().AsQueryable().Min());
+            Assert.Null(Enumerable.Empty<float?>().AsNaturalQueryable().Min());
         }
 
         [Fact]
         public void NullableSingleMinimumRepated()
         {
             float?[] source = { 6.4f, null, null, -0.5f, 9.4f, -0.5f, 10.9f, -0.5f };
-            Assert.Equal(-0.5f, source.AsQueryable().Min());
+            Assert.Equal(-0.5f, source.AsNaturalQueryable().Min());
         }
 
         [Fact]
         public void EmptyNullableDoubleSource()
         {
-            Assert.Null(Enumerable.Empty<double?>().AsQueryable().Min());
+            Assert.Null(Enumerable.Empty<double?>().AsNaturalQueryable().Min());
         }
 
         [Fact]
@@ -167,7 +167,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
         public void NullableDoubleMinimumRepeated()
         {
             double?[] source = { 6.4, null, null, -0.5, 9.4, -0.5, 10.9, -0.5 };
-            Assert.Equal(-0.5, source.AsQueryable().Min());
+            Assert.Equal(-0.5, source.AsNaturalQueryable().Min());
         }
 
         [Fact]
@@ -187,7 +187,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
         [Fact]
         public void EmptyNullableDecimalSource()
         {
-            Assert.Null(Enumerable.Empty<decimal?>().AsQueryable().Min());
+            Assert.Null(Enumerable.Empty<decimal?>().AsNaturalQueryable().Min());
         }
 
         [Fact]
@@ -200,13 +200,13 @@ namespace ComparedQueryable.Test.NativeQueryableTests
         public void NullableDecimalMinimumRepeated()
         {
             decimal?[] source = { 6.4m, null, null, decimal.MinValue, 9.4m, decimal.MinValue, 10.9m, decimal.MinValue };
-            Assert.Equal(decimal.MinValue, source.AsQueryable().Min());
+            Assert.Equal(decimal.MinValue, source.AsNaturalQueryable().Min());
         }
 
         [Fact]
         public void EmptyDateTimeSource()
         {
-            Assert.Throws<InvalidOperationException>(() => Enumerable.Empty<DateTime>().AsQueryable().Min());
+            Assert.Throws<InvalidOperationException>(() => Enumerable.Empty<DateTime>().AsNaturalQueryable().Min());
         }
 
         [Fact]
@@ -218,7 +218,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
         [Fact]
         public void EmptyStringSource()
         {
-            Assert.Null(Enumerable.Empty<string>().AsQueryable().Min());
+            Assert.Null(Enumerable.Empty<string>().AsNaturalQueryable().Min());
         }
 
         [Fact]
@@ -231,7 +231,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
         public void StringMinimumRepeated()
         {
             string[] source = { "ooo", "www", "www", "ooo", "ooo", "ppp" };
-            Assert.Equal("ooo", source.AsQueryable().Min());
+            Assert.Equal("ooo", source.AsNaturalQueryable().Min());
         }
 
         [Fact]
@@ -242,13 +242,13 @@ namespace ComparedQueryable.Test.NativeQueryableTests
                 new { name="John", num=-105 },
                 new { name="Bob", num=-30 }
             };
-            Assert.Equal(-105, source.AsQueryable().Min(e => e.num));
+            Assert.Equal(-105, source.AsNaturalQueryable().Min(e => e.num));
         }
 
         [Fact]
         public void EmptyInt32WithSelector()
         {
-            Assert.Throws<InvalidOperationException>(() => Enumerable.Empty<int>().AsQueryable().Min(x => x));
+            Assert.Throws<InvalidOperationException>(() => Enumerable.Empty<int>().AsNaturalQueryable().Min(x => x));
         }
 
         [Fact]
@@ -261,7 +261,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
         public void Int32SourceWithNullSelector()
         {
             Expression<Func<int, int>> selector = null;
-            AssertExtensions.Throws<ArgumentNullException>("selector", () => Enumerable.Empty<int>().AsQueryable().Min(selector));
+            AssertExtensions.Throws<ArgumentNullException>("selector", () => Enumerable.Empty<int>().AsNaturalQueryable().Min(selector));
         }
 
         [Fact]
@@ -273,13 +273,13 @@ namespace ComparedQueryable.Test.NativeQueryableTests
                 new { name="Bob", num=-10L }
             };
 
-            Assert.Equal(long.MinValue, source.AsQueryable().Min(e => e.num));
+            Assert.Equal(long.MinValue, source.AsNaturalQueryable().Min(e => e.num));
         }
 
         [Fact]
         public void EmptyInt64WithSelector()
         {
-            Assert.Throws<InvalidOperationException>(() => Enumerable.Empty<long>().AsQueryable().Min(x => x));
+            Assert.Throws<InvalidOperationException>(() => Enumerable.Empty<long>().AsNaturalQueryable().Min(x => x));
         }
 
         [Fact]
@@ -292,13 +292,13 @@ namespace ComparedQueryable.Test.NativeQueryableTests
         public void Int64SourceWithNullSelector()
         {
             Expression<Func<long, long>> selector = null;
-            AssertExtensions.Throws<ArgumentNullException>("selector", () => Enumerable.Empty<long>().AsQueryable().Min(selector));
+            AssertExtensions.Throws<ArgumentNullException>("selector", () => Enumerable.Empty<long>().AsNaturalQueryable().Min(selector));
         }
 
         [Fact]
         public void EmptySingleWithSelector()
         {
-            Assert.Throws<InvalidOperationException>(() => Enumerable.Empty<float>().AsQueryable().Min(x => x));
+            Assert.Throws<InvalidOperationException>(() => Enumerable.Empty<float>().AsNaturalQueryable().Min(x => x));
         }
 
         [Fact]
@@ -315,7 +315,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
                 new { name="John", num=-132.5f },
                 new { name="Bob", num=20.45f }
             };
-            Assert.Equal(-132.5f, source.AsQueryable().Min(e => e.num));
+            Assert.Equal(-132.5f, source.AsNaturalQueryable().Min(e => e.num));
         }
 
         [Fact]
@@ -326,13 +326,13 @@ namespace ComparedQueryable.Test.NativeQueryableTests
                 new { name="John", num=-132.5 },
                 new { name="Bob", num=20.45 }
             };
-            Assert.Equal(-132.5, source.AsQueryable().Min(e => e.num));
+            Assert.Equal(-132.5, source.AsNaturalQueryable().Min(e => e.num));
         }
 
         [Fact]
         public void EmptyDoubleWithSelector()
         {
-            Assert.Throws<InvalidOperationException>(() => Enumerable.Empty<double>().AsQueryable().Min(x => x));
+            Assert.Throws<InvalidOperationException>(() => Enumerable.Empty<double>().AsNaturalQueryable().Min(x => x));
         }
 
         [Fact]
@@ -345,7 +345,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
         public void DoubleSourceWithNullSelector()
         {
             Expression<Func<double, double>> selector = null;
-            AssertExtensions.Throws<ArgumentNullException>("selector", () => Enumerable.Empty<double>().AsQueryable().Min(selector));
+            AssertExtensions.Throws<ArgumentNullException>("selector", () => Enumerable.Empty<double>().AsNaturalQueryable().Min(selector));
         }
 
         [Fact]
@@ -356,13 +356,13 @@ namespace ComparedQueryable.Test.NativeQueryableTests
                 new {name="John", num=10.5m},
                 new {name="Bob", num=0.05m}
             };
-            Assert.Equal(0.05m, source.AsQueryable().Min(e => e.num));
+            Assert.Equal(0.05m, source.AsNaturalQueryable().Min(e => e.num));
         }
 
         [Fact]
         public void EmptyDecimalWithSelector()
         {
-            Assert.Throws<InvalidOperationException>(() => Enumerable.Empty<decimal>().AsQueryable().Min(x => x));
+            Assert.Throws<InvalidOperationException>(() => Enumerable.Empty<decimal>().AsNaturalQueryable().Min(x => x));
         }
 
         [Fact]
@@ -375,7 +375,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
         public void DecimalSourceWithNullSelector()
         {
             Expression<Func<decimal, decimal>> selector = null;
-            AssertExtensions.Throws<ArgumentNullException>("selector", () => Enumerable.Empty<decimal>().AsQueryable().Min(selector));
+            AssertExtensions.Throws<ArgumentNullException>("selector", () => Enumerable.Empty<decimal>().AsNaturalQueryable().Min(selector));
         }
 
         [Fact]
@@ -386,7 +386,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
                 new { name="John", num=default(int?) },
                 new { name="Bob", num=(int?)-30 }
             };
-            Assert.Equal(-30, source.AsQueryable().Min(e => e.num));
+            Assert.Equal(-30, source.AsNaturalQueryable().Min(e => e.num));
         }
 
         [Fact]
@@ -399,7 +399,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
         public void NullableInt32SourceWithNullSelector()
         {
             Expression<Func<int?, int?>> selector = null;
-            AssertExtensions.Throws<ArgumentNullException>("selector", () => Enumerable.Empty<int?>().AsQueryable().Min(selector));
+            AssertExtensions.Throws<ArgumentNullException>("selector", () => Enumerable.Empty<int?>().AsNaturalQueryable().Min(selector));
         }
 
         [Fact]
@@ -410,7 +410,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
                 new { name="John", num=(long?)long.MinValue },
                 new { name="Bob", num=(long?)-10L }
             };
-            Assert.Equal(long.MinValue, source.AsQueryable().Min(e => e.num));
+            Assert.Equal(long.MinValue, source.AsNaturalQueryable().Min(e => e.num));
         }
 
         [Fact]
@@ -423,7 +423,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
         public void NullableInt64SourceWithNullSelector()
         {
             Expression<Func<long?, long?>> selector = null;
-            AssertExtensions.Throws<ArgumentNullException>("selector", () => Enumerable.Empty<long?>().AsQueryable().Min(selector));
+            AssertExtensions.Throws<ArgumentNullException>("selector", () => Enumerable.Empty<long?>().AsNaturalQueryable().Min(selector));
         }
 
         [Fact]
@@ -435,7 +435,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
                 new {name="Bob", num=default(float?)}
             };
 
-            Assert.Equal(-132.5f, source.AsQueryable().Min(e => e.num));
+            Assert.Equal(-132.5f, source.AsNaturalQueryable().Min(e => e.num));
         }
 
         [Fact]
@@ -448,7 +448,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
         public void NullableSingleSourceWithNullSelector()
         {
             Expression<Func<float?, float?>> selector = null;
-            AssertExtensions.Throws<ArgumentNullException>("selector", () => Enumerable.Empty<float?>().AsQueryable().Min(selector));
+            AssertExtensions.Throws<ArgumentNullException>("selector", () => Enumerable.Empty<float?>().AsNaturalQueryable().Min(selector));
         }
 
         [Fact]
@@ -459,7 +459,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
                 new { name="John", num=(double?)-132.5 },
                 new { name="Bob", num=default(double?) }
             };
-            Assert.Equal(-132.5, source.AsQueryable().Min(e => e.num));
+            Assert.Equal(-132.5, source.AsNaturalQueryable().Min(e => e.num));
         }
         [Fact]
         public void NullNullableDoubleSourceWithSelector()
@@ -471,7 +471,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
         public void NullableDoubleSourceWithNullSelector()
         {
             Expression<Func<double?, double?>> selector = null;
-            AssertExtensions.Throws<ArgumentNullException>("selector", () => Enumerable.Empty<double?>().AsQueryable().Min(selector));
+            AssertExtensions.Throws<ArgumentNullException>("selector", () => Enumerable.Empty<double?>().AsNaturalQueryable().Min(selector));
         }
 
         [Fact]
@@ -482,7 +482,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
                 new { name="John", num=(decimal?)10.5m },
                 new { name="Bob", num=default(decimal?) }
             };
-            Assert.Equal(10.5m, source.AsQueryable().Min(e => e.num));
+            Assert.Equal(10.5m, source.AsNaturalQueryable().Min(e => e.num));
         }
 
         [Fact]
@@ -495,13 +495,13 @@ namespace ComparedQueryable.Test.NativeQueryableTests
         public void NullableDecimalSourceWithNullSelector()
         {
             Expression<Func<decimal?, decimal?>> selector = null;
-            AssertExtensions.Throws<ArgumentNullException>("selector", () => Enumerable.Empty<decimal?>().AsQueryable().Min(selector));
+            AssertExtensions.Throws<ArgumentNullException>("selector", () => Enumerable.Empty<decimal?>().AsNaturalQueryable().Min(selector));
         }
 
         [Fact]
         public void EmptyDateTimeWithSelector()
         {
-            Assert.Throws<InvalidOperationException>(() => Enumerable.Empty<DateTime>().AsQueryable().Min(x => x));
+            Assert.Throws<InvalidOperationException>(() => Enumerable.Empty<DateTime>().AsNaturalQueryable().Min(x => x));
         }
 
         [Fact]
@@ -514,7 +514,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
         public void DateTimeSourceWithNullSelector()
         {
             Expression<Func<DateTime, DateTime>> selector = null;
-            AssertExtensions.Throws<ArgumentNullException>("selector", () => Enumerable.Empty<DateTime>().AsQueryable().Min(selector));
+            AssertExtensions.Throws<ArgumentNullException>("selector", () => Enumerable.Empty<DateTime>().AsNaturalQueryable().Min(selector));
         }
 
         [Fact]
@@ -525,7 +525,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
                 new { name="John", num=10.5m },
                 new { name="Bob", num=0.05m }
             };
-            Assert.Equal("Bob", source.AsQueryable().Min(e => e.name));
+            Assert.Equal("Bob", source.AsNaturalQueryable().Min(e => e.name));
         }
 
         [Fact]
@@ -538,26 +538,26 @@ namespace ComparedQueryable.Test.NativeQueryableTests
         public void StringSourceWithNullSelector()
         {
             Expression<Func<string, string>> selector = null;
-            AssertExtensions.Throws<ArgumentNullException>("selector", () => Enumerable.Empty<string>().AsQueryable().Min(selector));
+            AssertExtensions.Throws<ArgumentNullException>("selector", () => Enumerable.Empty<string>().AsNaturalQueryable().Min(selector));
         }
 
         [Fact]
         public void EmptyBooleanSource()
         {
-            Assert.Throws<InvalidOperationException>(() => Enumerable.Empty<bool>().AsQueryable().Min());
+            Assert.Throws<InvalidOperationException>(() => Enumerable.Empty<bool>().AsNaturalQueryable().Min());
         }
 
         [Fact]
         public void Min1()
         {
-            var val = (new int[] { 0, 2, 1 }).AsQueryable().Min();
+            var val = (new int[] { 0, 2, 1 }).AsNaturalQueryable().Min();
             Assert.Equal(0, val);
         }
 
         [Fact]
         public void Min2()
         {
-            var val = (new int[] { 0, 2, 1 }).AsQueryable().Min(n => n);
+            var val = (new int[] { 0, 2, 1 }).AsNaturalQueryable().Min(n => n);
             Assert.Equal(0, val);
         }
     }

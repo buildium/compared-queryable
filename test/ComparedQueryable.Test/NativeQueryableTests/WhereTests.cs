@@ -22,7 +22,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
         [Fact]
         public void Where_PredicateIsNull_ArgumentNullExceptionThrown()
         {
-            IQueryable<int> source = Enumerable.Range(1, 10).AsQueryable();
+            IQueryable<int> source = Enumerable.Range(1, 10).AsNaturalQueryable();
             Expression<Func<int, bool>> simplePredicate = null;
             Expression<Func<int, int, bool>> complexPredicate = null;
 
@@ -34,41 +34,41 @@ namespace ComparedQueryable.Test.NativeQueryableTests
         public void ReturnsExpectedValues_True()
         {
             int[] source = new[] { 1, 2, 3, 4, 5 };
-            Assert.Equal(source, source.AsQueryable().Where(i => true));
+            Assert.Equal(source, source.AsNaturalQueryable().Where(i => true));
         }
 
         [Fact]
         public void ReturnsExpectedValues_False()
         {
             int[] source = new[] { 1, 2, 3, 4, 5 };
-            Assert.Empty(source.AsQueryable().Where(i => false));
+            Assert.Empty(source.AsNaturalQueryable().Where(i => false));
         }
 
         [Fact]
         public void ReturnsExpectedValuesIndexed_True()
         {
             int[] source = new[] { 1, 2, 3, 4, 5 };
-            Assert.Equal(source, source.AsQueryable().Where((e, i) => true));
+            Assert.Equal(source, source.AsNaturalQueryable().Where((e, i) => true));
         }
 
         [Fact]
         public void ReturnsExpectedValuesIndexed_False()
         {
             int[] source = new[] { 1, 2, 3, 4, 5 };
-            Assert.Empty(source.AsQueryable().Where((e, i) => false));
+            Assert.Empty(source.AsNaturalQueryable().Where((e, i) => false));
         }
 
         [Fact]
         public void Where1()
         {
-            var count = (new int[] { 0, 1, 2 }).AsQueryable().Where(n => n > 1).Count();
+            var count = (new int[] { 0, 1, 2 }).AsNaturalQueryable().Where(n => n > 1).Count();
             Assert.Equal(1, count);
         }
 
         [Fact]
         public void Where2()
         {
-            var count = (new int[] { 0, 1, 2 }).AsQueryable().Where((n, i) => n > 1 || i == 0).Count();
+            var count = (new int[] { 0, 1, 2 }).AsNaturalQueryable().Where((n, i) => n > 1 || i == 0).Count();
             Assert.Equal(2, count);
         }
     }

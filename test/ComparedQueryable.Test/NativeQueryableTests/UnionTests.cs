@@ -20,7 +20,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
             
             var comparer = new AnagramEqualityComparer();
 
-            Assert.Equal(expected, first.AsQueryable().Union(second.AsQueryable(), comparer), comparer);
+            Assert.Equal(expected, first.AsNaturalQueryable().Union(second.AsNaturalQueryable(), comparer), comparer);
         }
 
         [Fact]
@@ -29,7 +29,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
             IQueryable<string> first = null;
             string[] second = { "ttaM", "Charlie", "Bbo" };
             
-            var ane = AssertExtensions.Throws<ArgumentNullException>("source1", () => first.Union(second.AsQueryable(), new AnagramEqualityComparer()));
+            var ane = AssertExtensions.Throws<ArgumentNullException>("source1", () => first.Union(second.AsNaturalQueryable(), new AnagramEqualityComparer()));
         }
 
         [Fact]
@@ -38,7 +38,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
             string[] first = { "Bob", "Robert", "Tim", "Matt", "miT" };
             IQueryable<string> second = null;
 
-            var ane = AssertExtensions.Throws<ArgumentNullException>("source2", () => first.AsQueryable().Union(second, new AnagramEqualityComparer()));
+            var ane = AssertExtensions.Throws<ArgumentNullException>("source2", () => first.AsNaturalQueryable().Union(second, new AnagramEqualityComparer()));
         }
 
         [Fact]
@@ -47,7 +47,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
             IQueryable<string> first = null;
             string[] second = { "ttaM", "Charlie", "Bbo" };
 
-            var ane = AssertExtensions.Throws<ArgumentNullException>("source1", () => first.Union(second.AsQueryable()));
+            var ane = AssertExtensions.Throws<ArgumentNullException>("source1", () => first.Union(second.AsNaturalQueryable()));
         }
 
         [Fact]
@@ -56,7 +56,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
             string[] first = { "Bob", "Robert", "Tim", "Matt", "miT" };
             IQueryable<string> second = null;
 
-            var ane = AssertExtensions.Throws<ArgumentNullException>("source2", () => first.AsQueryable().Union(second));
+            var ane = AssertExtensions.Throws<ArgumentNullException>("source2", () => first.AsNaturalQueryable().Union(second));
         }
 
         [Fact]
@@ -66,20 +66,20 @@ namespace ComparedQueryable.Test.NativeQueryableTests
             int[] second = { 6, 7, 7, 7, 8, 1 };
             int[] expected = { 1, 2, 3, 4, 5, 6, 7, 8 };
 
-            Assert.Equal(expected, first.AsQueryable().Union(second.AsQueryable()));
+            Assert.Equal(expected, first.AsNaturalQueryable().Union(second.AsNaturalQueryable()));
         }
 
         [Fact]
         public void Union1()
         {
-            var count = (new int[] { 0, 1, 2 }).AsQueryable().Union((new int[] { 1, 2, 3 }).AsQueryable()).Count();
+            var count = (new int[] { 0, 1, 2 }).AsNaturalQueryable().Union((new int[] { 1, 2, 3 }).AsNaturalQueryable()).Count();
             Assert.Equal(4, count);
         }
 
         [Fact]
         public void Union2()
         {
-            var count = (new int[] { 0, 1, 2 }).AsQueryable().Union((new int[] { 1, 2, 3 }).AsQueryable(), EqualityComparer<int>.Default).Count();
+            var count = (new int[] { 0, 1, 2 }).AsNaturalQueryable().Union((new int[] { 1, 2, 3 }).AsNaturalQueryable(), EqualityComparer<int>.Default).Count();
             Assert.Equal(4, count);
         }
     }

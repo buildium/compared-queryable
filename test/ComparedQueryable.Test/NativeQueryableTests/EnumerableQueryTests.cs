@@ -33,7 +33,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
         public void WrapsEnumerableInExpression()
         {
             int[] source = { 1, 2, 3 };
-            IQueryable<int> query = (source).AsQueryable();
+            IQueryable<int> query = (source).AsNaturalQueryable();
             var exp = (ConstantExpression)query.Expression;
             Assert.Equal(source, (IEnumerable<int>)exp.Value);
         }
@@ -41,7 +41,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
         [Fact]
         public void IsOwnProvider()
         {
-            IQueryable<int> query = Enumerable.Empty<int>().AsQueryable();
+            IQueryable<int> query = Enumerable.Empty<int>().AsNaturalQueryable();
             Assert.Same(query, query.Provider);
         }
 
@@ -96,21 +96,21 @@ namespace ComparedQueryable.Test.NativeQueryableTests
         public void FromEnumerableReturnsSameEnumerable()
         {
             var testEnumerable = new ConstantEnumeratorEmptyEnumerable<int>();
-            IQueryable<int> query = testEnumerable.AsQueryable();
+            IQueryable<int> query = testEnumerable.AsNaturalQueryable();
             Assert.Same(testEnumerable.GetEnumerator(), query.GetEnumerator());
         }
 
         [Fact]
         public void ElementType()
         {
-            Assert.Equal(typeof(Version), Enumerable.Empty<Version>().AsQueryable().ElementType);
+            Assert.Equal(typeof(Version), Enumerable.Empty<Version>().AsNaturalQueryable().ElementType);
         }
 
         [Fact]
         public void CreateQuery()
         {
-            var exp = Expression.Constant(Enumerable.Range(3, 4).AsQueryable());
-            IQueryProvider provider = Enumerable.Empty<string>().AsQueryable().Provider;
+            var exp = Expression.Constant(Enumerable.Range(3, 4).AsNaturalQueryable());
+            IQueryProvider provider = Enumerable.Empty<string>().AsNaturalQueryable().Provider;
             IQueryable<int> query = provider.CreateQuery<int>(exp);
             Assert.Equal(Enumerable.Range(3, 4), query.AsEnumerable());
         }
@@ -118,8 +118,8 @@ namespace ComparedQueryable.Test.NativeQueryableTests
         [Fact]
         public void CreateQueryNonGeneric()
         {
-            var exp = Expression.Constant(Enumerable.Range(3, 4).AsQueryable());
-            IQueryProvider provider = Enumerable.Empty<string>().AsQueryable().Provider;
+            var exp = Expression.Constant(Enumerable.Range(3, 4).AsNaturalQueryable());
+            IQueryProvider provider = Enumerable.Empty<string>().AsNaturalQueryable().Provider;
             IQueryable query = provider.CreateQuery(exp);
             Assert.Equal(Enumerable.Range(3, 4), query.Cast<int>());
         }
@@ -127,14 +127,14 @@ namespace ComparedQueryable.Test.NativeQueryableTests
         [Fact]
         public void CreateQueryNull()
         {
-            IQueryProvider provider = Enumerable.Empty<int>().AsQueryable().Provider;
+            IQueryProvider provider = Enumerable.Empty<int>().AsNaturalQueryable().Provider;
             AssertExtensions.Throws<ArgumentNullException>("expression", () => provider.CreateQuery<int>(null));
         }
 
         [Fact]
         public void CreateQueryNullNonGeneric()
         {
-            IQueryProvider provider = Enumerable.Empty<int>().AsQueryable().Provider;
+            IQueryProvider provider = Enumerable.Empty<int>().AsNaturalQueryable().Provider;
             AssertExtensions.Throws<ArgumentNullException>("expression", () => provider.CreateQuery(null));
         }
 
@@ -142,7 +142,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
         public void CreateQueryInvalidType()
         {
             var exp = Expression.Constant(Math.PI);
-            IQueryProvider provider = Enumerable.Empty<string>().AsQueryable().Provider;
+            IQueryProvider provider = Enumerable.Empty<string>().AsNaturalQueryable().Provider;
             Assert.Throws<ArgumentException>(() => provider.CreateQuery<int>(exp));
         }
 
@@ -150,7 +150,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
         public void CreateQueryInvalidTypeNonGeneric()
         {
             var exp = Expression.Constant(Math.PI);
-            IQueryProvider provider = Enumerable.Empty<string>().AsQueryable().Provider;
+            IQueryProvider provider = Enumerable.Empty<string>().AsNaturalQueryable().Provider;
             Assert.Throws<ArgumentException>(() => provider.CreateQuery(exp));
         }
 
@@ -158,7 +158,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
         public void Execute()
         {
             var exp = Expression.Constant(Math.PI);
-            IQueryProvider provider = Enumerable.Empty<string>().AsQueryable().Provider;
+            IQueryProvider provider = Enumerable.Empty<string>().AsNaturalQueryable().Provider;
             Assert.Equal(Math.PI, provider.Execute<double>(exp));
         }
 
@@ -166,7 +166,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
         public void ExecuteAssignable()
         {
             var exp = Expression.Constant(new int[0]);
-            IQueryProvider provider = Enumerable.Empty<string>().AsQueryable().Provider;
+            IQueryProvider provider = Enumerable.Empty<string>().AsNaturalQueryable().Provider;
             Assert.Empty(provider.Execute<IEnumerable<int>>(exp));
         }
 
@@ -174,21 +174,21 @@ namespace ComparedQueryable.Test.NativeQueryableTests
         public void ExecuteNonGeneric()
         {
             var exp = Expression.Constant(Math.PI);
-            IQueryProvider provider = Enumerable.Empty<string>().AsQueryable().Provider;
+            IQueryProvider provider = Enumerable.Empty<string>().AsNaturalQueryable().Provider;
             Assert.Equal(Math.PI, provider.Execute(exp));
         }
 
         [Fact]
         public void ExecuteNull()
         {
-            IQueryProvider provider = Enumerable.Empty<string>().AsQueryable().Provider;
+            IQueryProvider provider = Enumerable.Empty<string>().AsNaturalQueryable().Provider;
             AssertExtensions.Throws<ArgumentNullException>("expression", () => provider.Execute<int>(null));
         }
 
         [Fact]
         public void ExecuteNullNonGeneric()
         {
-            IQueryProvider provider = Enumerable.Empty<string>().AsQueryable().Provider;
+            IQueryProvider provider = Enumerable.Empty<string>().AsNaturalQueryable().Provider;
             AssertExtensions.Throws<ArgumentNullException>("expression", () => provider.Execute(null));
         }
 
@@ -196,14 +196,14 @@ namespace ComparedQueryable.Test.NativeQueryableTests
         public void ExecuteNotAssignable()
         {
             var exp = Expression.Constant(Math.PI);
-            IQueryProvider provider = Enumerable.Empty<string>().AsQueryable().Provider;
+            IQueryProvider provider = Enumerable.Empty<string>().AsNaturalQueryable().Provider;
             Assert.Throws<ArgumentException>(() => provider.Execute<IEnumerable<int>>(exp));
         }
 
         [Fact]
         public void ToStringFromEnumerable()
         {
-            Assert.Equal(new int[0].ToString(), new int[0].AsQueryable().ToString());
+            Assert.Equal(new int[0].ToString(), new int[0].AsNaturalQueryable().ToString());
         }
 
         [Fact]

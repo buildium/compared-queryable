@@ -16,25 +16,25 @@ namespace ComparedQueryable.Test.NativeQueryableTests
     public class QueryableTests
     {
         [Fact]
-        public void AsQueryable()
+        public void AsNaturalQueryable()
         {
             Assert.NotNull(((IEnumerable)(new int[] { })).AsQueryable());
         }
 
         [Fact]
-        public void AsQueryableT()
+        public void AsNaturalQueryableT()
         {
-            Assert.NotNull((new int[] { }).AsQueryable());
+            Assert.NotNull((new int[] { }).AsNaturalQueryable());
         }
 
         [Fact]
-        public void NullAsQueryableT()
+        public void NullAsNaturalQueryableT()
         {
-            AssertExtensions.Throws<ArgumentNullException>("source", () => ((IEnumerable<int>)null).AsQueryable());
+            AssertExtensions.Throws<ArgumentNullException>("source", () => ((IEnumerable<int>)null).AsNaturalQueryable());
         }
 
         [Fact]
-        public void NullAsQueryable()
+        public void NullAsNaturalQueryable()
         {
             AssertExtensions.Throws<ArgumentNullException>("source", () => ((IEnumerable)null).AsQueryable());
         }
@@ -56,23 +56,23 @@ namespace ComparedQueryable.Test.NativeQueryableTests
         [Fact]
         public void ReturnsSelfIfPossible()
         {
-            IEnumerable<int> query = Enumerable.Repeat(1, 2).AsQueryable();
-            Assert.Same(query, query.AsQueryable());
+            IEnumerable<int> query = Enumerable.Repeat(1, 2).AsNaturalQueryable();
+            Assert.Same(query, query.AsNaturalQueryable());
         }
 
         [Fact]
         public void ReturnsSelfIfPossibleNonGeneric()
         {
-            IEnumerable query = Enumerable.Repeat(1, 2).AsQueryable();
+            IEnumerable query = Enumerable.Repeat(1, 2).AsNaturalQueryable();
             Assert.Same(query, query.AsQueryable());
         }
 
         [Fact]
         public static void QueryableOfQueryable()
         {
-            IQueryable<int> queryable1 = new [] { 1, 2, 3 }.AsQueryable();
+            IQueryable<int> queryable1 = new [] { 1, 2, 3 }.AsNaturalQueryable();
             IQueryable<int>[] queryableArray1 = { queryable1, queryable1 };
-            IQueryable<IQueryable<int>> queryable2 = queryableArray1.AsQueryable();
+            IQueryable<IQueryable<int>> queryable2 = queryableArray1.AsNaturalQueryable();
             ParameterExpression expression1 = Expression.Parameter(typeof(IQueryable<int>), "i");
             ParameterExpression[] expressionArray1 = { expression1 };
             IQueryable<IQueryable<int>> queryable3 = queryable2.Select(Expression.Lambda<Func<IQueryable<int>, IQueryable<int>>>(expression1, expressionArray1));
@@ -108,7 +108,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
                 typeof(Queryable),
                 typeof(Enumerable),
                  new [] {
-                     "AsQueryable"
+                     "AsNaturalQueryable"
                  }
                 );
 

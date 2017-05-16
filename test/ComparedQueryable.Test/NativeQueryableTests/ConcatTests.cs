@@ -15,7 +15,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
         {
             int[] first = { };
             int[] second = { };
-            Assert.Empty(first.AsQueryable().Concat(second.AsQueryable()));
+            Assert.Empty(first.AsNaturalQueryable().Concat(second.AsNaturalQueryable()));
         }
 
         [Fact]
@@ -25,25 +25,25 @@ namespace ComparedQueryable.Test.NativeQueryableTests
             int?[] second = { null, 8, 10 };
             int?[] expected = { 2, null, 3, 5, 9, null, 8, 10 };
 
-            Assert.Equal(expected, first.AsQueryable().Concat(second.AsQueryable()));
+            Assert.Equal(expected, first.AsNaturalQueryable().Concat(second.AsNaturalQueryable()));
         }
 
         [Fact]
         public void FirstNull()
         {
-            AssertExtensions.Throws<ArgumentNullException>("source1", () => ((IQueryable<int>)null).Concat(Enumerable.Range(0, 0).AsQueryable()));
+            AssertExtensions.Throws<ArgumentNullException>("source1", () => ((IQueryable<int>)null).Concat(Enumerable.Range(0, 0).AsNaturalQueryable()));
         }
 
         [Fact]
         public void SecondNull()
         {
-            AssertExtensions.Throws<ArgumentNullException>("source2", () => Enumerable.Range(0, 0).AsQueryable().Concat(null));
+            AssertExtensions.Throws<ArgumentNullException>("source2", () => Enumerable.Range(0, 0).AsNaturalQueryable().Concat(null));
         }
 
         [Fact]
         public void Concat()
         {
-            var count = (new int[] { 0, 1, 2 }).AsQueryable().Concat((new int[] { 10, 11, 12 }).AsQueryable()).Count();
+            var count = (new int[] { 0, 1, 2 }).AsNaturalQueryable().Concat((new int[] { 10, 11, 12 }).AsNaturalQueryable()).Count();
             Assert.Equal(6, count);
         }
     }

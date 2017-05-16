@@ -16,7 +16,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
         {
             int[] first = { };
             int[] second = { };
-            Assert.Empty(first.AsQueryable().Except(second.AsQueryable()));
+            Assert.Empty(first.AsNaturalQueryable().Except(second.AsNaturalQueryable()));
         }
 
         [Fact]
@@ -26,7 +26,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
             int?[] second = { 5, 3, 2, 6, 6, 3, 1, null, null };
             int?[] expected = { 4 };
 
-            Assert.Equal(expected, first.AsQueryable().Except(second.AsQueryable()));
+            Assert.Equal(expected, first.AsNaturalQueryable().Except(second.AsNaturalQueryable()));
         }
 
         [Fact]
@@ -36,7 +36,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
             string[] second = { "bBo", "shriC" };
             string[] expected = { "Bob", "Tim", "Robert", "Chris" };
 
-            Assert.Equal(expected, first.AsQueryable().Except(second.AsQueryable(), null));
+            Assert.Equal(expected, first.AsNaturalQueryable().Except(second.AsNaturalQueryable(), null));
         }
 
         [Fact]
@@ -45,7 +45,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
             IQueryable<string> first = null;
             string[] second = { "bBo", "shriC" };
 
-            AssertExtensions.Throws<ArgumentNullException>("source1", () => first.Except(second.AsQueryable(), new AnagramEqualityComparer()));
+            AssertExtensions.Throws<ArgumentNullException>("source1", () => first.Except(second.AsNaturalQueryable(), new AnagramEqualityComparer()));
         }
 
         [Fact]
@@ -54,7 +54,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
             string[] first = { "Bob", "Tim", "Robert", "Chris" };
             IQueryable<string> second = null;
 
-            AssertExtensions.Throws<ArgumentNullException>("source2", () => first.AsQueryable().Except(second, new AnagramEqualityComparer()));
+            AssertExtensions.Throws<ArgumentNullException>("source2", () => first.AsNaturalQueryable().Except(second, new AnagramEqualityComparer()));
         }
 
         [Fact]
@@ -63,7 +63,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
             IQueryable<string> first = null;
             string[] second = { "bBo", "shriC" };
 
-            AssertExtensions.Throws<ArgumentNullException>("source1", () => first.Except(second.AsQueryable()));
+            AssertExtensions.Throws<ArgumentNullException>("source1", () => first.Except(second.AsNaturalQueryable()));
         }
 
         [Fact]
@@ -72,20 +72,20 @@ namespace ComparedQueryable.Test.NativeQueryableTests
             string[] first = { "Bob", "Tim", "Robert", "Chris" };
             IQueryable<string> second = null;
 
-            AssertExtensions.Throws<ArgumentNullException>("source2", () => first.AsQueryable().Except(second));
+            AssertExtensions.Throws<ArgumentNullException>("source2", () => first.AsNaturalQueryable().Except(second));
         }
 
         [Fact]
         public void Except1()
         {
-            var count = (new int[] { 0, 1, 2 }).AsQueryable().Except((new int[] { 1, 2, 3 }).AsQueryable()).Count();
+            var count = (new int[] { 0, 1, 2 }).AsNaturalQueryable().Except((new int[] { 1, 2, 3 }).AsNaturalQueryable()).Count();
             Assert.Equal(1, count);
         }
 
         [Fact]
         public void Except2()
         {
-            var count = (new int[] { 0, 1, 2 }).AsQueryable().Except((new int[] { 1, 2, 3 }).AsQueryable(), EqualityComparer<int>.Default).Count();
+            var count = (new int[] { 0, 1, 2 }).AsNaturalQueryable().Except((new int[] { 1, 2, 3 }).AsNaturalQueryable(), EqualityComparer<int>.Default).Count();
             Assert.Equal(1, count);
         }
     }

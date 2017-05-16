@@ -14,7 +14,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
         public void EmptySource()
         {
             object[] source = { };
-            Assert.Empty(source.AsQueryable().OfType<int>());
+            Assert.Empty(source.AsNaturalQueryable().OfType<int>());
         }
 
         [Fact]
@@ -23,7 +23,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
             object[] source = { 10, "Hello", 3.5, "Test" };
             int[] expected = { 10 };
 
-            Assert.Equal(expected, source.AsQueryable().OfType<int>());
+            Assert.Equal(expected, source.AsNaturalQueryable().OfType<int>());
         }
 
         [Fact]
@@ -35,7 +35,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
         [Fact]
         public void OfType()
         {
-            var count = (new object[] { 0, (long)1, 2 }).AsQueryable().OfType<int>().Count();
+            var count = (new object[] { 0, (long)1, 2 }).AsNaturalQueryable().OfType<int>().Count();
             Assert.Equal(2, count);
         }
     }

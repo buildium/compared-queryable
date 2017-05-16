@@ -27,7 +27,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
         public void NullNFloatFunc()
         {
             Expression<Func<float?, float?>> selector = null;
-            AssertExtensions.Throws<ArgumentNullException>("selector", () => Enumerable.Empty<float?>().AsQueryable().Average(selector));
+            AssertExtensions.Throws<ArgumentNullException>("selector", () => Enumerable.Empty<float?>().AsNaturalQueryable().Average(selector));
         }
 
         [Fact]
@@ -36,7 +36,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
             float?[] source = { 5.5f, 0, null, null, null, 15.5f, 40.5f, null, null, -23.5f };
             float? expected = 7.6f;
 
-            Assert.Equal(expected, source.AsQueryable().Average());
+            Assert.Equal(expected, source.AsNaturalQueryable().Average());
         }
 
         [Fact]
@@ -50,7 +50,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
             };
             float? expected = 10.5f;
 
-            Assert.Equal(expected, source.AsQueryable().Average(e => e.num));
+            Assert.Equal(expected, source.AsNaturalQueryable().Average(e => e.num));
         }
 
         [Fact]
@@ -69,7 +69,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
         public void NullIntFunc()
         {
             Expression<Func <int, int>> selector = null;
-            AssertExtensions.Throws<ArgumentNullException>("selector", () => Enumerable.Empty<int>().AsQueryable().Average(selector));
+            AssertExtensions.Throws<ArgumentNullException>("selector", () => Enumerable.Empty<int>().AsNaturalQueryable().Average(selector));
         }
 
         [Fact]
@@ -78,7 +78,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
             int[] source = { 5, -10, 15, 40, 28 };
             double expected = 15.6;
 
-            Assert.Equal(expected, source.AsQueryable().Average());
+            Assert.Equal(expected, source.AsNaturalQueryable().Average());
         }
 
         [Fact]
@@ -92,7 +92,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
             };
             double expected = 5;
 
-            Assert.Equal(expected, source.AsQueryable().Average(e => e.num));
+            Assert.Equal(expected, source.AsNaturalQueryable().Average(e => e.num));
         }
 
         [Fact]
@@ -111,7 +111,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
         public void NullNIntFunc()
         {
             Expression<Func<int?, int?>> selector = null;
-            AssertExtensions.Throws<ArgumentNullException>("selector", () => Enumerable.Empty<int?>().AsQueryable().Average(selector));
+            AssertExtensions.Throws<ArgumentNullException>("selector", () => Enumerable.Empty<int?>().AsNaturalQueryable().Average(selector));
         }
 
         [Fact]
@@ -120,7 +120,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
             int?[] source = { 5, -10, null, null, null, 15, 40, 28, null, null };
             double? expected = 15.6;
 
-            Assert.Equal(expected, source.AsQueryable().Average());
+            Assert.Equal(expected, source.AsNaturalQueryable().Average());
         }
 
         [Fact]
@@ -134,7 +134,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
             };
             double? expected = 10;
 
-            Assert.Equal(expected, source.AsQueryable().Average(e => e.num));
+            Assert.Equal(expected, source.AsNaturalQueryable().Average(e => e.num));
         }
 
         [Fact]
@@ -153,7 +153,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
         public void NullLongFunc()
         {
             Expression<Func<long, long>> selector = null;
-            AssertExtensions.Throws<ArgumentNullException>("selector", () => Enumerable.Empty<long>().AsQueryable().Average(selector));
+            AssertExtensions.Throws<ArgumentNullException>("selector", () => Enumerable.Empty<long>().AsNaturalQueryable().Average(selector));
         }
 
         [Fact]
@@ -162,7 +162,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
             long[] source = { 5, -10, 15, 40, 28 };
             double expected = 15.6;
 
-            Assert.Equal(expected, source.AsQueryable().Average());
+            Assert.Equal(expected, source.AsNaturalQueryable().Average());
         }
 
         [Fact]
@@ -176,7 +176,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
             };
             double expected = 50;
 
-            Assert.Equal(expected, source.AsQueryable().Average(e => e.num));
+            Assert.Equal(expected, source.AsNaturalQueryable().Average(e => e.num));
         }
 
         [Fact]
@@ -195,7 +195,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
         public void NullNLongFunc()
         {
             Expression<Func<long?, long?>> selector = null;
-            AssertExtensions.Throws<ArgumentNullException>("selector", () => Enumerable.Empty<long?>().AsQueryable().Average(selector));
+            AssertExtensions.Throws<ArgumentNullException>("selector", () => Enumerable.Empty<long?>().AsNaturalQueryable().Average(selector));
         }
 
         [Fact]
@@ -204,7 +204,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
             long?[] source = { 5, -10, null, null, null, 15, 40, 28, null, null };
             double? expected = 15.6;
 
-            Assert.Equal(expected, source.AsQueryable().Average());
+            Assert.Equal(expected, source.AsNaturalQueryable().Average());
         }
 
         [Fact]
@@ -218,7 +218,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
             };
             double? expected = 35;
 
-            Assert.Equal(expected, source.AsQueryable().Average(e => e.num));
+            Assert.Equal(expected, source.AsNaturalQueryable().Average(e => e.num));
         }
 
         [Fact]
@@ -237,7 +237,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
         public void NullDoubleFunc()
         {
             Expression<Func<double, double>> selector = null;
-            AssertExtensions.Throws<ArgumentNullException>("selector", () => Enumerable.Empty<double>().AsQueryable().Average(selector));
+            AssertExtensions.Throws<ArgumentNullException>("selector", () => Enumerable.Empty<double>().AsNaturalQueryable().Average(selector));
         }
 
 
@@ -247,7 +247,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
             double[] source = { 5.5, -10, 15.5, 40.5, 28.5 };
             double expected = 16;
 
-            Assert.Equal(expected, source.AsQueryable().Average());
+            Assert.Equal(expected, source.AsNaturalQueryable().Average());
         }
 
         [Fact]
@@ -261,7 +261,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
             };
             double expected = 8.0;
 
-            Assert.Equal(expected, source.AsQueryable().Average(e => e.num));
+            Assert.Equal(expected, source.AsNaturalQueryable().Average(e => e.num));
         }
 
         [Fact]
@@ -280,7 +280,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
         public void NullNDoubleFunc()
         {
             Expression<Func<double?, double?>> selector = null;
-            AssertExtensions.Throws<ArgumentNullException>("selector", () => Enumerable.Empty<double?>().AsQueryable().Average(selector));
+            AssertExtensions.Throws<ArgumentNullException>("selector", () => Enumerable.Empty<double?>().AsNaturalQueryable().Average(selector));
         }
 
         [Fact]
@@ -289,7 +289,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
             double?[] source = { 5.5, 0, null, null, null, 15.5, 40.5, null, null, -23.5 };
             double? expected = 7.6;
 
-            Assert.Equal(expected, source.AsQueryable().Average());
+            Assert.Equal(expected, source.AsNaturalQueryable().Average());
         }
 
         [Fact]
@@ -303,7 +303,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
             };
             double? expected = 10.5;
 
-            Assert.Equal(expected, source.AsQueryable().Average(e => e.num));
+            Assert.Equal(expected, source.AsNaturalQueryable().Average(e => e.num));
         }
 
         [Fact]
@@ -322,7 +322,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
         public void NullDecimalFunc()
         {
             Expression<Func<decimal, decimal>> selector = null;
-            AssertExtensions.Throws<ArgumentNullException>("selector", () => Enumerable.Empty<decimal>().AsQueryable().Average(selector));
+            AssertExtensions.Throws<ArgumentNullException>("selector", () => Enumerable.Empty<decimal>().AsNaturalQueryable().Average(selector));
         }
 
         [Fact]
@@ -331,7 +331,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
             decimal[] source = { 5.5m, -10m, 15.5m, 40.5m, 28.5m };
             decimal expected = 16m;
 
-            Assert.Equal(expected, source.AsQueryable().Average());
+            Assert.Equal(expected, source.AsNaturalQueryable().Average());
         }
 
         [Fact]
@@ -345,7 +345,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
             };
             decimal expected = 8.0m;
 
-            Assert.Equal(expected, source.AsQueryable().Average(e => e.num));
+            Assert.Equal(expected, source.AsNaturalQueryable().Average(e => e.num));
         }
 
         [Fact]
@@ -364,7 +364,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
         public void NullNDecimalFunc()
         {
             Expression<Func<decimal?, decimal?>> selector = null;
-            AssertExtensions.Throws<ArgumentNullException>("selector", () => Enumerable.Empty<decimal?>().AsQueryable().Average(selector));
+            AssertExtensions.Throws<ArgumentNullException>("selector", () => Enumerable.Empty<decimal?>().AsNaturalQueryable().Average(selector));
         }
 
         [Fact]
@@ -373,7 +373,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
             decimal?[] source = { 5.5m, 0, null, null, null, 15.5m, 40.5m, null, null, -23.5m };
             decimal? expected = 7.6m;
 
-            Assert.Equal(expected, source.AsQueryable().Average());
+            Assert.Equal(expected, source.AsNaturalQueryable().Average());
         }
 
         [Fact]
@@ -387,7 +387,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
             };
             decimal? expected = 10.5m;
 
-            Assert.Equal(expected, source.AsQueryable().Average(e => e.num));
+            Assert.Equal(expected, source.AsNaturalQueryable().Average(e => e.num));
         }
 
         [Fact]
@@ -406,7 +406,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
         public void NullFloatFunc()
         {
             Expression<Func<float, float>> selector = null;
-            AssertExtensions.Throws<ArgumentNullException>("selector", () => Enumerable.Empty<float>().AsQueryable().Average(selector));
+            AssertExtensions.Throws<ArgumentNullException>("selector", () => Enumerable.Empty<float>().AsNaturalQueryable().Average(selector));
         }
 
         [Fact]
@@ -415,7 +415,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
             float[] source = { 5.5f, -10f, 15.5f, 40.5f, 28.5f };
             float expected = 16f;
 
-            Assert.Equal(expected, source.AsQueryable().Average());
+            Assert.Equal(expected, source.AsNaturalQueryable().Average());
         }
 
         [Fact]
@@ -429,146 +429,146 @@ namespace ComparedQueryable.Test.NativeQueryableTests
             };
             float expected = 8.0f;
 
-            Assert.Equal(expected, source.AsQueryable().Average(e => e.num));
+            Assert.Equal(expected, source.AsNaturalQueryable().Average(e => e.num));
         }
 
         [Fact]
         public void Average1()
         {
-            var val = (new int[] { 0, 2, 1 }).AsQueryable().Average();
+            var val = (new int[] { 0, 2, 1 }).AsNaturalQueryable().Average();
             Assert.Equal((double)1, val);
         }
 
         [Fact]
         public void Average2()
         {
-            var val = (new int?[] { 0, 2, 1 }).AsQueryable().Average();
+            var val = (new int?[] { 0, 2, 1 }).AsNaturalQueryable().Average();
             Assert.Equal((double)1, val);
         }
 
         [Fact]
         public void Average3()
         {
-            var val = (new long[] { 0, 2, 1 }).AsQueryable().Average();
+            var val = (new long[] { 0, 2, 1 }).AsNaturalQueryable().Average();
             Assert.Equal((double)1, val);
         }
 
         [Fact]
         public void Average4()
         {
-            var val = (new long?[] { 0, 2, 1 }).AsQueryable().Average();
+            var val = (new long?[] { 0, 2, 1 }).AsNaturalQueryable().Average();
             Assert.Equal((double)1, val);
         }
 
         [Fact]
         public void Average5()
         {
-            var val = (new float[] { 0, 2, 1 }).AsQueryable().Average();
+            var val = (new float[] { 0, 2, 1 }).AsNaturalQueryable().Average();
             Assert.Equal((float)1, val);
         }
 
         [Fact]
         public void Average6()
         {
-            var val = (new float?[] { 0, 2, 1 }).AsQueryable().Average();
+            var val = (new float?[] { 0, 2, 1 }).AsNaturalQueryable().Average();
             Assert.Equal((float)1, val);
         }
 
         [Fact]
         public void Average7()
         {
-            var val = (new double[] { 0, 2, 1 }).AsQueryable().Average();
+            var val = (new double[] { 0, 2, 1 }).AsNaturalQueryable().Average();
             Assert.Equal((double)1, val);
         }
 
         [Fact]
         public void Average8()
         {
-            var val = (new double?[] { 0, 2, 1 }).AsQueryable().Average();
+            var val = (new double?[] { 0, 2, 1 }).AsNaturalQueryable().Average();
             Assert.Equal((double)1, val);
         }
 
         [Fact]
         public void Average9()
         {
-            var val = (new decimal[] { 0, 2, 1 }).AsQueryable().Average();
+            var val = (new decimal[] { 0, 2, 1 }).AsNaturalQueryable().Average();
             Assert.Equal((decimal)1, val);
         }
 
         [Fact]
         public void Average10()
         {
-            var val = (new decimal?[] { 0, 2, 1 }).AsQueryable().Average();
+            var val = (new decimal?[] { 0, 2, 1 }).AsNaturalQueryable().Average();
             Assert.Equal((decimal)1, val);
         }
 
         [Fact]
         public void Average11()
         {
-            var val = (new int[] { 0, 2, 1 }).AsQueryable().Average(n => n);
+            var val = (new int[] { 0, 2, 1 }).AsNaturalQueryable().Average(n => n);
             Assert.Equal((double)1, val);
         }
 
         [Fact]
         public void Average12()
         {
-            var val = (new int?[] { 0, 2, 1 }).AsQueryable().Average(n => n);
+            var val = (new int?[] { 0, 2, 1 }).AsNaturalQueryable().Average(n => n);
             Assert.Equal((double)1, val);
         }
 
         [Fact]
         public void Average13()
         {
-            var val = (new long[] { 0, 2, 1 }).AsQueryable().Average(n => n);
+            var val = (new long[] { 0, 2, 1 }).AsNaturalQueryable().Average(n => n);
             Assert.Equal((double)1, val);
         }
 
         [Fact]
         public void Average14()
         {
-            var val = (new long?[] { 0, 2, 1 }).AsQueryable().Average(n => n);
+            var val = (new long?[] { 0, 2, 1 }).AsNaturalQueryable().Average(n => n);
             Assert.Equal((double)1, val);
         }
 
         [Fact]
         public void Average15()
         {
-            var val = (new float[] { 0, 2, 1 }).AsQueryable().Average(n => n);
+            var val = (new float[] { 0, 2, 1 }).AsNaturalQueryable().Average(n => n);
             Assert.Equal((float)1, val);
         }
 
         [Fact]
         public void Average16()
         {
-            var val = (new float?[] { 0, 2, 1 }).AsQueryable().Average(n => n);
+            var val = (new float?[] { 0, 2, 1 }).AsNaturalQueryable().Average(n => n);
             Assert.Equal((float)1, val);
         }
 
         [Fact]
         public void Average17()
         {
-            var val = (new double[] { 0, 2, 1 }).AsQueryable().Average(n => n);
+            var val = (new double[] { 0, 2, 1 }).AsNaturalQueryable().Average(n => n);
             Assert.Equal((double)1, val);
         }
 
         [Fact]
         public void Average18()
         {
-            var val = (new double?[] { 0, 2, 1 }).AsQueryable().Average(n => n);
+            var val = (new double?[] { 0, 2, 1 }).AsNaturalQueryable().Average(n => n);
             Assert.Equal((double)1, val);
         }
 
         [Fact]
         public void Average19()
         {
-            var val = (new decimal[] { 0, 2, 1 }).AsQueryable().Average(n => n);
+            var val = (new decimal[] { 0, 2, 1 }).AsNaturalQueryable().Average(n => n);
             Assert.Equal((decimal)1, val);
         }
 
         [Fact]
         public void Average20()
         {
-            var val = (new decimal?[] { 0, 2, 1 }).AsQueryable().Average(n => n);
+            var val = (new decimal?[] { 0, 2, 1 }).AsNaturalQueryable().Average(n => n);
             Assert.Equal((decimal)1, val);
         }
     }

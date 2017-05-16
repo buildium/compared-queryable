@@ -15,28 +15,28 @@ namespace ComparedQueryable.Test.NativeQueryableTests
         public void EmptySource()
         {
             int[] data = { };
-            Assert.Equal(0, data.AsQueryable().LongCount());
+            Assert.Equal(0, data.AsNaturalQueryable().LongCount());
         }
 
         [Fact]
         public void EmptySourceWithPredicate()
         {
             int[] data = { };
-            Assert.Equal(0, data.AsQueryable().LongCount());
+            Assert.Equal(0, data.AsNaturalQueryable().LongCount());
         }
 
         [Fact]
         public void MultipleElements()
         {
             int?[] data = { -10, 4, 9, null, 11 };
-            Assert.Equal(data.Length, data.AsQueryable().LongCount());
+            Assert.Equal(data.Length, data.AsNaturalQueryable().LongCount());
         }
 
         [Fact]
         public void PredicateTrueFirstAndLast()
         {
             int[] data = { 2, 5, 7, 9, 29, 10 };
-            Assert.Equal(2, data.AsQueryable().LongCount(i => i % 2 == 0));
+            Assert.Equal(2, data.AsNaturalQueryable().LongCount(i => i % 2 == 0));
         }
 
         [Fact]
@@ -55,20 +55,20 @@ namespace ComparedQueryable.Test.NativeQueryableTests
         public void NullPredicateUsed()
         {
             Expression<Func<int, bool>> predicate = null;
-            AssertExtensions.Throws<ArgumentNullException>("predicate", () => Enumerable.Range(0, 3).AsQueryable().LongCount(predicate));
+            AssertExtensions.Throws<ArgumentNullException>("predicate", () => Enumerable.Range(0, 3).AsNaturalQueryable().LongCount(predicate));
         }
 
         [Fact]
         public void LongCount1()
         {
-            var count = (new int[] { 0 }).AsQueryable().LongCount();
+            var count = (new int[] { 0 }).AsNaturalQueryable().LongCount();
             Assert.Equal(1L, count);
         }
 
         [Fact]
         public void LongCount2()
         {
-            var count = (new int[] { 0, 1, 2 }).AsQueryable().LongCount(n => n > 0);
+            var count = (new int[] { 0, 1, 2 }).AsNaturalQueryable().LongCount(n => n > 0);
             Assert.Equal(2L, count);
         }
     }

@@ -14,15 +14,15 @@ namespace ComparedQueryable.Test.NativeQueryableTests
         [Fact]
         public void SkipWhileAllTrue()
         {
-            Assert.Empty(Enumerable.Range(0, 20).AsQueryable().SkipWhile(i => i < 40));
-            Assert.Empty(Enumerable.Range(0, 20).AsQueryable().SkipWhile((i, idx) => i == idx));
+            Assert.Empty(Enumerable.Range(0, 20).AsNaturalQueryable().SkipWhile(i => i < 40));
+            Assert.Empty(Enumerable.Range(0, 20).AsNaturalQueryable().SkipWhile((i, idx) => i == idx));
         }
 
         [Fact]
         public void SkipWhileAllFalse()
         {
-            Assert.Equal(Enumerable.Range(0, 20), Enumerable.Range(0, 20).AsQueryable().SkipWhile(i => i != 0));
-            Assert.Equal(Enumerable.Range(0, 20), Enumerable.Range(0, 20).AsQueryable().SkipWhile((i, idx) => i != idx));
+            Assert.Equal(Enumerable.Range(0, 20), Enumerable.Range(0, 20).AsNaturalQueryable().SkipWhile(i => i != 0));
+            Assert.Equal(Enumerable.Range(0, 20), Enumerable.Range(0, 20).AsNaturalQueryable().SkipWhile((i, idx) => i != idx));
         }
 
         [Fact]
@@ -30,21 +30,21 @@ namespace ComparedQueryable.Test.NativeQueryableTests
         {
             AssertExtensions.Throws<ArgumentNullException>("source", () => ((IQueryable<int>)null).SkipWhile(i => i < 40));
             AssertExtensions.Throws<ArgumentNullException>("source", () => ((IQueryable<int>)null).SkipWhile((i, idx) => i == idx));
-            AssertExtensions.Throws<ArgumentNullException>("predicate", () => Enumerable.Range(0, 20).AsQueryable().SkipWhile((Expression<Func<int, int, bool>>)null));
-            AssertExtensions.Throws<ArgumentNullException>("predicate", () => Enumerable.Range(0, 20).AsQueryable().SkipWhile((Expression<Func<int, bool>>)null));
+            AssertExtensions.Throws<ArgumentNullException>("predicate", () => Enumerable.Range(0, 20).AsNaturalQueryable().SkipWhile((Expression<Func<int, int, bool>>)null));
+            AssertExtensions.Throws<ArgumentNullException>("predicate", () => Enumerable.Range(0, 20).AsNaturalQueryable().SkipWhile((Expression<Func<int, bool>>)null));
         }
 
         [Fact]
         public void SkipWhile1()
         {
-            var count = (new int[] { 0, 1, 2 }).AsQueryable().SkipWhile(n => n < 1).Count();
+            var count = (new int[] { 0, 1, 2 }).AsNaturalQueryable().SkipWhile(n => n < 1).Count();
             Assert.Equal(2, count);
         }
 
         [Fact]
         public void SkipWhile2()
         {
-            var count = (new int[] { 0, 1, 2 }).AsQueryable().SkipWhile((n, i) => n + i < 1).Count();
+            var count = (new int[] { 0, 1, 2 }).AsNaturalQueryable().SkipWhile((n, i) => n + i < 1).Count();
             Assert.Equal(2, count);
         }
     }

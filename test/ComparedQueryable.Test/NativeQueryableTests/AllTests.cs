@@ -16,7 +16,7 @@ namespace ComparedQueryable.Test.NativeQueryableTests
         {
             int[] source = { 4, 2, 10, 12, 8, 6, 3 };
 
-            Assert.False(source.AsQueryable().All(i => i % 2 == 0));
+            Assert.False(source.AsNaturalQueryable().All(i => i % 2 == 0));
         }
 
         [Fact]
@@ -29,13 +29,13 @@ namespace ComparedQueryable.Test.NativeQueryableTests
         public void NullPredicateUsed()
         {
             Expression<Func<int, bool>> predicate = null;
-            AssertExtensions.Throws<ArgumentNullException>("predicate", () => Enumerable.Range(0, 3).AsQueryable().All(predicate));
+            AssertExtensions.Throws<ArgumentNullException>("predicate", () => Enumerable.Range(0, 3).AsNaturalQueryable().All(predicate));
         }
 
         [Fact]
         public void All()
         {
-            var val = (new int[] { 0, 2, 1 }).AsQueryable().All(n => n > 1);
+            var val = (new int[] { 0, 2, 1 }).AsNaturalQueryable().All(n => n > 1);
             Assert.False(val);
         }
     }
