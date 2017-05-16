@@ -3,10 +3,10 @@
 // See the LICENSE file in the project root for more information.
 
 using System;
-using ComparedQueryable.Test.NativeQueryableTests;
+using System.Linq;
 using Xunit;
 
-namespace System.Linq.Tests
+namespace ComparedQueryable.Test.NativeQueryableTests
 {
     public class ElementAtTests : EnumerableBasedTests
     {

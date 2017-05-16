@@ -2,15 +2,16 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
 using System.Runtime.CompilerServices;
-using ComparedQueryable.Test.NativeQueryableTests;
 using Xunit;
 
-namespace System.Linq.Tests
+namespace ComparedQueryable.Test.NativeQueryableTests
 {
     public class QueryableTests
     {
