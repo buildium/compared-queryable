@@ -34,6 +34,8 @@ namespace ComparedQueryable
             {
                 throw new ArgumentNullException(nameof(source));
             }
+            // If the IQueryable is already is in the form of our own IQueryable implementation, there's no need to make
+            // another one.
             var query = source as EnumerableQuery<T, TComparison>;
             return query ?? new EnumerableQuery<T, TComparison>(source, comparer);
         }
