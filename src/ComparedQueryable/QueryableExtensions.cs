@@ -5,11 +5,13 @@ using NaturalSort;
 
 namespace ComparedQueryable
 {
+    /// <summary>
+    /// </summary>
     public static class QueryableExtensions
     {
         /// <summary>
         /// Converts an <see cref="IEnumerable{T}"/> into an <see cref="IQueryable{T}"/> the <see cref="string"/> 
-        /// properites of which can be naturally sorted.
+        /// properties of which can be naturally sorted.
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="source"></param>
