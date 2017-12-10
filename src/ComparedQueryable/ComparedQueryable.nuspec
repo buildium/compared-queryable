@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>Buildium.ComparedQueryable</id>
-    <version>0.1.4</version>
+    <version>0.1.4-alpha2</version>
     <authors>Peter A Majeed</authors>
     <owners>Buildium, LLC</owners>
     <licenseUrl>https://raw.githubusercontent.com/buildium/compared-queryable/master/LICENSE</licenseUrl>
@@ -12,9 +12,14 @@
       A way to order IQueryable instances by a default IComparer&lt;T&gt; instance.
     </description>
     <releaseNotes>
-      Including XML documentation for the project.
+      Slimming down the files in the package.
     </releaseNotes>
     <copyright>Copyright 2017 Buildium, LLC</copyright>
     <tags></tags>
   </metadata>
+  <files>
+    <file src="bin\Release\ComparedQueryable.dll" target="lib\net461\ComparedQueryable.dll" />
+    <file src="bin\Release\ComparedQueryable.pdb" target="lib\net461\ComparedQueryable.pdb" />
+    <file src="bin\Release\ComparedQueryable.xml" target="lib\net461\ComparedQueryable.xml" />
+  </files>
 </package>
