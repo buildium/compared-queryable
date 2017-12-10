@@ -12,10 +12,13 @@
       A way to order IQueryable instances by a default IComparer&lt;T&gt; instance.
     </description>
     <releaseNotes>
-      Slimming down the files in the package.
+      Declaring a hard dependency on the NaturalSort library.
     </releaseNotes>
     <copyright>Copyright 2017 Buildium, LLC</copyright>
     <tags></tags>
+    <dependencies>
+      <dependency id="Buildium.NaturalSort" version="1.0.0" />
+    </dependencies>
   </metadata>
   <files>
     <file src="bin\Release\ComparedQueryable.dll" target="lib\net461\ComparedQueryable.dll" />
